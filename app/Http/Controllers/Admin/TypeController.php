@@ -10,34 +10,34 @@ use App\Http\Controllers\Controller;
 class TypeController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 后天商品分类首页
+     *author:孙小楠
+     * time:2017.08.06
      */
     public function index()
     {
-        //
+        return view('admin/goods/type');
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 后台添加商品分类
+     *author：孙小楠
+     * time:2017.08.06
      */
     public function create()
     {
-        //
+        return view('admin/goods/add');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * 执行添加商品分类
+     *author：孙小楠
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
