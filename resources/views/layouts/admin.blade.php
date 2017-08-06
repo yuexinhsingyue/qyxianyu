@@ -24,8 +24,10 @@
             </div>
             <div class="header-block header-block-nav">
                 <div class="nav-profile" style=" margin-right: 25px;">
-                    <span class="name" style="margin-right: 25px;">Admin</span>
-                    <a href="#"><i class="fa fa-power-off icon"></i>退出</a>
+                    <span class="name" style="margin-right: 25px;">
+                        <a href="{{ url('/admin/pass') }}">Admin</a>
+                    </span>
+                    <a href="{{ url('/admin/quit') }}"><i class="fa fa-power-off icon"></i>退出</a>
                 </div>
             </div>
         </header>
