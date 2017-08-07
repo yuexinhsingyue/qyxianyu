@@ -57,11 +57,11 @@
                             </ul>
                         </li>
 						<li> <a href="">
-                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;定&nbsp;单&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;订&nbsp;单&nbsp;管&nbsp;理&nbsp;
                                 <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="#"> 定&nbsp;单&nbsp;列&nbsp;表&nbsp;</a> </li>								
+                                <li> <a href="#"> 订&nbsp;单&nbsp;列&nbsp;表&nbsp;</a> </li>
                             </ul>
                         </li>
 						<li> <a href="">
