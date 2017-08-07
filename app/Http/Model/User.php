@@ -32,5 +32,10 @@ class User extends Model implements AuthenticatableContract,
      */
     public $timestamps = false;
 
+    public function detail()
+    {
+        return $this -> hasOne('App\Http\Model\UserDetail');
+    }
+
     
 }

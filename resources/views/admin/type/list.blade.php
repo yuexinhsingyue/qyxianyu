@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','用户列表页')
+@section('title','分类列表页')
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <div class="title-block">
             <div class="row">
                 <div class="col-md-6">
-                    <h3 class="title"> 用户信息表 </h3>
+                    <h3 class="title"> 分类信息表 </h3>
                 </div>
             </div>
         </div>
@@ -34,23 +34,14 @@
                     <div class="item-col fixed item-col-check">
                             <span>ID</span>
                     </div>
-                    <div class="item-col item-col-header fixed item-col-img md">
-                        <div> <span>头像</span> </div>
+                    <div class="item-col item-col-header item-col-stats">
+                        <div class="no-overflow"> <span>分类名称</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>姓名</span> </div>
+                        <div class="no-overflow"> <span>父ID</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>电话</span> </div>
-                    </div>
-                    <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>地址</span> </div>
-                    </div>
-                    <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>身份</span> </div>
-                    </div>
-                    <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>状态</span> </div>
+                        <div class="no-overflow"> <span>路径</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>操作</span> </div>
@@ -63,25 +54,14 @@
                     <div class="item-col fixed item-col-check">
                             <span>1</span>
                     </div>
-                    <div class="item-col fixed item-col-img md">
-                            <div class="item-img rounded">
-                                <img src="#" width="100%" height="100%">
-                            </div>
+                    <div class="item-col item-col-stats no-overflow">
+                        <div class="no-overflow">服装</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">小李</div>
+                        <div class="no-overflow">1</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">12345678901</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">北京回龙观</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">管理员</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">禁用</div>
+                        <div class="no-overflow">0,1</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">

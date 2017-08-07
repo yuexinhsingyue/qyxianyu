@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
-@section('title','后台管理系统')
+@section('title','添加用户页')
 
 @section('content')
 
-<article class="content item-editor-page" style="padding-top: 0px;">
+<article class="content item-editor-page" style="padding-top: 0px;padding-bottom: 0px;">
     <div class="title-block">
         <h3 class="title"> 添加用户 <span class="sparkline bar" data-type="bar"></span> </h3>
     </div>
@@ -96,7 +96,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-10 col-sm-offset-2"> <button type="submit" class="btn btn-primary">
-                        提交
+                        添加
                     </button> </div>
             </div>
         </div>

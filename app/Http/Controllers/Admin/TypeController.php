@@ -16,7 +16,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.type.list');
     }
 
     /**
@@ -26,7 +26,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.type.add');
     }
 
     /**

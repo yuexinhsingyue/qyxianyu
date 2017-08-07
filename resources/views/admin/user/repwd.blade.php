@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','后台管理系统')
+@section('title','修改密码页')
 
 @section('content')
 
