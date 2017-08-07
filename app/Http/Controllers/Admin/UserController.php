@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\User;
+use App\Http\Model\UserDetail;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,6 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
+
         return view('admin.user.list');
     }
 

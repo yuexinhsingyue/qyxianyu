@@ -23,17 +23,19 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $primaryKey = 'uid';
 
-    /**
-     * The attributes excluded from the model's JSON form.
+     /**
+     * 指定是否模型应该被戳记时间。
      *
-     * @var array
+     * @var bool
      */
-    protected $hidden = ['password', 'remember_token'];
+    public $timestamps = false;
+
+    public function detail()
+    {
+        return $this -> hasOne('App\Http\Model\UserDetail');
+    }
+
+    
 }

@@ -54,16 +54,16 @@
                                 <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="#"> 分&nbsp;类&nbsp;列&nbsp;表&nbsp;</a> </li>
-                                <li> <a href="{{URL('admin/type/create')}}"> 添&nbsp;加&nbsp;分&nbsp;类&nbsp;</a> </li>
+                                <li> <a href="{{ url('/admin/type') }}"> 分&nbsp;类&nbsp;列&nbsp;表&nbsp;</a> </li>
+                                <li> <a href="{{ url('/admin/type/create') }}"> 添&nbsp;加&nbsp;分&nbsp;类&nbsp;</a> </li>
                             </ul>
                         </li>
 						<li> <a href="">
-                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;订&nbsp;单&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;定&nbsp;单&nbsp;管&nbsp;理&nbsp;
                                 <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="#"> 订&nbsp;单&nbsp;列&nbsp;表&nbsp;</a> </li>
+                                <li> <a href="{{ url('/admin/order') }}"> 定&nbsp;单&nbsp;列&nbsp;表&nbsp;</a> </li>								
                             </ul>
                         </li>
 						<li> <a href="">
