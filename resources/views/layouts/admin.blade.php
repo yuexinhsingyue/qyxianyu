@@ -55,7 +55,7 @@
                             </a>
                             <ul class="collapse">
                                 <li> <a href="#"> 分&nbsp;类&nbsp;列&nbsp;表&nbsp;</a> </li>
-                                <li> <a href="#"> 添&nbsp;加&nbsp;分&nbsp;类&nbsp;</a> </li>
+                                <li> <a href="{{URL('admin/type/create')}}"> 添&nbsp;加&nbsp;分&nbsp;类&nbsp;</a> </li>
                             </ul>
                         </li>
 						<li> <a href="">
