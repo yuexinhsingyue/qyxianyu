@@ -24,8 +24,10 @@
             </div>
             <div class="header-block header-block-nav">
                 <div class="nav-profile" style=" margin-right: 25px;">
-                    <span class="name" style="margin-right: 25px;">Admin</span>
-                    <a href="#"><i class="fa fa-power-off icon"></i>退出</a>
+                    <span class="name" style="margin-right: 25px;">
+                        <a href="{{ url('/admin/pass') }}">Admin</a>
+                    </span>
+                    <a href="{{ url('/admin/quit') }}"><i class="fa fa-power-off icon"></i>退出</a>
                 </div>
             </div>
         </header>
@@ -53,7 +55,7 @@
                             </a>
                             <ul class="collapse">
                                 <li> <a href="#"> 分&nbsp;类&nbsp;列&nbsp;表&nbsp;</a> </li>
-                                <li> <a href="#"> 添&nbsp;加&nbsp;分&nbsp;类&nbsp;</a> </li>
+                                <li> <a href="{{URL('admin/type/create')}}"> 添&nbsp;加&nbsp;分&nbsp;类&nbsp;</a> </li>
                             </ul>
                         </li>
 						<li> <a href="">
