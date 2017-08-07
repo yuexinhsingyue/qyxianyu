@@ -30,6 +30,10 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
 
     //显示首页
     Route::get('index','IndexController@index');
+    //修改密码
+    Route::get('pass','IndexController@pass');
+    //退出登录
+    Route::get('quit','IndexController@quit');
     //用户资源路由
     Route::resource('user', 'UserController');
     //分类管理

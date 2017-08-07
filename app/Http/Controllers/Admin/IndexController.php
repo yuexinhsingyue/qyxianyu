@@ -15,4 +15,18 @@ class IndexController extends Controller
         return view('admin.index');
     }
 
+    //修改密码
+    public function pass()
+    {
+        return view('admin.user.repwd');
+    }
+
+    //退出登录
+    public function quit()
+    {
+        return redirect('/admin/login');
+    }
+
+
+
 }
