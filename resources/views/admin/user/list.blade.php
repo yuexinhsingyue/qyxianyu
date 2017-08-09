@@ -14,9 +14,10 @@
             </div>
         </div>
         <div class="items-search">
-            <form class="form-inline">
+            <form class="form-inline" method="get" action="{{ url('/admin/user') }}">
+                {{ csrf_field() }}
                 <div class="input-group">
-                    <input class="form-control boxed rounded-s" placeholder="搜索..." type="text">
+                    <input class="form-control boxed rounded-s" placeholder="搜索..." type="text" name="search">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary rounded-s" type="button">
                             <i class="fa fa-search"></i>
@@ -58,57 +59,67 @@
                 </div>
             </li>
             {{--表内容--}}
+            @foreach($res as $k => $v)
             <li class="item">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check">
-                            <span>1</span>
+                            <span>{{ $v['uid'] }}</span>
                     </div>
                     <div class="item-col fixed item-col-img md">
-                            <div class="item-img rounded">
-                                <img src="#" width="100%" height="100%">
+                            <div class="item-img rounded" style="padding-bottom: 0px; height: 60px;border-radius:4px;border:1px solid #ccc">
+                                <img src="{{ url($v['face']) }}" width="100%" height="100%">
                             </div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">小李</div>
+                        <div class="no-overflow">{{ $v['uname'] }}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">12345678901</div>
+                        <div class="no-overflow">{{ $v['tel'] }}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">北京回龙观</div>
+                        <div class="no-overflow">{{ $v['addr'] }}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
+                        @if($v['identity'] == 1)
                         <div class="no-overflow">管理员</div>
+                        @elseif($v['identity'] == 2)
+                            <div class="no-overflow">普通用户</div>
+                        @elseif($v['identity'] == 3)
+                            <div class="no-overflow">普通用户(未审核)</div>
+                        @else
+                            <div class="no-overflow">鱼塘塘主</div>
+                        @endif
+
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">禁用</div>
+                        @if($v['status'] == 1)
+                        <div class="no-overflow">启用</div>
+                        @else
+                            <div class="no-overflow">禁用</div>
+                        @endif
+
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">
-                            <button type="button" class="btn btn-oval btn-danger">修改</button>
+                            <a href="{{ url('admin/user/'.$v->uid.'/edit') }}" class="btn btn-oval btn-danger">审核</a>
                         </div>
                     </div>
                 </div>
             </li>
+            @endforeach
         </ul>
     </div>
     <nav class="text-xs-right">
-        <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="">
-                    Prev
-                </a> </li>
-            <li class="page-item active"> <a class="page-link" href="">
-                    1
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    2
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    Next
-                </a> </li>
-        </ul>
+        {!! $res ->appends(['search'=> $search])->render() !!}
     </nav>
 </article>
 
+@endsection
+
+@section('js')
+    <script>
+        $('.text-xs-right li').addClass('page-link');
+        $('.text-xs-right li').attr('style','list-style:none');
+    </script>
 @endsection
 

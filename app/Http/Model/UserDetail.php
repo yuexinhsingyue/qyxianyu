@@ -13,8 +13,6 @@ class UserDetail extends Model
      */
     protected $table = 'user_details';
 
-    protected $primaryKey = 'id';
-
      /**
      * 指定是否模型应该被戳记时间。
      *
