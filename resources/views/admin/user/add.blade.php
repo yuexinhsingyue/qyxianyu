@@ -97,9 +97,7 @@
                 </label>
                 <div class="col-sm-10">
                     <select class="form-control" name="indentity">
-                        <option value="1">管理员</option>
-                        <option value="2">鱼塘塘主</option>
-                        <option selected value="3">普通用户</option>
+                        <option selected value="1">管理员</option>
                     </select>
                 </div>
             </div>

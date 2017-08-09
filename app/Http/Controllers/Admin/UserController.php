@@ -22,11 +22,11 @@ class UserController extends Controller
     public function index()
     {
         $res = User::leftjoin('user_details','users.uid','=','user_details.uid');
-        $res = $res -> where('') -> paginate(1);
+        $res = $res -> where('uname','like','%'.Input::get('search').'%') -> paginate(5);
+        //条件
+        $search = Input::get('search');
 
-        Input::get('search');
-
-        return view('admin.user.list',compact('res'));
+        return view('admin.user.list',compact('res','search'));
     }
 
     /**
@@ -121,29 +121,23 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * 显示修改页面
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $user = $user['identity'];
+        $ud = UserDetail::where('uid','=',$id)->first();
+        $ud = $ud['status'];
+
+        return view('admin.user.edit',compact('user','ud','id'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * 修改页面
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -151,17 +145,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $res = $request -> except('_token','_method');
+        if(!empty($res['identity']))
+        {
+            $user = User::find($id);
+            $user -> identity = $res['identity'];
+            $user -> save();
+        }
+
+        UserDetail::where('uid','=',$id) -> update(['status'=> $res['status']]);
+
+        return redirect('admin/user');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

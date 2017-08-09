@@ -83,9 +83,11 @@
                         @if($v['identity'] == 1)
                         <div class="no-overflow">管理员</div>
                         @elseif($v['identity'] == 2)
-                            <div class="no-overflow">鱼塘塘主</div>
-                        @else
                             <div class="no-overflow">普通用户</div>
+                        @elseif($v['identity'] == 3)
+                            <div class="no-overflow">普通用户(未审核)</div>
+                        @else
+                            <div class="no-overflow">鱼塘塘主</div>
                         @endif
 
                     </div>
@@ -99,7 +101,7 @@
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">
-                            <button type="button" class="btn btn-oval btn-danger">修改</button>
+                            <a href="{{ url('admin/user/'.$v->uid.'/edit') }}" class="btn btn-oval btn-danger">审核</a>
                         </div>
                     </div>
                 </div>
@@ -108,7 +110,7 @@
         </ul>
     </div>
     <nav class="text-xs-right">
-        {!! $res->render() !!}
+        {!! $res ->appends(['search'=> $search])->render() !!}
     </nav>
 </article>
 
