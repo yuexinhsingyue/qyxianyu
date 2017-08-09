@@ -8,7 +8,16 @@
     <div class="title-block">
         <h3 class="title"> 添加用户 <span class="sparkline bar" data-type="bar"></span> </h3>
     </div>
-    <form  method="post" action="" enctype="multipart/form-data">
+    @if(count($errors) > 0)
+        <div class="alert alert-danger" id="error">
+            <ul>
+                @foreach($errors -> all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form  method="post" action="{{ url('/admin/user') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="card card-block">
             <div class="form-group row">
@@ -16,7 +25,7 @@
                     姓名:
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control boxed" placeholder="" type="text">
+                    <input class="form-control boxed" placeholder="请输入6-12字母组合" type="text" name="uname">
                 </div>
             </div>
             <div class="form-group row">
@@ -24,7 +33,7 @@
                     密码:
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control boxed" placeholder="请输入密码" type="password">
+                    <input class="form-control boxed" placeholder="请输入6-12位密码" type="password" name="password">
                 </div>
             </div>
             <div class="form-group row">
@@ -32,7 +41,7 @@
                     密码:
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control boxed" placeholder="再次输入密码" type="password">
+                    <input class="form-control boxed" placeholder="再次输入密码" type="password" name="repwd">
                 </div>
             </div>
             <div class="form-group row">
@@ -40,7 +49,7 @@
                     电话:
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control boxed" placeholder="" type="text">
+                    <input class="form-control boxed" placeholder="请输入电话" type="text" name="tel">
                 </div>
             </div>
             <div class="form-group row">
@@ -48,7 +57,7 @@
                     邮箱:
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control boxed" placeholder="" type="text">
+                    <input class="form-control boxed" placeholder="请输入邮箱地址" type="text" name="emill">
                 </div>
             </div>
             <div class="form-group row">
@@ -56,7 +65,7 @@
                     地址:
                 </label>
                 <div class="col-sm-10">
-                    <input class="form-control boxed" placeholder="输入市（省）、区" type="text">
+                    <input class="form-control boxed" placeholder="输入到市（省）、区" type="text" name="addr">
                 </div>
             </div>
             <div class="form-group row">
@@ -64,7 +73,7 @@
                     头像:
                 </label>
                 <div class="col-sm-10">
-                    <input type="file" name="" id="">
+                    <input type="file" name="face">
                 </div>
             </div>
             <div class="form-group row">
@@ -73,11 +82,11 @@
                 </label>
                 <div class="col-sm-10">
                     <label>
-                        <input class="radio" name="inline-radios" type="radio" checked>
+                        <input class="radio" name="status" type="radio" checked value="1">
                         <span>启用</span>
                     </label>
                     <label>
-                        <input class="radio" name="inline-radios" type="radio">
+                        <input class="radio" name="status" type="radio" value="0">
                         <span>禁用</span>
                     </label>
                 </div>
@@ -87,10 +96,10 @@
                     身份:
                 </label>
                 <div class="col-sm-10">
-                    <select class="form-control">
-                        <option>管理员</option>
-                        <option>鱼塘塘主</option>
-                        <option selected>普通用户</option>
+                    <select class="form-control" name="indentity">
+                        <option value="1">管理员</option>
+                        <option value="2">鱼塘塘主</option>
+                        <option selected value="3">普通用户</option>
                     </select>
                 </div>
             </div>
@@ -102,5 +111,13 @@
         </div>
     </form>
 </article>
+@endsection
+
+@section('js')
+    <script>
+        setTimeout(function(){
+            $('#error').hide();
+        },3000);
+    </script>
 @endsection
 
