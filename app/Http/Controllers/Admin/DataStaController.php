@@ -16,7 +16,8 @@ class DataStaController extends Controller
      */
     public function index()
     {
-        return '数据统计';
+//        echo 'sdfsd';
+        return view('admin.datastati.salestat');
     }
 
     /**
@@ -24,9 +25,10 @@ class DataStaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function visit()
     {
-        return '数据统计create';
+        return view('admin.datastati.visite');
+        
     }
 
     /**
