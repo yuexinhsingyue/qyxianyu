@@ -23,80 +23,190 @@
                 </form>
             </div>
             <div class="header-block header-block-nav">
-                <div class="nav-profile" style=" margin-right: 25px;">
-                    <span class="name" style="margin-right: 25px;">
-                        <a href="{{ url('/admin/pass') }}">Admin</a>
-                    </span>
-                    <a href="{{ url('/admin/quit') }}"><i class="fa fa-power-off icon"></i>退出</a>
-                </div>
+                <ul class="nav-profile">
+                    <li class="profile dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true" aria-expanded="true">
+                <span class="name">
+                    Admin
+                </span>
+                        </a>
+                        <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width:120px">
+                            <a class="dropdown-item" href="{{ url('/admin/pass') }}" style="width: 120px;">
+                                <i class="fa fa-bell icon">
+                                </i>
+                                修改密码
+                            </a>
+                            <a class="dropdown-item" href="#" style="width: 120px;">
+                                <i class="fa fa-gear icon">
+                                </i>
+                                修改信息
+                            </a>
+                            <div class="dropdown-divider">
+                            </div>
+                            <a class="dropdown-item" href="{{ url('/admin/quit') }}" style="width: 120px;">
+                                <i class="fa fa-power-off icon">
+                                </i>
+                                退出
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </header>
         <aside class="sidebar">
             <div class="sidebar-container">
                 <div class="sidebar-header">
                     <div class="brand">
-                        <div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div> 群英&nbsp;&nbsp;闲鱼后台 </div>
+                        <div class="logo">
+					<span class="l l1">
+					</span>
+                            <span class="l l2">
+					</span>
+                            <span class="l l3">
+					</span>
+                            <span class="l l4">
+					</span>
+                            <span class="l l5">
+					</span>
+                        </div>
+                        群英&nbsp;&nbsp;闲鱼后台
+                    </div>
                 </div>
                 <nav class="menu">
                     <ul class="nav metismenu" id="sidebar-menu">
-                        <li class="active"> <a href="{{url('/admin/index')}}"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页</a> </li>
-                        <li> <a href="">
-                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;用&nbsp;户&nbsp;管&nbsp;理&nbsp;
-                                <i class="fa arrow"></i>
+                        <li class="active">
+                            <a href="{{url('/admin/index')}}">
+                                <i class="fa fa-home">
+                                </i>
+                                &nbsp;&nbsp;&nbsp;首&nbsp;&nbsp;&nbsp;页
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-th-large">
+                                </i>
+                                &nbsp;&nbsp;用&nbsp;户&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa arrow">
+                                </i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="{{url('/admin/user')}}"> 用&nbsp;户&nbsp;列&nbsp;表&nbsp;</a> </li>
-                                <li> <a href="{{url('/admin/user/create')}}"> 添&nbsp;加&nbsp;用&nbsp;户&nbsp;</a> </li>
+                                <li>
+                                    <a href="{{url('/admin/user')}}">
+                                        用&nbsp;户&nbsp;列&nbsp;表&nbsp;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/admin/user/create')}}">
+                                        添&nbsp;加&nbsp;用&nbsp;户&nbsp;
+                                    </a>
+                                </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-th-large">
+                                </i>
+                                &nbsp;&nbsp;分&nbsp;类&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa arrow">
+                                </i>
+                            </a>
+                            <ul class="collapse">
+                                <li>
+                                    <a href="{{ url('/admin/type') }}">
+                                        分&nbsp;类&nbsp;列&nbsp;表&nbsp;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/admin/type/create') }}">
+                                        添&nbsp;加&nbsp;分&nbsp;类&nbsp;
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
 						<li> <a href="">
-                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;分&nbsp;类&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;订&nbsp;单&nbsp;管&nbsp;理&nbsp;
                                 <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="{{ url('/admin/type') }}"> 分&nbsp;类&nbsp;列&nbsp;表&nbsp;</a> </li>
-                                <li> <a href="{{ url('/admin/type/create') }}"> 添&nbsp;加&nbsp;分&nbsp;类&nbsp;</a> </li>
+                                <li> <a href="{{ url('/admin/order') }}"> 订&nbsp;单&nbsp;列&nbsp;表&nbsp;</a> </li>
+
                             </ul>
                         </li>
-						<li> <a href="">
-                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;定&nbsp;单&nbsp;管&nbsp;理&nbsp;
-                                <i class="fa arrow"></i>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-th-large">
+                                </i>
+                                &nbsp;&nbsp;鱼&nbsp;塘&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa arrow">
+                                </i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="{{ url('/admin/order') }}"> 定&nbsp;单&nbsp;列&nbsp;表&nbsp;</a> </li>								
+                                <li>
+                                    <a href="#">
+                                        鱼&nbsp;塘&nbsp;列&nbsp;表&nbsp;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        推&nbsp;荐&nbsp;鱼&nbsp;塘&nbsp;
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-						<li> <a href="">
-                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;鱼&nbsp;塘&nbsp;管&nbsp;理&nbsp;
-                                <i class="fa arrow"></i>
-                            </a>
-                            <ul class="collapse">
-                                <li> <a href="#"> 鱼&nbsp;塘&nbsp;列&nbsp;表&nbsp;</a> </li>
-                                <li> <a href="#"> 推&nbsp;荐&nbsp;鱼&nbsp;塘&nbsp;</a> </li>
-                            </ul>
-                        </li>
+
 						<li> <a href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;广&nbsp;告&nbsp;管&nbsp;理&nbsp;</a> </li>
-						<li> <a href="">
+						<li> <a href="#">
                                 <i class="fa fa-th-large"></i> &nbsp;&nbsp;数&nbsp;据&nbsp;统&nbsp;计&nbsp;
                                 <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="#"> 交&nbsp;易&nbsp;金&nbsp;额&nbsp;</a> </li>
-                                <li> <a href="#"> 访&nbsp;问&nbsp;量&nbsp;</a> </li>
+                                <li> <a href="{{url('/admin/dataSta')}}"> 交&nbsp;易&nbsp;金&nbsp;额&nbsp;</a> </li>
+                                <li> <a href="{{url('/admin/dataSta/visit')}}"> 访&nbsp;问&nbsp;量&nbsp;</a> </li>
 								<li> <a href="#"> 活&nbsp;跃&nbsp;度&nbsp;</a> </li>
+
                             </ul>
                         </li>
-						<li> <a href="">
-                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;网&nbsp;站&nbsp;管&nbsp;理&nbsp;
-                                <i class="fa arrow"></i>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-th-large">
+                                </i>
+                                &nbsp;&nbsp;网&nbsp;站&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa arrow">
+                                </i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="#"> 网&nbsp;站&nbsp;标&nbsp;题&nbsp;</a> </li>
-								<li> <a href="#"> 网&nbsp;站&nbsp;描&nbsp;述&nbsp;</a> </li>
-								<li> <a href="#"> 友&nbsp;情&nbsp;链&nbsp;接&nbsp;</a> </li>
-								<li> <a href="#"> 网&nbsp;站&nbsp;信&nbsp;息&nbsp;</a> </li>
-								<li> <a href="#"> 联&nbsp;系&nbsp;方&nbsp;式&nbsp;</a> </li>
-								<li> <a href="#"> 轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp; </a> </li>								                               
+                                <li>
+                                    <a href="#">
+                                        网&nbsp;站&nbsp;标&nbsp;题&nbsp;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        网&nbsp;站&nbsp;描&nbsp;述&nbsp;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        友&nbsp;情&nbsp;链&nbsp;接&nbsp;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        网&nbsp;站&nbsp;信&nbsp;息&nbsp;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        联&nbsp;系&nbsp;方&nbsp;式&nbsp;
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp;
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
