@@ -57,6 +57,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
 
     //网站管理
     Route::resource('web', 'WebsiteController');
+    // 友情链接
+    Route::resource('links', 'LinksController');
 
 });
 
