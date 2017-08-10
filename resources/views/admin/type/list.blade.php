@@ -94,6 +94,39 @@
                 </a> </li>
         </ul>
     </nav>
+    <!--搜索结果页面 列表 结束-->
+    <script>
+
+        function delCate(tid){
+//            参数1 要请求的服务器路由
+//            参数2 请求要携带的参数数据  _method：delete  _token
+//              参数3 回调函数,回调函数的参数data表示服务器返回的数据
+//            $.post(URL,data,callback);
+//询问框
+            layer.confirm('确认删除吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.post("{{url('admin/type/')}}/"+tid,{'_method':'delete','_token':'{{csrf_token()}}'},function(data){
+                    if(data.status == 0){
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 5});
+                    }else if(data.status == 2){
+                        layer.msg(data.msg, {icon: 6});
+                    }else{
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 6});
+                    }
+
+                });
+
+            }, function(){
+
+            });
+
+        }
+
+
+    </script>
 </article>
 
 @endsection

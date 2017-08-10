@@ -231,6 +231,7 @@
 </div>
 <script src="/admin/js/vendor.js"></script>
 <script src="/admin/js/app.js"></script>
+<script src="/layer/layer.js"></script>
 @section('js')
 
 @show
