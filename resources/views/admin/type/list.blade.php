@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="items-search">
-            <form class="form-inline">
+            <form class="form-inline" >
                 <div class="input-group">
                     <input class="form-control boxed rounded-s" placeholder="搜索..." type="text">
                     <span class="input-group-btn">
@@ -50,25 +50,31 @@
             </li>
             {{--表内容--}}
             <li class="item">
-                <div class="item-row">
-                    <div class="item-col fixed item-col-check">
-                            <span>1</span>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">服装</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">1</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">0,1</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">
-                            <button type="button" class="btn btn-oval btn-danger">修改</button>
+                @foreach($res as $k=>$v)
+                    <div class="item-row">
+                        <div class="item-col fixed item-col-check" name="tid">
+                            <span>{{$v->tid}}</span>
+                        </div>
+                        <div class="item-col item-col-stats no-overflow" name="tname">
+                            <div class="no-overflow">{{$v->tname}}</div>
+                        </div>
+                        <div class="item-col item-col-stats no-overflow" name="pid">
+                            <div class="no-overflow">{{$v->pid}}</div>
+                        </div>
+                        <div class="item-col item-col-stats no-overflow" name="path">
+                            <div class="no-overflow">{{$v->path}}</div>
+                        </div>
+                        <div class="item-col item-col-stats no-overflow">
+                            <div class="no-overflow"><a href="{{url('admin/type/'.$v->tid.'/edit')}}">
+                                <button class="btn btn-oval btn-success" type="button">修改
+                                  </button></a>
+                            </div>
+                            <div class="no-overflow"><a href="javascript:void(0)" onclick="delCate({{$v->tid}})">
+                                <button class="btn btn-oval btn-danger" type="button">删除</button></a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    @endforeach
             </li>
         </ul>
     </div>

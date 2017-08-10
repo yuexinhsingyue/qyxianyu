@@ -16,8 +16,17 @@ class DataStaController extends Controller
      */
     public function index()
     {
-//        echo 'sdfsd';
-        return view('admin.datastati.salestat');
+        //获取图表的X轴 近30天日期
+        $days = 30;
+        $nowday = date ('m/d');
+        $chartX = array ();
+        for($i = 0; $i < $days; $i++)
+        {
+            $chartX[]=date('m/d',strtotime($nowday)-$i*24*60*60);
+        }
+        // dd($chartX);
+        $chartX = implode($chartX,',');
+        return view('admin.datastati.salestat',compact('chartX'));
     }
 
     /**
@@ -27,7 +36,18 @@ class DataStaController extends Controller
      */
     public function visit()
     {
-        return view('admin.datastati.visite');
+
+        //获取图表的X轴 近30天日期
+        $days = 30;
+        $nowday = date ('m/d');
+        $chartX = array ();
+        for($i = 0; $i < $days; $i++)
+        {
+            $chartX[]=date('m/d',strtotime($nowday)-$i*24*60*60);
+        }
+        // dd($chartX);
+        $chartX = implode($chartX,',');
+        return view('admin.datastati.visite',compact('chartX'));
         
     }
 
