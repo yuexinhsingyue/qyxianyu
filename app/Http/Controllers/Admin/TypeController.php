@@ -27,7 +27,7 @@ class TypeController extends Controller
 
         foreach($res as $k => $v){
 
-            //拆分path
+            //用逗号拆分path
             $data = explode(',',$v->path);
 
             $count = count($data)-1;
@@ -119,25 +119,47 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $input = $request->except('tid','pid','path');
-      dd($input);
-      $id = Type::find($id);
-      $data = Type::update($input);
+      $input = $request->except('_token','_method');
+      $cate = Type::find($id);
+      $data = $cate->update($input);
       if($data){
-          return redirect('admin.type.list');
+          return redirect('admin/type');
       } else{
-          return back()->with('error','添加失败！');
+          return back()->with('error','修改失败！');
       }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 商品分类删除
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        //查询要删除的类
+        $cate = Type::find($id);
+        //判断是否有二级分类，如果有二级分类则无法删除
+        $count = Type::where('pid',$id)->count();
+        if($cate->pid == '0' && $count){
+            $data = [
+                'status'=>0,
+                'msg'=>'请先删除子类'
+            ];
+            return $data;
+        }
+        $re = $cate->delete();
+      if($re){
+          $data = [
+              'status'=>1,
+              'msg'=>'删除成功！'
+          ];
+      } else {
+          $data = [
+              'status'=>2,
+              'msg'=>'删除失败!'
+          ];
+      }
+          return $data;
     }
 }

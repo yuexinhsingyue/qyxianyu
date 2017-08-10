@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $res = User::leftjoin('user_details','users.uid','=','user_details.uid');
-        $res = $res -> where('uname','like','%'.Input::get('search').'%') -> paginate(5);
+        $res = $res -> where('uname','like','%'.Input::get('search').'%') -> paginate(2);
         //条件
         $search = Input::get('search');
 
