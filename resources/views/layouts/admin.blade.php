@@ -176,37 +176,10 @@
                                 <i class="fa arrow">
                                 </i>
                             </a>
-                            <ul class="collapse">
-                                <li>
-                                    <a href="#">
-                                        网&nbsp;站&nbsp;标&nbsp;题&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        网&nbsp;站&nbsp;描&nbsp;述&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        友&nbsp;情&nbsp;链&nbsp;接&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        网&nbsp;站&nbsp;信&nbsp;息&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        联&nbsp;系&nbsp;方&nbsp;式&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp;
-                                    </a>
-                                </li>
+                             <ul class="collapse">
+                                <li> <a href="{{url('/admin/web')}}"> 基&nbsp;本&nbsp;信&nbsp;息 </a> </li>
+                                <li> <a href="{{url('/admin/links')}}"> 友&nbsp;情&nbsp;链&nbsp;接&nbsp;</a> </li>
+                                <li> <a href="#"> 轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp; </a> </li>                                                               
                             </ul>
                         </li>
                     </ul>
