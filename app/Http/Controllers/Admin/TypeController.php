@@ -13,30 +13,32 @@ use Illuminate\Support\Facades\Input;
 class TypeController extends Controller
 {
     /**
-     * 商品分类列表页
+     * 显示商品分类列表页
      *
      * 孙小楠
      */
     public function index(Request $request)
     {
+        //从数据库查询数据   搜索   分页  排序
         $res = DB::table('goodstype')->
         select(DB::raw("*,concat(path,',',tid) as paths"))->
         orderBy('paths')->
         where('tname','like','%'.$request->input('search').'%')->
         paginate($request->input('num',5));
+        $search =Input::get('search');
 
         foreach($res as $k => $v){
 
-            //用逗号拆分path
+            //用逗号拆分path    explode字符串拆分成数组
             $data = explode(',',$v->path);
 
-            $count = count($data)-1;
+            $count = count($data);
 
             $v->tname = str_repeat('|--', $count).$v->tname;
         }
 
         //return view('admins.cate.index',['res'=>$res,'request'=>$request]);
-        return view('admin.type.list',compact('res','request'));
+        return view('admin.type.list',compact('res','request','search'));
     }
 
     /**
@@ -54,7 +56,7 @@ class TypeController extends Controller
         get();
         foreach($res as $k=>$v){
             $data = explode(',',$v->path);
-            $count = count($data)-1;
+            $count = count($data);
             $v->tname = str_repeat('|--',$count).$v->tname;
         }
         return view('admin/type/add',compact('res'));
