@@ -28,7 +28,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="true" aria-expanded="true">
                 <span class="name">
-                    Admin
+                    {{ ucfirst(session('user')['uname']) }}
                 </span>
                         </a>
                         <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width:120px">
@@ -37,7 +37,7 @@
                                 </i>
                                 修改密码
                             </a>
-                            <a class="dropdown-item" href="#" style="width: 120px;">
+                            <a class="dropdown-item" href="{{ url('admin/info') }}" style="width: 120px;">
                                 <i class="fa fa-gear icon">
                                 </i>
                                 修改信息
