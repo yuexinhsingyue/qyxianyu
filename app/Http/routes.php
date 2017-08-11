@@ -21,6 +21,12 @@ Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@dologin');
 //验证码
 Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
+// 百度地图
+Route::get('/baiduapi', function(){
+    // echo 'dddddddd';
+    return view('admin.baiduapi.baiduapi');
+});
+
 /*
  * 后台
  * 路由前缀：admin
@@ -52,8 +58,13 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::resource('ad','AdController');
     //数据统计
     Route::resource('dataSta','DataStaController');
+    Route::get('visit','DataStaController@visit');
+
+
     //网站管理
-    Route::resource('website','WebsiteController');
+    Route::resource('web', 'WebsiteController');
+    // 友情链接
+    Route::resource('links', 'LinksController');
 
 });
 

@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="items-search">
-            <form class="form-inline">
+            <form class="form-inline" >
                 <div class="input-group">
                     <input class="form-control boxed rounded-s" placeholder="搜索..." type="text">
                     <span class="input-group-btn">
@@ -50,25 +50,31 @@
             </li>
             {{--表内容--}}
             <li class="item">
-                <div class="item-row">
-                    <div class="item-col fixed item-col-check">
-                            <span>1</span>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">服装</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">1</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">0,1</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">
-                            <button type="button" class="btn btn-oval btn-danger">修改</button>
+                @foreach($res as $k=>$v)
+                    <div class="item-row">
+                        <div class="item-col fixed item-col-check" name="tid">
+                            <span>{{$v->tid}}</span>
+                        </div>
+                        <div class="item-col item-col-stats no-overflow" name="tname">
+                            <div class="no-overflow">{{$v->tname}}</div>
+                        </div>
+                        <div class="item-col item-col-stats no-overflow" name="pid">
+                            <div class="no-overflow">{{$v->pid}}</div>
+                        </div>
+                        <div class="item-col item-col-stats no-overflow" name="path">
+                            <div class="no-overflow">{{$v->path}}</div>
+                        </div>
+                        <div class="item-col item-col-stats no-overflow">
+                            <div class="no-overflow"><a href="{{url('admin/type/'.$v->tid.'/edit')}}">
+                                <button class="btn btn-oval btn-success" type="button">修改
+                                  </button></a>
+                            </div>
+                            <div class="no-overflow"><a href="javascript:void(0)" onclick="delCate({{$v->tid}})">
+                                <button class="btn btn-oval btn-danger" type="button">删除</button></a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    @endforeach
             </li>
         </ul>
     </div>
@@ -88,6 +94,39 @@
                 </a> </li>
         </ul>
     </nav>
+    <!--搜索结果页面 列表 结束-->
+    <script>
+
+        function delCate(tid){
+//            参数1 要请求的服务器路由
+//            参数2 请求要携带的参数数据  _method：delete  _token
+//              参数3 回调函数,回调函数的参数data表示服务器返回的数据
+//            $.post(URL,data,callback);
+//询问框
+            layer.confirm('确认删除吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.post("{{url('admin/type/')}}/"+tid,{'_method':'delete','_token':'{{csrf_token()}}'},function(data){
+                    if(data.status == 0){
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 5});
+                    }else if(data.status == 2){
+                        layer.msg(data.msg, {icon: 6});
+                    }else{
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 6});
+                    }
+
+                });
+
+            }, function(){
+
+            });
+
+        }
+
+
+    </script>
 </article>
 
 @endsection

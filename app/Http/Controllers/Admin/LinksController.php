@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class DataStaController extends Controller
+use App\Http\Model\Links;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
+
+
+class LinksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +21,8 @@ class DataStaController extends Controller
      */
     public function index()
     {
-        //获取图表的X轴 近30天日期
-        $days = 30;
-        $nowday = date ('m/d');
-        $chartX = array ();
-        for($i = 0; $i < $days; $i++)
-        {
-            $chartX[]=date('m/d',strtotime($nowday)-$i*24*60*60);
-        }
-        // dd($chartX);
-        $chartX = implode($chartX,',');
-        return view('admin.datastati.salestat',compact('chartX'));
+        $link = Links::get();
+        return view('admin.links.index',compact('link'));
     }
 
     /**
@@ -34,21 +30,11 @@ class DataStaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function visit()
+    public function create()
     {
 
-        //获取图表的X轴 近30天日期
-        $days = 30;
-        $nowday = date ('m/d');
-        $chartX = array ();
-        for($i = 0; $i < $days; $i++)
-        {
-            $chartX[]=date('m/d',strtotime($nowday)-$i*24*60*60);
-        }
-        // dd($chartX);
-        $chartX = implode($chartX,',');
-        return view('admin.datastati.visite',compact('chartX'));
-        
+        return view('admin.links.add',compact('link'));
+
     }
 
     /**
@@ -57,9 +43,32 @@ class DataStaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $data = $req->except(['_token','limg','pic']);     //过滤一下子数据
+
+         if($req->hasFile('limg')){             //  如果有图片上传：
+
+            $file = Input::file('limg');
+
+            $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
+        
+            $newName = date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
+         
+            $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
+
+            $filepath = '/uploads/'.$newName;             //拼接文件路径
+
+            $data['limg'] = $filepath;         
+        }
+
+        $res = Links::create($data);                // 执行修改 
+
+        if($res){
+            return redirect('admin/links');
+        }else{
+            return blck();
+        }
     }
 
     /**
@@ -81,7 +90,7 @@ class DataStaController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo $id;
     }
 
     /**
@@ -93,7 +102,7 @@ class DataStaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        echo  '我是修改页面';
     }
 
     /**
@@ -104,6 +113,6 @@ class DataStaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        echo '我是删除页面';
     }
 }

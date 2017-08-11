@@ -124,20 +124,14 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-th-large">
-                                </i>
-                                &nbsp;&nbsp;定&nbsp;单&nbsp;管&nbsp;理&nbsp;
-                                <i class="fa arrow">
-                                </i>
+
+						<li> <a href="">
+                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;订&nbsp;单&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li>
-                                    <a href="{{ url('/admin/order') }}">
-                                        定&nbsp;单&nbsp;列&nbsp;表&nbsp;
-                                    </a>
-                                </li>
+                                <li> <a href="{{ url('/admin/order') }}"> 订&nbsp;单&nbsp;列&nbsp;表&nbsp;</a> </li>
+
                             </ul>
                         </li>
                         <li>
@@ -161,37 +155,17 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-home">
-                                </i>
-                                &nbsp;&nbsp;&nbsp;广&nbsp;告&nbsp;管&nbsp;理&nbsp;
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-th-large">
-                                </i>
-                                &nbsp;&nbsp;数&nbsp;据&nbsp;统&nbsp;计&nbsp;
-                                <i class="fa arrow">
-                                </i>
+
+						<li> <a href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;广&nbsp;告&nbsp;管&nbsp;理&nbsp;</a> </li>
+						<li> <a href="#">
+                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;数&nbsp;据&nbsp;统&nbsp;计&nbsp;
+                                <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li>
-                                    <a href="#">
-                                        交&nbsp;易&nbsp;金&nbsp;额&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        访&nbsp;问&nbsp;量&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        活&nbsp;跃&nbsp;度&nbsp;
-                                    </a>
-                                </li>
+                                <li> <a href="{{url('/admin/dataSta')}}"> 交&nbsp;易&nbsp;金&nbsp;额&nbsp;</a> </li>
+                                <li> <a href="{{url('/admin/dataSta/visit')}}"> 访&nbsp;问&nbsp;量&nbsp;</a> </li>
+								<li> <a href="#"> 活&nbsp;跃&nbsp;度&nbsp;</a> </li>
+
                             </ul>
                         </li>
                         <li>
@@ -202,37 +176,10 @@
                                 <i class="fa arrow">
                                 </i>
                             </a>
-                            <ul class="collapse">
-                                <li>
-                                    <a href="#">
-                                        网&nbsp;站&nbsp;标&nbsp;题&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        网&nbsp;站&nbsp;描&nbsp;述&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        友&nbsp;情&nbsp;链&nbsp;接&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        网&nbsp;站&nbsp;信&nbsp;息&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        联&nbsp;系&nbsp;方&nbsp;式&nbsp;
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp;
-                                    </a>
-                                </li>
+                             <ul class="collapse">
+                                <li> <a href="{{url('/admin/web')}}"> 基&nbsp;本&nbsp;信&nbsp;息 </a> </li>
+                                <li> <a href="{{url('/admin/links')}}"> 友&nbsp;情&nbsp;链&nbsp;接&nbsp;</a> </li>
+                                <li> <a href="#"> 轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp; </a> </li>                                                               
                             </ul>
                         </li>
                     </ul>
@@ -257,6 +204,7 @@
 </div>
 <script src="/admin/js/vendor.js"></script>
 <script src="/admin/js/app.js"></script>
+<script src="/layer/layer.js"></script>
 @section('js')
 
 @show
