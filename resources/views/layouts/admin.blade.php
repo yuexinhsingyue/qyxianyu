@@ -135,7 +135,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <i class="fa fa-th-large">
                                 </i>
                                 &nbsp;&nbsp;鱼&nbsp;塘&nbsp;管&nbsp;理&nbsp;
@@ -144,7 +144,7 @@
                             </a>
                             <ul class="collapse">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{url('/admin/fish')}}">
                                         鱼&nbsp;塘&nbsp;列&nbsp;表&nbsp;
                                     </a>
                                 </li>
