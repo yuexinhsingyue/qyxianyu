@@ -5,15 +5,22 @@
 @section('content')
 
 	<button class="btn btn-warning" onclick="history.go(-1)" style="border-radius:20px">返回</button>
-	<div class="result_title">
-		 @if(session('msg'))
-            <div class="mark" style="background:#ED5F6F;border-radius:10px">
-                <ul>
-                   <li>{{ session('msg') }}</li>
-                </ul>
-            </div>
-        @endif
-   	</div>
+		
+		<div class="result_title">
+            @if (count($errors) > 0)
+                <div class="mark" style="background:#ED5F6F;border-radius:10px">
+                    <ul>
+                        @if(is_object($errors))
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        @else
+                            <li>{{ session('msg') }}</li>
+                        @endif
+                    </ul>
+                </div>
+            @endif
+        </div>
    
 	<div class="container">
 		<div class="col-md-offset-1">

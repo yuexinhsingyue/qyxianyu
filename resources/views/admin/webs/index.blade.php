@@ -19,7 +19,7 @@
         <div class="title-block">
             <div class="row">
                 <div class="col-md-6">
-                    <h3 class="title"> 用户信息表 </h3>
+                    <h3 class="title"> 网站信息列表 </h3>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">
-                        	<a href="" class="btn btn-info btn-sm" style="border-radius:20px">查看详情</a>
+                        	<a href="javascript:void(0)" class="btn btn-info btn-sm" onclick="showDetail({{$v->id}})" style="border-radius:20px">查看详情</a>
 			  				<a href="{{url('/admin/web/'.$v->id.'/edit')}}" class="btn btn-primary btn-sm" style="border-radius:20px">修改</a>
 			  				<form action="{{url('/admin/web/'.$v->id)}}" method="POST">	
 							{{csrf_field()}}
@@ -113,5 +113,25 @@
         </ul>
     </nav>
 </article>
+
+
+<script type="text/javascript">
+    
+    // 显示当前网站详细信息
+        function showDetail(id){
+            $.get('/admin/web/'+id,{'_token':'{{csrf_token()}}','id':id},function(data){
+                
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['620px', '340px'], //宽高
+                    content: data
+                });
+            });
+        }
+
+        // url('/admin/web/'.$v->id)
+
+</script>
 
 @endsection
