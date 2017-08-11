@@ -103,7 +103,7 @@ class UserController extends Controller
         //存放数据
         $user = new User();
         $user -> uname = $res['uname'];
-        $user -> password = bcrypt($res['password']);
+        $user -> password = \Crypt::encrypt($res['password']);
         $user -> identity = $res['indentity'];
         $user -> save();
         $id = $user -> uid;
