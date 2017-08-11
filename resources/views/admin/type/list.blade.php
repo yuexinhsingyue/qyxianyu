@@ -14,9 +14,10 @@
             </div>
         </div>
         <div class="items-search">
-            <form class="form-inline" >
+            <form class="form-inline" action="{{url('/admin/type')}}" method="get">
+                {{ csrf_field() }}
                 <div class="input-group">
-                    <input class="form-control boxed rounded-s" placeholder="搜索..." type="text">
+                    <input class="form-control boxed rounded-s" placeholder="搜索..." type="text" name="search">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary rounded-s" type="button">
                             <i class="fa fa-search"></i>
@@ -79,20 +80,9 @@
         </ul>
     </div>
     <nav class="text-xs-right">
-        <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="">
-                    Prev
-                </a> </li>
-            <li class="page-item active"> <a class="page-link" href="">
-                    1
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    2
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    Next
-                </a> </li>
-        </ul>
+        <nav class="text-xs-right">
+            {!! $res ->appends(['search'=> $search])->render() !!}
+        </nav>
     </nav>
     <!--搜索结果页面 列表 结束-->
     <script>
@@ -128,6 +118,13 @@
 
     </script>
 </article>
+
+@section('js')
+    <script>
+        $('.text-xs-right li').addClass('page-link');
+        $('.text-xs-right li').attr('style','list-style:none');
+    </script>
+@endsection
 
 @endsection
 
