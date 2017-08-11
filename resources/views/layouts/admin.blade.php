@@ -162,7 +162,7 @@
                                 <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="{{url('/admin/dataSta')}}"> 交&nbsp;易&nbsp;金&nbsp;额&nbsp;</a> </li>
+                                <li> <a href="{{url('/admin/dataSta')}}"> 交&nbsp;易&nbsp;分&nbsp;析&nbsp;</a> </li>
                                 <li> <a href="{{url('/admin/dataSta/visit')}}"> 访&nbsp;问&nbsp;量&nbsp;</a> </li>
 								<li> <a href="#"> 活&nbsp;跃&nbsp;度&nbsp;</a> </li>
 
