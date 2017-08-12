@@ -121,8 +121,10 @@
 
 @section('js')
     <script>
-        $('.text-xs-right li').addClass('page-link');
+        $('.text-xs-right li').addClass('page-item');
         $('.text-xs-right li').attr('style','list-style:none');
+        $('.text-xs-right span').addClass('page-link');
+        $('.text-xs-right a').addClass('page-link');
     </script>
 @endsection
 

@@ -24,10 +24,10 @@ class DataStaController extends Controller
         // $CountOrder = DB::select(" select  FROM_UNIXTIME( createTime,'%Y-%m-%d') as days,count(oprice) as count, SUM(oprice) AS amount from `order` where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= createTime group by days order by createTime");
 
         //从数据库订单表中统计近30天的日订单金额。
-        $Order = Order::select(DB::raw("FROM_UNIXTIME( createTime,'%m/%d') as days,count(oprice) as count, SUM(oprice) AS amount"))
-                            ->where('createTime','>=',' DATE_SUB(CURDATE(), INTERVAL 30 DAY)')
+        $Order = Order::select(DB::raw("FROM_UNIXTIME( created_at,'%m/%d') as days,count(oprice) as count, SUM(oprice) AS amount"))
+                            ->where('created_at','>=',' DATE_SUB(CURDATE(), INTERVAL 30 DAY)')
                             ->groupBy('days')
-                            ->orderBy('createTime')
+                            ->orderBy('created_at')
                             ->get();
 
         // 当月累计订单数

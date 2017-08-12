@@ -4,10 +4,10 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Address extends Model
 {
-    protected $table = "order";
+    protected $table = "address";
     protected $primaryKey = "id";
     protected $guarded = [];
-    public $timestamps = true;
+    public $timestamps = false;
 }

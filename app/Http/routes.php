@@ -52,6 +52,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::resource('type','TypeController');
     //订单管理
     Route::resource('order','OrderController');
+    //查看订单详情页
+    Route::get('detail','OrderController@detail');
     //鱼塘管理
     Route::resource('fish','FishController');
     //广告管理
