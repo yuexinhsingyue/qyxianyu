@@ -11,7 +11,7 @@
                     <div class="col-xs-12 col-sm-3 stat-col">
                         <div class="stat-icon"> <i class="fa fa-rocket"></i> </div>
                         <div class="stat">
-                            <div class="value"> 5407 </div>
+                            <div class="value"> {{$totelgoods}} </div>
                             <div class="name"> 平台闲置物品数量 </div>
                         </div> 
                         <progress class="progress stat-progress" value="75" max="100">
@@ -33,7 +33,7 @@
                    <div class="col-xs-12 col-sm-3 stat-col">
                     <div class="stat-icon"> <i class="fa fa-suitcase"></i> </div>
                     <div class="stat">
-                        <div class="value"> {{$totelgoods}} </div>
+                        <div class="value"> {{$totelsalagoods}} </div>
                         <div class="name"> 累计交易商品数量</div>
                     </div> <progress class="progress stat-progress" value="25" max="100">
                         <div class="progress">

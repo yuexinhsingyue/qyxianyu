@@ -57,7 +57,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     //广告管理
     Route::resource('ad','AdController');
     //数据统计
-    Route::resource('dataSta','DataStaController');
+    // Route::resource('dataSta','DataStaController');
+    Route::get('dataSta','DataStaController@dataSta');
     Route::get('visit','DataStaController@visit');
 
 
