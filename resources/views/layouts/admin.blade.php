@@ -137,7 +137,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <i class="fa fa-th-large">
                                 </i>
                                 &nbsp;&nbsp;鱼&nbsp;塘&nbsp;管&nbsp;理&nbsp;
@@ -146,7 +146,7 @@
                             </a>
                             <ul class="collapse">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{url('/admin/fish')}}">
                                         鱼&nbsp;塘&nbsp;列&nbsp;表&nbsp;
                                     </a>
                                 </li>
@@ -165,8 +165,8 @@
                             </a>
                             <ul class="collapse">
                                 <li> <a href="{{url('/admin/dataSta')}}"> 交&nbsp;易&nbsp;分&nbsp;析&nbsp;</a> </li>
-                                <li> <a href="{{url('/admin/dataSta/visit')}}"> 访&nbsp;问&nbsp;量&nbsp;</a> </li>
-								<li> <a href="#"> 活&nbsp;跃&nbsp;度&nbsp;</a> </li>
+                                <li> <a href="{{url('/admin/visit')}}"> 访&nbsp;问&nbsp;动&nbsp;态&nbsp;</a> </li>
+								<!-- <li> <a href="#"> 活&nbsp;跃&nbsp;度&nbsp;</a> </li> -->
 
                             </ul>
                         </li>
