@@ -9,7 +9,7 @@
         <div class="title-block">
             <div class="row">
                 <div class="col-md-6">
-                    <h3 class="title"> 用户信息表 </h3>
+                    <h2> 用户信息表 </h2>
                 </div>
             </div>
         </div>
@@ -118,8 +118,10 @@
 
 @section('js')
     <script>
-        $('.text-xs-right li').addClass('page-link');
+        $('.text-xs-right li').addClass('page-item');
         $('.text-xs-right li').attr('style','list-style:none');
+        $('.text-xs-right span').addClass('page-link');
+        $('.text-xs-right a').addClass('page-link');
     </script>
 @endsection
 

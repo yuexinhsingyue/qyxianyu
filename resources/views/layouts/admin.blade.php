@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/admin/css/vendor.css">
     <!-- Theme initialization -->
     <link rel="stylesheet" href="/admin/css/app.css">
-    <script type="text/javascript" src="/layer/layer.js"></script>
     <script type="text/javascript" src="/admin/js/jquery.js"></script>
 
     @section('header')
@@ -31,7 +30,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="true" aria-expanded="true">
                 <span class="name">
-                    Admin
+                    {{ ucfirst(session('user')['uname']) }}
                 </span>
                         </a>
                         <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1" style="min-width:120px">
@@ -40,7 +39,7 @@
                                 </i>
                                 修改密码
                             </a>
-                            <a class="dropdown-item" href="#" style="width: 120px;">
+                            <a class="dropdown-item" href="{{ url('admin/info') }}" style="width: 120px;">
                                 <i class="fa fa-gear icon">
                                 </i>
                                 修改信息
@@ -165,7 +164,7 @@
                                 <i class="fa arrow"></i>
                             </a>
                             <ul class="collapse">
-                                <li> <a href="{{url('/admin/dataSta')}}"> 交&nbsp;易&nbsp;金&nbsp;额&nbsp;</a> </li>
+                                <li> <a href="{{url('/admin/dataSta')}}"> 交&nbsp;易&nbsp;分&nbsp;析&nbsp;</a> </li>
                                 <li> <a href="{{url('/admin/dataSta/visit')}}"> 访&nbsp;问&nbsp;量&nbsp;</a> </li>
 								<li> <a href="#"> 活&nbsp;跃&nbsp;度&nbsp;</a> </li>
 
@@ -183,6 +182,19 @@
                                 <li> <a href="{{url('/admin/web')}}"> 基&nbsp;本&nbsp;信&nbsp;息 </a> </li>
                                 <li> <a href="{{url('/admin/links')}}"> 友&nbsp;情&nbsp;链&nbsp;接&nbsp;</a> </li>
                                 <li> <a href="#"> 轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp; </a> </li>                                                               
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-th-large">
+                                </i>
+                                &nbsp;&nbsp;文章&nbsp;&nbsp;问题&nbsp;&nbsp;
+                                <i class="fa arrow">
+                                </i>
+                            </a>
+                             <ul class="collapse">
+                                <li> <a href="{{url('/admin/problems')}}"> 相&nbsp;关&nbsp;问&nbsp;题 </a> </li>
+                                <li> <a href="{{url('/admin/article')}}"> 相&nbsp;关&nbsp;文&nbsp;章&nbsp; </a> </li>                                                               
                             </ul>
                         </li>
                     </ul>
@@ -207,6 +219,7 @@
 </div>
 <script src="/admin/js/vendor.js"></script>
 <script src="/admin/js/app.js"></script>
+<script src="/layer/layer.js"></script>
 @section('js')
 
 @show

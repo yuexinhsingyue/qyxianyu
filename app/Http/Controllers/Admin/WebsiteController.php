@@ -20,7 +20,7 @@ class WebsiteController extends Controller
     */
     public function index()
     {
-
+        
         $webs =  Webs::all();
         return view('admin.webs.index',compact('webs'));
     }

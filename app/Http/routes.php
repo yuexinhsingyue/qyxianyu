@@ -38,8 +38,14 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::get('index','IndexController@index');
     //修改密码
     Route::get('pass','IndexController@pass');
+    //修改密码
+    Route::post('dopass','IndexController@dopass');
     //退出登录
     Route::get('quit','IndexController@quit');
+    //修改用户信息页
+    Route::get('info','IndexController@info');
+    //保存用户修改信息
+    Route::post('doinfo','IndexController@doinfo');
     //用户资源路由
     Route::resource('user', 'UserController');
     //分类管理
@@ -59,6 +65,10 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::resource('web', 'WebsiteController');
     // 友情链接
     Route::resource('links', 'LinksController');
+    // 相关问题
+    Route::resource('problems', 'ProblemsController');
+    // 相关文章
+    Route::resource('article', 'ArticleConteoller');
 
 });
 

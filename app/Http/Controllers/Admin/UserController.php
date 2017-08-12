@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $res = User::leftjoin('user_details','users.uid','=','user_details.uid');
-        $res = $res -> where('uname','like','%'.Input::get('search').'%') -> paginate(5);
+        $res = $res -> where('uname','like','%'.Input::get('search').'%') -> paginate(2);
         //条件
         $search = Input::get('search');
 
@@ -103,7 +103,7 @@ class UserController extends Controller
         //存放数据
         $user = new User();
         $user -> uname = $res['uname'];
-        $user -> password = bcrypt($res['password']);
+        $user -> password = \Crypt::encrypt($res['password']);
         $user -> identity = $res['indentity'];
         $user -> save();
         $id = $user -> uid;
