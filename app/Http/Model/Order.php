@@ -9,4 +9,6 @@ class Order extends Model
     protected $table = "order";
     protected $primaryKey = "id";
     public $timestamps = false ;
+
+    
 }
