@@ -181,7 +181,7 @@
                              <ul class="collapse">
                                 <li> <a href="{{url('/admin/web')}}"> 基&nbsp;本&nbsp;信&nbsp;息 </a> </li>
                                 <li> <a href="{{url('/admin/links')}}"> 友&nbsp;情&nbsp;链&nbsp;接&nbsp;</a> </li>
-                                <li> <a href="#"> 轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp; </a> </li>                                                               
+                                <li> <a href="{{url('/admin/figure')}}"> 轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp; </a> </li>                                                               
                             </ul>
                         </li>
                         <li>

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-// use App\Http\Model\Problem;
+use App\Http\Model\Works;
 use Illuminate\Support\Facades\Validator;
 
 class ArticleConteoller extends Controller
@@ -18,7 +18,8 @@ class ArticleConteoller extends Controller
      */
     public function index()
     {
-       
+        $data = Works::all();
+        return view('admin.articles.index',compact('data'));
     }
 
     /**
@@ -43,15 +44,16 @@ class ArticleConteoller extends Controller
 
         // 表单验证
         $rule = [
-            'ptitle' => 'required|between:1,25',
-            'pdescript' => 'required',
-            'pcontent' => 'required',
+            'wtitle' => 'required|between:1,25',
+            'wdesc' => 'required|between:1,50',
+            'wcontent' => 'required',
         ];
         $msg = [
-            'ptitle.required' => '标题必须输入',
-            'ptitle.between' => '标题太长！',
-            'pdescript.required' => '描述必须输入',
-            'pcontent.required' => '内容必须输入',
+            'wtitle.required' => '标题必须输入',
+            'wtitle.between' => '文章标题太长！',
+            'wdescript.required' => '描述必须输入',
+            'wdesc.between' => '文章描述太长！',
+            'wcontent.required' => '内容必须输入',
         ];
         $validator = Validator::make($data,$rule,$msg);
         //如果验证失败
@@ -59,15 +61,14 @@ class ArticleConteoller extends Controller
             return back() -> withErrors($validator) -> withInput();
         }
         
-        $res = Problem::create($data);      // 开始添加
+        $res = Works::create($data);      // 开始添加
 
         if($res){               //判读是否添加成功
-            return redirect('admin/problems');
+            return redirect('admin/article');
         }else{
             return black();
         }
 
-        dd($data);
     }
 
     /**
@@ -87,7 +88,8 @@ class ArticleConteoller extends Controller
      */
     public function edit($id)
     {
-       
+        $res = Works::find($id);
+        return view('admin.articles.edit',compact('res'));
     }
 
     /**
@@ -98,7 +100,35 @@ class ArticleConteoller extends Controller
      */
     public function update(Request $req, $id)
     {
+        $data = $req->except(['_token','_method']);     //过滤一下子数据
+
+        // 表单验证
+        $rule = [
+            'wtitle' => 'required|between:1,25',
+            'wdesc' => 'required|between:1,50',
+            'wcontent' => 'required',
+        ];
+        $msg = [
+            'wtitle.required' => '标题必须输入',
+            'wtitle.between' => '文章标题太长！',
+            'wdesc.required' => '描述必须输入',
+            'wdesc.between' => '文章描述太长！',
+            'wcontent.required' => '内容必须输入',
+        ];
+        $validator = Validator::make($data,$rule,$msg);
+        //如果验证失败
+        if($validator->fails()){
+            return back() -> withErrors($validator) -> withInput();
+        }
         
+        $pro = Works::find($id);       // 执行修改
+        $res = $pro->update($data);
+
+        if($res){               //判读是否添加成功
+            return redirect('admin/article');
+        }else{
+            return black();
+        }
     }
 
     /**
@@ -109,6 +139,13 @@ class ArticleConteoller extends Controller
     public function destroy($id)
     {
         
-        
+        $res = Works::find($id);
+        $data = $res -> delete();    //删除问题
+
+        if($data){        //  判断是否删除成功！
+            return redirect('admin/article');
+        }else{
+            return blac();
+        }
     }
 }

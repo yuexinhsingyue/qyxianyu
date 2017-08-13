@@ -26,10 +26,16 @@
             </form>
         </div>
     </div>
+
+    <form action="{{ url('amdin/figure') }}" method='post' name='myform'>
+      <input type='hidden' name='_token' value='{{ csrf_token() }}'>
+      <input type='hidden' name='_method' value='DELETE'>
+    </form>  
+
     <div class="card items">
         <ul class="item-list striped">
             {{--表头--}}
-            <li class="item item-list-header hidden-sm-down">
+             <li class="item item-list-header hidden-sm-down">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check">
                             <span>ID</span>
@@ -37,11 +43,11 @@
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>问题标题</span> </div>
                     </div>
-                    <div class="item-col item-col-header fixed item-col-img md">
-                        <div> <span>问题描述</span> </div>
+                    <div class="item-col item-col-header fixed item-col-img md" style="margin-left:90px">
+                        <div > <span>描述</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>状态</span> </div>
+                        <div class="no-overflow"> <span style="margin-left:150px">状态</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>操作</span> </div>
@@ -56,24 +62,21 @@
                     <div class="item-col fixed item-col-check">
                             <span>{{$v->pid}}</span>
                     </div>
-                    <div class="item-col item-col-stats no-overflow">
+                    <div class="item-col item-col-stats no-overflow" style="margin-left:30px">
                         <div class="no-overflow">{{$v->ptitle}}</div>
                     </div>
-                    <div class="item-col item-col-stats no-overflow">
+                    <div class="item-col item-col-stats no-overflow" style="margin-left:40px">
                         <div class="no-overflow">{{$v->pdescript}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$v->status}}</div>
+                        <div class="no-overflow"> @if($v->status == '1') 显示  @elseif($v->status == '2') 不显示 @endif </div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">
+                        <div class="no-overflow" style="margin-left:-40px">
                         	<a href="#" class="btn btn-info btn-sm" style="border-radius:20px">查看内容</a>
 			  				<a href="{{url('admin/problems/'.$v->pid.'/edit')}}" class="btn btn-primary btn-sm" style="border-radius:20px">修改</a>
-			  				<form action="{{url('admin/problems/'.$v->pid)}}" method="POST">	
-							{{csrf_field()}}
-								<input type="hidden" name="_method" value="delete" />
-					  			<input type="submit" class="btn btn-danger btn-sm" style="border-radius:20px;margin-left:180px;margin-top:-55px" value="删除">
-					  		</form>
+                            <a href="javascript:doDel({{ $v->pid }})" class="btn btn-danger btn-sm" style="border-radius:20px;margin-left:180px;margin-top:-57px">删除</a>
+                            <a href="{{url('admin/problem/'.$v->status.'/'.$v->pid)}}" class="btn btn-warning btn-sm" style="border-radius:20px;margin-left:50px;margin-top:-30px">@if($v->status == '1') 点我不显示  @elseif($v->status == '2') 点我显示 @endif</a>
                         </div>
                     </div>
                 </div>
@@ -109,6 +112,15 @@
 
 <script type="text/javascript">
         
+    function doDel(id)
+    {
+      if(confirm('确定要删除吗？')){
+        var form = document.myform;
+        form.action = '/admin/problems/'+id;
+        form.submit();
+      }
+    }
+
     function show(id){
         $.get("{{url('admin/web/')}}/"+id,{'id':id},function(data){
             $('#asd').html(data);

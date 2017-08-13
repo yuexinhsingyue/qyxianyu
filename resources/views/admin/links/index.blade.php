@@ -36,6 +36,12 @@
             </form>
         </div>
     </div>
+
+    <form action="{{ url('amdin/figure') }}" method='post' name='myform'>
+      <input type='hidden' name='_token' value='{{ csrf_token() }}'>
+      <input type='hidden' name='_method' value='DELETE'>
+    </form>
+
     <div class="card items">
         <ul class="item-list striped">
             {{--表头--}}
@@ -78,11 +84,7 @@
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">
                             <a href="{{url('admin/links/'.$v->lid.'/edit')}}" class="btn btn-primary" style="border-radius:20px">修改</a>
-			  				<form action="{{url('admin/links/'.$v->lid)}}" method="POST" >
-                                {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="delete">
-                                <button type="submit" class="btn btn-danger" style="border-radius:20px">删除</button>
-                            </form>
+                            <a href="javascript:doDel({{ $v->lid }})" class="btn btn-danger" style="border-radius:20px">删除</a>
                         </div>
                     </div>
                 </div>
@@ -110,6 +112,19 @@
                 </a> </li>
         </ul>
     </nav>
+
+    <script type="text/javascript">
+
+        function doDel(id)
+        {
+          if(confirm('确定要删除吗？')){
+            var form = document.myform;
+            form.action = '/admin/links/'+id;
+            form.submit();
+          }
+        }
+
+    </script>
 </article>
 
 @endsection

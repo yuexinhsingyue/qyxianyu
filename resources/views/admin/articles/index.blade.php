@@ -9,7 +9,7 @@
         <div class="title-block">
             <div class="row">
                 <div class="col-md-6">
-                    <h2> 网站信息列表 </h2>
+                    <h2> 相关文章列表 </h2>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             </form>
         </div>
     </div>
-    
+
     <form action="{{ url('amdin/figure') }}" method='post' name='myform'>
       <input type='hidden' name='_token' value='{{ csrf_token() }}'>
       <input type='hidden' name='_method' value='DELETE'>
@@ -41,13 +41,13 @@
                             <span>ID</span>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>网站名称</span> </div>
+                        <div class="no-overflow"> <span>文章标题</span> </div>
                     </div>
-                    <div class="item-col item-col-header fixed item-col-img md">
-                        <div> <span>Logo</span> </div>
+                    <div class="item-col item-col-header fixed item-col-img md" style="margin-left:90px">
+                        <div > <span>文章描述</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>网站地址</span> </div>
+                        <div class="no-overflow"> <span style="margin-left:150px">状态</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>操作</span> </div>
@@ -55,37 +55,39 @@
                 </div>
             </li>
             {{--表内容--}}
-
-            @foreach($webs as $k=>$v)
+            
+            @foreach($data as $k=>$v)
             <li class="item">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check">
-                            <span>{{$v->id}}</span>
+                            <span>{{$v->wid}}</span>
+                    </div>
+                    <div class="item-col item-col-stats no-overflow" style="margin-left:30px">
+                        <div class="no-overflow">{{$v->wtitle}}</div>
+                    </div>
+                    <div class="item-col item-col-stats no-overflow" style="margin-left:40px">
+                        <div class="no-overflow">{{$v->wdesc}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$v->name}}</div>
-                    </div>
-                    <div class="item-col fixed item-col-img md">
-                        <img src="{{$v->logo}}" width="100" height="100%" style="border-radius:10px">
-                    </div>
-                    
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$v->url}}</div>
+                        <div class="no-overflow"> @if($v->status == '1') 显示  @elseif($v->status == '2') 不显示 @endif </div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">
-                        	<a href="#" onclick="show({{$v->id}})" class="btn btn-info btn-sm" style="border-radius:20px">查看详情</a>
-			  				<a href="{{url('/admin/web/'.$v->id.'/edit')}}" class="btn btn-primary btn-sm" style="border-radius:20px">修改</a>
-                            <a href="javascript:doDel({{ $v->id }})" class="btn btn-danger btn-sm" style="border-radius:20px;margin-left:180px;margin-top:-55px">删除</a>
+                        <div class="no-overflow" style="margin-left:-40px">
+                        	<a href="#" class="btn btn-info btn-sm" style="border-radius:20px">查看内容</a>
+			  				<a href="{{url('admin/article/'.$v->wid.'/edit')}}" class="btn btn-primary btn-sm" style="border-radius:20px">修改</a>
+			  				<form action="{{url('admin/article/'.$v->wid)}}" method="POST">	
+
+                            <a href="javascript:doDel({{ $v->wid }})" class="btn btn-danger btn-sm" style="border-radius:20px;margin-left:180px;margin-top:-57px">删除</a>
+					  		
+                            <a href="{{url('admin/work/'.$v->status.'/'.$v->wid)}}" class="btn btn-warning btn-sm" style="border-radius:20px;margin-left:50px;margin-top:-30px">@if($v->status == '1') 点我不显示  @elseif($v->status == '2') 点我显示 @endif</a>
                         </div>
                     </div>
                 </div>
             </li>
-			@endforeach
-
+            @endforeach
         </ul>
     </div>
- 	<a href="{{url('admin/web/create')}}" class="btn btn-success" style="border-radius:20px">网站信息添加</a>
+ 	<a href="{{url('admin/article/create')}}" class="btn btn-success" style="border-radius:20px">网站信息添加</a>
 
 
     <nav class="text-xs-right">
@@ -117,7 +119,7 @@
     {
       if(confirm('确定要删除吗？')){
         var form = document.myform;
-        form.action = '/admin/web/'+id;
+        form.action = '/admin/article/'+id;
         form.submit();
       }
     }

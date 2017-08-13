@@ -70,6 +70,11 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::resource('problems', 'ProblemsController');
     // 相关文章
     Route::resource('article', 'ArticleConteoller');
+    // 文章、问题状态修改
+    Route::get('problem/{id}/{pid}', 'StatusController@problem');
+    Route::get('work/{id}/{wid}', 'StatusController@work');
+    // 轮播图
+    Route::resource('figure', 'FigureController');
 
 });
 
