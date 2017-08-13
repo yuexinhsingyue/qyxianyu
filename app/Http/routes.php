@@ -60,8 +60,6 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     // Route::resource('dataSta','DataStaController');
     Route::get('dataSta','DataStaController@dataSta');
     Route::get('visit','DataStaController@visit');
-
-
     //网站管理
     Route::resource('web', 'WebsiteController');
     // 友情链接
@@ -71,16 +69,36 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
 
 //前台用户登录
 Route::get('home/login','Home\LoginController@login');
+//前台用户注册
+Route::get('home/register','Home\LoginController@register');
 //前台登录验证
 Route::post('home/dologin','Home\LoginController@dologin');
+//前台主页
+Route::get('/','Home\IndexController@index');
+//商品列表页
+Route::get('home/list','Home\IndexController@list');
+//商品详情页
+Route::get('home/detail','Home\IndexController@detail');
+//问题页
+Route::get('home/new','Home\IndexController@new');
 /*
  * 前台
  * 路由前缀：home
  * 命名空间：home
  */
-Route::group(['prefix' => 'home', 'middleware' => 'home.login', 'namespace' => 'home'], function () {
-    //用户资源路由
-    Route::resource('user', 'UsersController');
+Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
+    //商品购物车页
+    Route::get('car','IndexController@car');
+    //商品订单页
+    Route::get('car','IndexController@car');
+    //商品订单完成页
+    Route::get('car','IndexController@car');
+    //商品支付页
+    Route::get('car','IndexController@car');
+    //个人中心页
+    Route::get('car','IndexController@car');
+    //鱼塘页
+    Route::get('car','IndexController@car');
 });
 
 
