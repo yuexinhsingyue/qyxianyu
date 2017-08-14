@@ -17,13 +17,9 @@
                 <input type="text" value="{{$v['name']}}   {{$v['address']}}     {{$v['phone']}} " class="form-control underlined" readonly="readonly">
                     @endforeach
             </div>
-            <div class="form-group">
-                <label class="control-label">卖家信息</label>
-                <input type="text" value="拉沙贝尔   北京市总部  " class="form-control underlined" readonly="readonly">
-            </div>
             <div class="form-group" readonly="readonly">
                 <label class="control-label">订单信息</label>
-                <input type="text" value="订单号：234567890   创建时间：2017 08 09" class="form-control underlined" readonly="readonly">
+                <input type="text" value="订单号：{{$num}}        创建时间：2017 08 09" class="form-control underlined" readonly="readonly">
             </div>
             <div class="card items">
                 <ul class="item-list striped">
@@ -48,16 +44,14 @@
                             <div class="item-col item-col-header item-col-stats">
                                 <div class="no-overflow"> <span>商品总价</span> </div>
                             </div>
-                            <div class="item-col item-col-header item-col-stats">
-                                <div class="no-overflow"> <span>状态</span> </div>
-                            </div>
                         </div>
                     </li>
                     {{--表内容--}}
                     <li class="item">
                         <div class="item-row">
+                            @foreach($good as $k=>$v)
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">短裤</div>
+                                <div class="no-overflow">{{$v->gname}}</div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
                                 <div class="col-sm-10">
@@ -65,20 +59,18 @@
                                 </div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">白色 s号</div>
+                                <div class="no-overflow">{{$v->goodstyle}}</div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">￥200.00</div>
+                                <div class="no-overflow">￥{{$v->price}}</div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">2</div>
+                                <div class="no-overflow">{{$v->num}}</div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">￥400</div>
+                                <div class="no-overflow">￥{{$price}}</div>
                             </div>
-                            <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">未发货</div>
-                            </div>
+                                @endforeach
                         </div>
                     </li>
                 </ul>
