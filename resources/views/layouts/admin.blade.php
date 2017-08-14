@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="/admin/css/vendor.css">
     <!-- Theme initialization -->
     <link rel="stylesheet" href="/admin/css/app.css">
-    <!-- <link rel="stylesheet" href="{{ URL::asset('admin/js/jquery.js') }}"> -->
     <script type="text/javascript" src="{{ URL::asset('admin/js/jquery.js') }}"></script>
-    <!-- <script type="text/javascript" src="admin/js/jquery.js"></script> -->
+
     @section('header')
     @show
 
@@ -193,7 +192,20 @@
                              <ul class="collapse">
                                 <li> <a href="{{url('/admin/web')}}"> 基&nbsp;本&nbsp;信&nbsp;息 </a> </li>
                                 <li> <a href="{{url('/admin/links')}}"> 友&nbsp;情&nbsp;链&nbsp;接&nbsp;</a> </li>
-                                <li> <a href="#"> 轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp; </a> </li>                                                               
+                                <li> <a href="{{url('/admin/figure')}}"> 轮&nbsp;播&nbsp;图&nbsp;管&nbsp;理&nbsp; </a> </li>                                                               
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-th-large">
+                                </i>
+                                &nbsp;&nbsp;文章&nbsp;&nbsp;问题&nbsp;&nbsp;
+                                <i class="fa arrow">
+                                </i>
+                            </a>
+                             <ul class="collapse">
+                                <li> <a href="{{url('/admin/problems')}}"> 相&nbsp;关&nbsp;问&nbsp;题 </a> </li>
+                                <li> <a href="{{url('/admin/article')}}"> 相&nbsp;关&nbsp;文&nbsp;章&nbsp; </a> </li>                                                               
                             </ul>
                         </li>
                     </ul>

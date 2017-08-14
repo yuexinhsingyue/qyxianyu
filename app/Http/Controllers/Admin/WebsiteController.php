@@ -15,11 +15,12 @@ class WebsiteController extends Controller
 {
 
     /*
-        网站信息显示页
+     *
+     *   网站信息显示页
     */
     public function index()
     {
-
+        
         $webs =  Webs::all();
         return view('admin.webs.index',compact('webs'));
     }
@@ -27,9 +28,7 @@ class WebsiteController extends Controller
 
     /**
      * 
-     *
      *  网站信息添加页
-     *
      */
     public function create()
     {
@@ -38,9 +37,7 @@ class WebsiteController extends Controller
 
     /**
      * 
-     *
-     *   执行添加动作
-     *
+     *   添加操作
      */
     public function store(Request $req)
     {
@@ -94,13 +91,12 @@ class WebsiteController extends Controller
             return back()->with('msg','添加失败！');;
         }
 
-
-
     }
 
 
     /*
-        网站信息修改页
+     **
+     *   网站信息修改页
     */
     public function edit($id)
     {
@@ -112,16 +108,21 @@ class WebsiteController extends Controller
 
      public function show($id)
     {
-        //
+        echo $id.'========详细信息！';
     }
 
 
     /*
-        执行修改动作
+     *
+     *   修改操作
     */
     public function update(Request $req, $id)
     {
-        $data = $req->except(['_token','logo','_method','ppic']);     //过滤一下子数据
+        $data = $req->except(['_token','logo','_method','pic']);     //过滤一下子数据
+
+        if($req->pic){
+            unlink(public_path().$req->pic);      //  有过有图片传来就删除
+        }
 
         // 表单验证
          $rule = [
@@ -160,17 +161,15 @@ class WebsiteController extends Controller
 
             $data['logo'] = $filepath; 
 
-            $paths = dirname(dirname(dirname(dirname(dirname(__FILE__)))));      // 删除要修改的照片
-            unlink($paths.'/public'.$req->ppic);         
         }
 
-        $webs = Webs::find($id);                 // 执行修改
+        $webs = Webs::find($id);       // 执行修改
         $res = $webs->update($data);
 
         if($res){                 // 判断是否修改成功
             return redirect('admin/web');
         }else{
-            return back()->with('msg','网站信息修改失败');;
+            return back()->with('msg','网站信息修改失败');
         }
 
 
@@ -178,24 +177,27 @@ class WebsiteController extends Controller
 
 
     /**
-     * 
      *
-     *  删除动作
-     * 
+     *  删除操作
      */
     public function destroy($id)
     {
-       $input = Webs::find($id)->first();
 
-       unlink(public_path().$input->logo);    // 删除logo
+       $res = Webs::find($id);
+        
+        if($res->logo){   //删除是也把照片删除掉
 
-       $res = Webs::where('id',$id)->delete();
-       
-       if($res){
+            $img = public_path().$res->logo;
+            unlink($img);
+        }
+
+        $data = $res -> delete();    //删除数据
+
+        if($data){              //判断是否删除成功
             return redirect('admin/web');
-       }else{
-            return back()->with('msg','删除失败');;
-       }
+        }else{
+            return black()->with('msg','网站信息删除失败');
+        }
 
     }
 

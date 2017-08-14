@@ -52,7 +52,7 @@
 				    <label for="exampleInputFile">网站Logo:</label>
 				    <input type="file" name="logo" value="" />
 				    <img src="{{$webs->logo}}" alt="" width="100" height="80" style="margin-left:150px;margin-top:-10px">
-				    <input type="hidden" name="ppic" value="{{$webs->logo}}">
+				    <input type="hidden" name="pic" value="{{$webs->logo}}">
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputPassword1">网站开关:</label><br>
