@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
-
 class UserController extends Controller
 {
     /**

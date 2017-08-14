@@ -24,9 +24,6 @@
 
         <script type="text/javascript" src="/admin/jeDate/jedate.js"></script>
 
-
-
-
         <form  method="post" action="{{ url('/admin/advert') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="card card-block">
@@ -44,13 +41,20 @@
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">广告位置:</label>
-                    <div class="col-sm-10">
-                        <input class="form-control boxed" placeholder="" type="text" name="adposition"style="width: 700px;">
+                    <div class="col-sm-4" >
+                        <select class="form-control" name="adposition" style="width:232px">
+                                <option value="0" selected>--请您选择要投放的广告位--</option>
+                                <option value="1">中部 优选广告位1 左起1</option>
+                                <option value="2">中部 优选广告位1 左起2</option>
+                                <option value="3">中部 优选广告位1 左起3</option>
+                                <option value="4">中部 优选广告位1 左起4</option>
+                        </select>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right" >开始时间:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-5">
                         <p class="datep"><input class="form-control boxed dateinfo1" placeholder="" type="text" name="adstart" name="asposition"style="width: 230px;"></p>
 
                     </div>
@@ -63,11 +67,9 @@
                     </div>
                 </div>
 
-
-
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">广告链接:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-5">
                         <input class="form-control boxed" placeholder="" type="text" name="adlink"style="width: 700px;">
                     </div>
                 </div>
@@ -91,11 +93,11 @@
                     </label>
                     <div class="col-sm-10">
                         <label>
-                            <input class="radio" name="status" type="radio" checked value="1">
+                            <input class="radio" name="status" type="radio" value="1">
                             <span>启用</span>
                         </label>
                         <label>
-                            <input class="radio" name="status" type="radio" value="0">
+                            <input class="radio" name="status" type="radio" checked  value="0">
                             <span>禁用</span>
                         </label>
                     </div>

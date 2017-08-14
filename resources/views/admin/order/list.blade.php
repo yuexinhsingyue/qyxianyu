@@ -14,9 +14,10 @@
             </div>
         </div>
         <div class="items-search">
-            <form class="form-inline">
+            <form class="form-inline" action="{{url('/admin/order')}}" method="get">
+                {{ csrf_field() }}
                 <div class="input-group">
-                    <input class="form-control boxed rounded-s" placeholder="搜索..." type="text">
+                    <input class="form-control boxed rounded-s" placeholder="搜索..." type="text" name="search">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary rounded-s" type="button">
                             <i class="fa fa-search"></i>
@@ -34,17 +35,20 @@
                     <div class="item-col fixed item-col-check">
                             <span>ID</span>
                     </div>
-                    <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>姓名</span> </div>
+                    <div class="item-col item-col-header item-col-title" style="text-align:center">
+                        <div> <span>订单号</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>电话</span> </div>
+                        <div class="no-overflow"> <span>下单时间</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>地址</span> </div>
+                        <div class="no-overflow"> <span>订单总价</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>身份</span> </div>
+                        <div class="no-overflow"> <span>商品数量</span> </div>
+                    </div>
+                    <div class="item-col item-col-header item-col-stats">
+                        <div class="no-overflow"> <span>下单用户</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>状态</span> </div>
@@ -58,26 +62,41 @@
             <li class="item">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check">
-                            <span>1</span>
+                            <span>{{$res[0]['id']}}</span>
+                    </div>
+                    <div class="item-col item-col-header item-col-title" style="text-align:center">
+                        <div> <span>{{$res[1]['oid']}}</span> </div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">小李</div>
+                        <div class="no-overflow">2017 08 01</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">12345678901</div>
+                        <div class="no-overflow">{{$res[0]['oprice']}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">北京回龙观</div>
+                        <div class="no-overflow">{{$res[0]['onum']}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">管理员</div>
+                        <div class="no-overflow">{{$res[0]['uid']}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">禁用</div>
+                        @if($res[0]['status'] == 0)
+                        <div class="no-overflow">未发货</div>
+                           @endif
+                        @if($res[0]['status'] == 1)
+                        <div class="no-overflow">已发货</div>
+                            @endif
+                        @if($res[0]['status'] == 2)
+                        <div class="no-overflow">确认收货</div>
+                            @endif
+                        @if($res[0]['status'] == 3)
+                        <div class="no-overflow">取消订单</div>
+                            @endif
+
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">
-                            <button type="button" class="btn btn-oval btn-danger">修改</button>
+                        <div class="no-overflow"><a href="{{url('admin/detail')}}">
+                                <button type="button" class="btn btn-info btn-success">查看详情</button></a>
                         </div>
                     </div>
                 </div>
@@ -85,22 +104,19 @@
         </ul>
     </div>
     <nav class="text-xs-right">
-        <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="">
-                    Prev
-                </a> </li>
-            <li class="page-item active"> <a class="page-link" href="">
-                    1
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    2
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    Next
-                </a> </li>
-        </ul>
+        {!! $res->render() !!}
     </nav>
 </article>
 
+@endsection
+
+
+@section('js')
+    <script>
+        $('.text-xs-right li').addClass('page-item');
+        $('.text-xs-right li').attr('style','list-style:none');
+        $('.text-xs-right span').addClass('page-link');
+        $('.text-xs-right a').addClass('page-link');
+    </script>
 @endsection
 
