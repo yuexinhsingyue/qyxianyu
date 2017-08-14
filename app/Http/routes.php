@@ -52,10 +52,12 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::resource('type','TypeController');
     //订单管理
     Route::resource('order','OrderController');
+    //查看订单详情页
+    Route::get('detail','OrderController@detail');
     //鱼塘管理
     Route::resource('fish','FishController');
     //广告管理
-    Route::resource('ad','AdController');
+    Route::resource('advert','advertController');
     //数据统计
     // Route::resource('dataSta','DataStaController');
     Route::get('dataSta','DataStaController@dataSta');
@@ -64,6 +66,15 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::resource('web', 'WebsiteController');
     // 友情链接
     Route::resource('links', 'LinksController');
+    // 相关问题
+    Route::resource('problems', 'ProblemsController');
+    // 相关文章
+    Route::resource('article', 'ArticleConteoller');
+    // 文章、问题状态修改
+    Route::get('problem/{id}/{pid}', 'StatusController@problem');
+    Route::get('work/{id}/{wid}', 'StatusController@work');
+    // 轮播图
+    Route::resource('figure', 'FigureController');
 
 });
 

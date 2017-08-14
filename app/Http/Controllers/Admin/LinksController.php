@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Validator;
 class LinksController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     *  
+     * 链接列表
      */
     public function index()
     {
@@ -26,22 +25,20 @@ class LinksController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *
+     * 添加链接页面
      */
     public function create()
     {
 
-        return view('admin.links.add',compact('link'));
+        return view('admin.links.add');
 
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 
+     * 添加操作
      */
     public function store(Request $req)
     {
@@ -83,36 +80,80 @@ class LinksController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
+     * 修改动作
      */
     public function edit($id)
     {
-        echo $id;
+        $res = Links::find($id);
+
+        return view('admin.links/edit', compact('res'));
     }
 
     /**
-     * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *  修改操作
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
-        echo  '我是修改页面';
+
+
+        $input = Links::find($id);
+
+        $data = $req->except(['_token','_method','pic']);       // 过滤一下子数据 
+
+        if($req->pic){              // 如果有照片，删除
+            unlink(public_path().$input->limg);
+        }
+
+        if($req->hasFile('limg')){     // 文件上传
+
+            $file = Input::file('limg');
+
+            $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
+        
+            $newName = date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
+         
+            $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
+
+            $filepath = '/uploads/'.$newName;             //拼接文件路径
+
+            $data['limg'] = $filepath;     
+        }
+
+        $res = Links::where('lid','=',$id)->update($data);     // 执行修改动作
+
+        if($res){       // 判断是否修改成功
+            return redirect('admin/links');
+        }else{
+            return black();
+        }
+
     }
 
     /**
-     * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
+     * 删除操作
      */
     public function destroy($id)
     {
-        echo '我是删除页面';
+        $res = Links::find($id);
+        
+        if($res->limg){   //删除是也把照片删除掉
+
+            $img = public_path().$res->limg;
+            unlink($img);
+        }
+
+        $data = $res -> delete();    //删除数据
+
+        if($data){              //判断是否删除成功
+            return redirect('admin/links');
+        }else{
+            return black();
+        }
+
+
     }
 }
