@@ -24,6 +24,16 @@ class IndexController extends Controller
     {
         return view('home.detail');
     }
+    //问题
+    public function news()
+    {
+        return 'new';
+    }
+    //鱼塘
+    public function fish()
+    {
+        return 'fish';
+    }
 
 
 }

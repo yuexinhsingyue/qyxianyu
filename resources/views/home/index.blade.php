@@ -1,6 +1,14 @@
 @extends('layouts.home')
 @section('title','首页')
 
+@section('header')
+	<link href="{{ url('home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
+	<link href="{{ url('home/css/skin.css') }}" rel="stylesheet" type="text/css" />
+
+	<script src="{{ url('home/js/jquery.min.js') }}"></script>
+	<script src="{{ url('home/js/amazeui.min.js') }}"></script>
+@endsection
+
 @section('content')
 <div class="banner">
 	<!--轮播 -->
@@ -18,9 +26,9 @@
 		<div class="long-title"><span class="all-goods">全部分类</span></div>
 		<div class="nav-cont">
 			<ul>
-				<li class="index"><a href="#">首页</a></li>
-				<li class="qc"><a href="#">文章与问题</a></li>
-				<li class="qc last"><a href="#">鱼塘</a></li>
+				<li class="index"><a href="{{ url('/') }}">首页</a></li>
+				<li class="qc"><a href="{{ url('home/news') }}">文章与问题</a></li>
+				<li class="qc last"><a href="{{ url('home/fish') }}">鱼塘</a></li>
 			</ul>
 		</div>
 		<!--侧边导航 -->
@@ -465,4 +473,11 @@
 		<div class="clear "></div>
 	</div>
 </div>
+@endsection
+
+@section('js')
+	<script>
+        window.jQuery || document.write('<script src="{{ url('home/js/jquery.min.js') }}"><\/script>');
+	</script>
+	<script type="text/javascript " src="{{ url('home/js/quick_links.js') }}"></script>
 @endsection

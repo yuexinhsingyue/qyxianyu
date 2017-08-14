@@ -1,10 +1,14 @@
 @extends('layouts.home')
 
-@section('title','首页')
+@section('title','商品详情页')
 
 @section('header')
     <link type="text/css" href="{{ url('home/css/optstyle.css') }}" rel="stylesheet" />
     <link type="text/css" href="{{ url('home/css/style.css') }}" rel="stylesheet" />
+
+    <script type="text/javascript" src="{{ url('home/js/jquery-1.7.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('home/js/quick_links.js') }}"></script>
+    <script type="text/javascript" src="{{ url('home/js/amazeui.js') }}"></script>
     <script type="text/javascript" src="{{ url('home/js/jquery.imagezoom.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('home//js/jquery.flexslider.js') }}"></script>
     <script type="text/javascript" src="{{ url('home/js/list.js') }}"></script>
@@ -23,33 +27,20 @@
         </div>
         <div class="nav-cont">
             <ul>
-                <li class="index">
-                    <a href="#">
-                        首页
-                    </a>
-                </li>
-                <li class="qc">
-                    <a href="#">
-                        闪购
-                    </a>
-                </li>
+                <li class="index"><a href="{{ url('/') }}">首页</a></li>
+                <li class="qc"><a href="{{ url('home/news') }}">文章与问题</a></li>
+                <li class="qc last"><a href="{{ url('home/fish') }}">鱼塘</a></li>
             </ul>
         </div>
     </div>
     <ol class="am-breadcrumb am-breadcrumb-slash">
         <li>
-            <a href="#">
-                首页
-            </a>
+            <a href="#">首页</a>
         </li>
         <li>
-            <a href="#">
-                分类
-            </a>
+            <a href="#">分类</a>
         </li>
-        <li class="am-active">
-            内容
-        </li>
+        <li class="am-active">内容</li>
     </ol>
     <script type="text/javascript">
         $(function() {});
@@ -78,7 +69,7 @@
                 </script>
                 <div class="tb-booth tb-pic tb-s310">
                     <a href="{{ url('home/img/01.jpg')}}">
-                        <img src="{{ url('home/img/01_mid.jpg')}}" alt="细节展示放大镜特效" rel="./style/img/01.jpg"
+                        <img src="{{ url('home/img/01_mid.jpg')}}" alt="细节展示放大镜特效" rel="{{ url('home/img/01.jpg') }}"
                              class="jqzoom" />
                     </a>
                 </div>
@@ -86,7 +77,7 @@
                     <li class="tb-selected">
                         <div class="tb-pic tb-s40">
                             <a href="#">
-                                <img src="{{ url('home/img/01_small.jpg')}}" mid="./style/img/01_mid.jpg" big="./style/img/01.jpg">
+                                <img src="{{ url('home/img/01_small.jpg')}}" mid="./style/img/01_mid.jpg" big="{{ url('homeimg/01.jpg/') }}">
                             </a>
                         </div>
                     </li>
@@ -211,85 +202,45 @@
                         </div>
                     </li>
                 </ul>
-                <div class="clear">
-                </div>
+                <div class="clear"></div>
                 <!--各种规格-->
                 <dl class="iteminfo_parameter sys_item_specpara">
                     <dt class="theme-login">
-                    <div class="cart-title">
-                        可选规格
-                        <span class="am-icon-angle-right">
-                        </span>
-                    </div>
+                        <div class="cart-title">可选规格
+                            <span class="am-icon-angle-right"></span>
+                        </div>
                     </dt>
                     <dd>
                         <!--操作页面-->
-                        <div class="theme-popover-mask">
-                        </div>
+                        <div class="theme-popover-mask"></div>
                         <div class="theme-popover">
-                            <div class="theme-span">
-                            </div>
+                            <div class="theme-span"></div>
                             <div class="theme-poptit">
-                                <a href="javascript:;" title="关闭" class="close">
-                                    ×
-                                </a>
+                                <a href="javascript:;" title="关闭" class="close">×</a>
                             </div>
                             <div class="theme-popbod dform">
                                 <form class="theme-signin" name="loginform" action="" method="post">
                                     <div class="theme-signin-left">
                                         <div class="theme-options">
-                                            <div class="cart-title">
-                                                口味
-                                            </div>
+                                            <div class="cart-title">口味</div>
                                             <ul>
-                                                <li class="sku-line selected">
-                                                    原味
-                                                    <i>
-                                                    </i>
-                                                </li>
-                                                <li class="sku-line">
-                                                    奶油
-                                                    <i>
-                                                    </i>
-                                                </li>
-                                                <li class="sku-line">
-                                                    炭烧
-                                                    <i>
-                                                    </i>
-                                                </li>
-                                                <li class="sku-line">
-                                                    咸香
-                                                    <i>
-                                                    </i>
-                                                </li>
+                                                <li class="sku-line selected">原味<i></i></li>
+                                                <li class="sku-line">奶油<i></i></li>
+                                                <li class="sku-line">炭烧<i></i></li>
+                                                <li class="sku-line">咸香<i></i></li>
                                             </ul>
                                         </div>
                                         <div class="theme-options">
-                                            <div class="cart-title">
-                                                包装
-                                            </div>
+                                            <div class="cart-title">包装</div>
                                             <ul>
-                                                <li class="sku-line selected">
-                                                    手袋单人份
-                                                    <i>
-                                                    </i>
-                                                </li>
-                                                <li class="sku-line">
-                                                    礼盒双人份
-                                                    <i>
-                                                    </i>
-                                                </li>
-                                                <li class="sku-line">
-                                                    全家福礼包
-                                                    <i>
-                                                    </i>
-                                                </li>
+                                                <li class="sku-line selected">手袋单人份<i></i></li>
+                                                <li class="sku-line">礼盒双人份<i></i></li>
+                                                <li class="sku-line">全家福礼包<i></i></li>
                                             </ul>
                                         </div>
                                         <div class="theme-options">
-                                            <div class="cart-title number">
-                                                数量
-                                            </div>
+                                        <div class="cart-title number">数量</div>
+
                     <dd>
                         <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"
                         />
@@ -322,16 +273,12 @@
                 <img src="{{ url('home/img/songzi.jpg') }}" />
             </div>
             <div class="text-info">
-                                        <span class="J_Price price-now">
-                                            ¥39.00
-                                        </span>
-                <span id="Stock" class="tb-hidden">
-                                            库存
-                                            <span class="stock">
-                                                1000
-                                            </span>
-                                            件
-                                        </span>
+                <span class="J_Price price-now">
+                    ¥39.00
+                </span>
+                <span id="Stock" class="tb-hidden">库存
+                    <span class="stock">1000</span>件
+                </span>
             </div>
         </div>
         </form>
@@ -667,7 +614,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -702,7 +649,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -737,7 +684,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -772,7 +719,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -807,7 +754,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -842,7 +789,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -877,7 +824,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -912,7 +859,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -947,7 +894,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -982,7 +929,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -1017,7 +964,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -1052,7 +999,7 @@
                         <li class="am-comment">
                             <!-- 评论容器 -->
                             <a href="">
-                                <img class="am-comment-avatar" src="./style/img/hwbn40x40.jpg" />
+                                <img class="am-comment-avatar" src="{{ url('home/img/hwbn40x40.jpg') }}" />
                                 <!-- 评论者头像 -->
                             </a>
                             <div class="am-comment-main">
@@ -1122,7 +1069,7 @@
                         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
                             <li>
                                 <div class="i-pic limit">
-                                    <img src="./style/img/imgsearch1.jpg" />
+                                    <img src="{{ url('home/img/imgsearch1.jpg') }}" />
                                     <p>
                                         【良品铺子_开口松子】零食坚果特产炒货
                                         <span>
@@ -1172,3 +1119,5 @@
 </div>
 </div>
 @endsection
+
+

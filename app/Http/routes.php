@@ -91,7 +91,9 @@ Route::get('home/list','Home\IndexController@list');
 //商品详情页
 Route::get('home/detail','Home\IndexController@detail');
 //问题页
-Route::get('home/new','Home\IndexController@new');
+Route::get('home/news','Home\IndexController@news');
+//鱼塘页
+Route::get('home/fish','Home\IndexController@fish');
 /*
  * 前台
  * 路由前缀：home
@@ -107,9 +109,8 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     //商品支付页
     Route::get('car','IndexController@car');
     //个人中心页
-    Route::get('car','IndexController@car');
-    //鱼塘页
-    Route::get('car','IndexController@car');
+    Route::get('person','IndexController@person');
+
 });
 
 

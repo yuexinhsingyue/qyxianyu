@@ -696,7 +696,7 @@ dt + dd {margin-top: 0;}
 	.shopNavfloat{float:left; position:static; margin-top:-4px;display: block;}
 
 	.banner .am-slider .am-slides li{height:430px;}
-	.banner .am-slider .am-slides img{width:954px ;left:50% ;position: absolute;margin-left: -534px;}
+	.banner .am-slider .am-slides img{width:954px ;left:50% ;position: absolute;margin-left: -512px;}
 
 	/*第二套轮播图布局*/
 	.bannerTwo{position: absolute;left:187px;;width:760px ;}
