@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+
+// use DB;
+use App\Http\Model\Fish;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,9 +17,19 @@ class FishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $data = DB::table('fishpond')->join('fishponddetail','fishpond.id','=','fishponddetail.fid' )
+        // ->get();
+
+        // echo '<pre>';
+        // var_dump($data);
+        
+        $data = Fish::where('fishpondname','like','%'.$request['keywords'].'%')
+        ->join('fishponddetail','fishpond.id','=','fishponddetail.fid' )
+        ->paginate(3);
+        $keyword = $request->input('keywords');
+        return view('admin.fish.list',compact('data','keyword'));
     }
 
     /**

@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Http\Model\Order;
 use App\Http\Model\User;
+use App\Http\Model\Goods;
+use App\Http\Model\Loginhistory;
 class DataStaController extends Controller
 {
     /**
@@ -17,7 +19,7 @@ class DataStaController extends Controller
      *date: 2017/08/10
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dataSta()
     {
 
         // 获取近30天的数据
@@ -25,11 +27,13 @@ class DataStaController extends Controller
 
         //从数据库订单表中统计近30天的日订单金额。
         $Order = Order::select(DB::raw("FROM_UNIXTIME( created_at,'%m/%d') as days,count(oprice) as count, SUM(oprice) AS amount"))
-                            ->where('created_at','>=',' DATE_SUB(CURDATE(), INTERVAL 30 DAY)')
-                            ->groupBy('days')
-                            ->orderBy('created_at')
-                            ->get();
+            ->where('created_at','>=',' DATE_SUB(CURDATE(), INTERVAL 30 DAY)')
+            ->groupBy('days')
+            ->orderBy('created_at')
+            ->get();
 
+        // 平台闲置商品数量
+        $totelgoods = Goods::count('id');
         // 当月累计订单数
         $orderMonth = $Order->count('count'); 
         // 当月累计交易额
@@ -39,7 +43,7 @@ class DataStaController extends Controller
         // 平台总用户数量
         $userids = User::count('uid');
         // 累计交易商品总数量
-        $totelgoods = Order::sum('onum');
+        $totelsalagoods = Order::sum('onum');
          // dd($userids);
         $countOrder = [];   //存储订单统计图表数据
         // 将数据库获取的订单数据转换为键队值数组  键:日期 值:当日订单总额
@@ -67,84 +71,77 @@ class DataStaController extends Controller
 
         // dd($countOrder);
         // $chartX = implode($chartX,',');
-        return view('admin.datastati.salestat',compact('totelOrder','totelgoods','orderMonth','userids','priceMonth','countOrder'));
+        return view('admin.datastati.salestat',compact('totelgoods','totelOrder','totelsalagoods','orderMonth','userids','priceMonth','countOrder'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * 网站访问量数据统计 折线图按月双线显示
+     *auth:hsingyue
+     *data:2017/08/12
      * @return \Illuminate\Http\Response
      */
+
     public function visit()
     {
+        //获取一年前的时间戳
+        $LastYear = mktime(0, 0, 0, date('m'), date('d'), date('Y')-1);
+        //获取二年前的时间戳
+        $beforeLastYear = mktime(0, 0, 0, date('m'), date('d'), date('Y')-2);
 
-        //获取图表的X轴 近30天日期
-        $days = 30;
-        $nowday = date ('m/d');
-        $chartX = array ();
-        for($i = 0; $i < $days; $i++)
-        {
-            $chartX[]=date('m/d',strtotime($nowday)-$i*24*60*60);
+         //从数据库订单表中统计近1年的数据。
+        $Loginhistory1 = Loginhistory::select(DB::raw("FROM_UNIXTIME( loginTime,'%Y/%m') as months,count(id) as count"))
+                            ->where('loginTime','>=',$LastYear)
+                            ->groupBy('months')
+                            ->orderBy('loginTime')
+                            ->get();
+
+        //从数据库订单表中统计1年到2年的数据。
+        $Loginhistory2 = Loginhistory::select(DB::raw("FROM_UNIXTIME( loginTime,'%Y/%m') as months,count(id) as count"))
+            ->whereBetween('loginTime',[$beforeLastYear,$LastYear])
+            ->groupBy('months')
+            ->orderBy('loginTime')
+            ->get();
+
+        $chart1 = [];   //存储图表1数据
+        $chart2 = [];   //存储图表2数据
+        // 将数据库获取的访问量数据转换为键队值数组  键:日期 值:当月访问量
+        foreach ($Loginhistory1 as $k => $v) {
+            $chart1[$v['months']] = $v['count'];
         }
-        // dd($chartX);
-        $chartX = implode($chartX,',');
-        return view('admin.datastati.visite',compact('chartX'));
-        
+        foreach ($Loginhistory2 as $k => $v) {
+            $chart2[$v['months']] = $v['count'];
+        }
+        // 当前年月
+        $countMonth = date('Y/m');
+        //没有访问量的月份补零
+        for($i = 0; $i < 12; $i++)
+        {
+            // 如果当前月份没有数据，则赋0
+            if ( !array_key_exists($countMonth, $chart1  )) {
+                $chart1[$countMonth] = 0;
+            }
+            //前2年至前1年无数据 赋0
+            $temp=date("Y/m",strtotime("-1 years",strtotime($countMonth.'/01')));   //指定日期前一年
+            if ( !array_key_exists($temp, $chart2  )) {
+                $chart2[$temp] = 0;
+            }
+
+            // 月份减一
+            $timestamp=strtotime($countMonth.'/01');
+            $countMonth=date('Y/m',strtotime(date('Y',$timestamp).'-'.(date('m',$timestamp)-1)));
+        }
+        //  按照键名（日期）对数据进行排序
+        ksort($chart1);
+        ksort($chart2);
+
+        // 将图表数组转为换js能识别的json格式。
+        json_encode($chart1);
+        json_encode($chart2);
+
+        // 网站累计访问量
+        $orderMonth = Loginhistory::count('id');
+        return view('admin.datastati.visite',compact('orderMonth','chart1','chart2'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
