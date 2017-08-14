@@ -24,7 +24,6 @@ class UserController extends Controller
         $res = $res -> where('uname','like','%'.Input::get('search').'%') -> paginate(2);
         //条件
         $search = Input::get('search');
-
         return view('admin.user.list',compact('res','search'));
     }
 

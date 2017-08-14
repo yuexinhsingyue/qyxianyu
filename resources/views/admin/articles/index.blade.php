@@ -73,7 +73,7 @@
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow" style="margin-left:-40px">
-                        	<a href="#" class="btn btn-info btn-sm" style="border-radius:20px">查看内容</a>
+                        	<a href="javascript:void(0)" onclick="show_art({{$v->wid}})" class="btn btn-info btn-sm" style="border-radius:20px">查看文章</a>
 			  				<a href="{{url('admin/article/'.$v->wid.'/edit')}}" class="btn btn-primary btn-sm" style="border-radius:20px">修改</a>
 			  				<form action="{{url('admin/article/'.$v->wid)}}" method="POST">	
 
@@ -124,12 +124,16 @@
       }
     }
 
-    function show(id){
-        $.get("{{url('admin/web/')}}/"+id,{'id':id},function(data){
-            $('#asd').html(data);
-               // alert(data);
-        });
-        
+    function show_art(wid)
+    {
+        $.post('/admin/article/show',{'_token':'{{csrf_token()}}','wid':wid},function(data){
+            layer.open({
+              type: 1,
+              skin: 'layui-layer-rim', //加上边框
+              area: ['800px', '600px'], //宽高
+              content: data
+            });
+        })
     }
 
 </script>

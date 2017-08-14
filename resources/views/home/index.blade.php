@@ -10,6 +10,7 @@
 			<li class="banner2"><a href="#"><img src="{{ url('home/img/ad6.jpg') }}" /></a></li>
 		</ul>
 	</div>
+
 	<div class="clear"></div>
 </div>
 <div class="shopNav">
@@ -292,7 +293,7 @@
 	<div class="shopMain" id="shopmain" style="margin-right: 0px;">
 		<!--今日推荐 -->
 		<div class="am-g am-g-fixed recommendation">
-			<div class="clock am-u-sm-3" ">
+			<div class="clock am-u-sm-3">
 			<p>今日推荐</p>
 		</div>
 		<div class="am-u-sm-4 am-u-lg-3 ">

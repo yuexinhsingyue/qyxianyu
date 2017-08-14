@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="/admin/css/vendor.css">
     <!-- Theme initialization -->
     <link rel="stylesheet" href="/admin/css/app.css">
+
     <script type="text/javascript" src="{{ URL::asset('admin/js/jquery.js') }}"></script>
+
+    <script type="text/javascript" src="/layer/layer.js"></script>
+
 
     @section('header')
     @show
@@ -151,11 +155,7 @@
                                         鱼&nbsp;塘&nbsp;列&nbsp;表&nbsp;
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        推&nbsp;荐&nbsp;鱼&nbsp;塘&nbsp;
-                                    </a>
-                                </li>
+
                             </ul>
                         </li>
 

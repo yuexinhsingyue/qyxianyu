@@ -74,7 +74,7 @@
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">
-                        	<a href="#" onclick="show({{$v->id}})" class="btn btn-info btn-sm" style="border-radius:20px">查看详情</a>
+                        	<a href="javascript:void(0)" onclick="show_web({{$v->id}})" class="btn btn-info btn-sm" style="border-radius:20px">查看详情</a>
 			  				<a href="{{url('/admin/web/'.$v->id.'/edit')}}" class="btn btn-primary btn-sm" style="border-radius:20px">修改</a>
                             <a href="javascript:doDel({{ $v->id }})" class="btn btn-danger btn-sm" style="border-radius:20px;margin-left:180px;margin-top:-55px">删除</a>
                         </div>
@@ -122,14 +122,19 @@
       }
     }
 
-    function show(id){
-        $.get("{{url('admin/web/')}}/"+id,{'id':id},function(data){
-            $('#asd').html(data);
-               // alert(data);
-        });
-        
+    
+    //网站详细信息
+    function show_web(id)
+    {
+        $.post('/admin/web/show',{'_token':'{{csrf_token()}}','id':id},function(data){
+            layer.open({
+              type: 1,
+              skin: 'layui-layer-rim', //加上边框
+              area: ['800px', '600px'], //宽高
+              content: data
+            });
+        })
     }
-
 </script>
 
 @endsection

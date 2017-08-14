@@ -19,6 +19,11 @@
             </div>
         @endif
 
+     
+       <?php
+            var_dump($advert);
+
+       ?>
         <script type="text/javascript" src="/admin/jeDate/jedate.js"></script>
 
         <form  method="post" action="{{ url('/admin/advert') }}" enctype="multipart/form-data">
@@ -27,13 +32,13 @@
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">广告名称:</label>
                     <div class="col-sm-10">
-                        <input class="form-control boxed" placeholder="" type="text" name="adname"style="width: 700px;">
+                        <input class="form-control boxed" placeholder="" type="text" name="adname" value="{{$advert->adname}}" style="width: 700px;">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">广告描述:</label>
                     <div class="col-sm-10">
-                        <input class="form-control boxed" placeholder="" type="text" name="addescribe"style="width: 700px;">
+                        <input class="form-control boxed" placeholder="" value="{{$advert->addescribe}}" type="text" name="addescribe"style="width: 700px;">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -41,10 +46,10 @@
                     <div class="col-sm-4" >
                         <select class="form-control" name="adposition" style="width:232px">
                                 <option value="0" selected>--请您选择要投放的广告位--</option>
-                                <option value="1">中部 优选广告位1 左起1</option>
-                                <option value="2">中部 优选广告位1 左起2</option>
-                                <option value="3">中部 优选广告位1 左起3</option>
-                                <option value="4">中部 优选广告位1 左起4</option>
+                                <option value="1" @i($advert->adposition == 1) selected  >中部 优选广告位1 左起1</option>
+                                <option value="2" >中部 优选广告位1 左起2</option>
+                                <option value="3" >中部 优选广告位1 左起3</option>
+                                <option value="4" >中部 优选广告位1 左起4</option>
                         </select>
                     </div>
                 </div>
@@ -101,7 +106,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-10 col-sm-offset-2"> 
-                        <button type="submit" class="btn btn-primary">添加</button> 
+                        <button type="submit" class="btn btn-primary">修改</button> 
                     </div>
                 </div>
             </div>

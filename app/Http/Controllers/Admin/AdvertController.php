@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Pagination\Paginator;
+
 
 class AdvertController extends Controller
 {
@@ -21,7 +23,9 @@ class AdvertController extends Controller
      */
     public function index()
     {
-        $advert = advert::paginate(2);
+        $advert = advert::paginate(1);
+        // dd($advert->render());
+
         // dd($advert);
          return view('admin.advert.list',compact('advert'));
     }
@@ -110,7 +114,7 @@ class AdvertController extends Controller
         $advert -> status = $input['status'];
         $advert -> save();
 
-        return redirect('admin/advert');
+        return redirect('admin/ ');
     }
 
     /**
@@ -132,7 +136,9 @@ class AdvertController extends Controller
      */
     public function edit($id)
     {
-        //
+        $advert = advert::find($id);
+        // dd($advert);
+        return view('admin.advert.edit',compact('advert'));
     }
 
     /**
