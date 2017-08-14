@@ -71,15 +71,6 @@ class ProblemsController extends Controller
 
     }
 
-    /**
-     *
-     * 
-     * 单条页
-     */
-    public function show($id)
-    {
-        echo '查看单条';
-    }
 
     /**
      *
@@ -91,6 +82,15 @@ class ProblemsController extends Controller
         $res = Problem::find($id);
 
         return view('admin.problems.edit',compact('res'));
+    }
+
+
+    // 查看文章
+    public function show_pro(Request $req)
+    {
+        $res = Problem::find($req->pid);
+
+        return $res->pcontent;
     }
 
     /**
@@ -147,6 +147,5 @@ class ProblemsController extends Controller
         }else{
             return blac();
         }
-        
     }
 }

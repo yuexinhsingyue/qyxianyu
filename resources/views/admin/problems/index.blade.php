@@ -73,7 +73,7 @@
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow" style="margin-left:-40px">
-                        	<a href="#" class="btn btn-info btn-sm" style="border-radius:20px">查看内容</a>
+                        	<a href="javascript:void(0)" onclick="show_pro({{ $v->pid }})" class="btn btn-info btn-sm" style="border-radius:20px">查看内容</a>
 			  				<a href="{{url('admin/problems/'.$v->pid.'/edit')}}" class="btn btn-primary btn-sm" style="border-radius:20px">修改</a>
                             <a href="javascript:doDel({{ $v->pid }})" class="btn btn-danger btn-sm" style="border-radius:20px;margin-left:180px;margin-top:-57px">删除</a>
                             <a href="{{url('admin/problem/'.$v->status.'/'.$v->pid)}}" class="btn btn-warning btn-sm" style="border-radius:20px;margin-left:50px;margin-top:-30px">@if($v->status == '1') 点我不显示  @elseif($v->status == '2') 点我显示 @endif</a>
@@ -121,13 +121,19 @@
       }
     }
 
-    function show(id){
-        $.get("{{url('admin/web/')}}/"+id,{'id':id},function(data){
-            $('#asd').html(data);
-               // alert(data);
-        });
-        
+    // 内容详情
+    function show_pro(pid)
+    {
+        $.post('/admin/problems/show',{'_token':'{{csrf_token()}}','pid':pid},function(data){
+            layer.open({
+              type: 1,
+              skin: 'layui-layer-rim', //加上边框
+              area: ['800px', '600px'], //宽高
+              content: data
+            });
+        })
     }
+
 
 </script>
 

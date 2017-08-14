@@ -45,14 +45,13 @@ class WebsiteController extends Controller
 
         // 表单验证
          $rule = [
-            'name'          =>'required|between:2,15',
+            'name'          =>'required',
             'describe'      =>'required|between:5,50',
             'url'           =>'required',
             'filing'        =>'required',
             'cright'        =>'required',
         ];
         $mess = [
-            'name.required'         =>'请输入网站名称',
             'name.between'          =>'网站名称必须在2-15位之间',
             'describe.required'     =>'请写入网站描述',
             'describe.between'      =>'网站描述必须在5~50之间',
@@ -106,9 +105,63 @@ class WebsiteController extends Controller
         
     }
 
-     public function show($id)
+    public function show_web(Request $req)
     {
-        echo $id.'========详细信息！';
+        // echo $id.'========详细信息！';
+        $webs =  Webs::find($req->id);
+
+        $status = '';
+        if($webs->status == '1'){
+            $status = '正在运作 ~~~'; 
+        }else if($webs->status == '2'){
+            $status = '维护中 ··· ···';
+        }
+
+        $str="<section class='example'>
+                <table class='table table-bordered'>
+                    <tbody>
+                    <tr strle='margin-top:20px'>
+                        <th scope='row' width='15%'>ID</th>
+                        <td>".$webs->id."</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>网站名称</th>
+                        <td>".$webs->name."</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>网站描述</th>
+                        <td>".$webs->describe."</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>联系方式</th>
+                        <td>".$webs->telephone."</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>备案号</th>
+                        <td>".$webs->filing."</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>版权信息</th>
+                        <td>".$webs->cright."</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>网站地址</th>
+                        <td>".$webs->url."</td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>网站Logo</th>
+                        <td><img src='".$webs->logo."' width='100' height='110' style='border-radius:10px'></td>
+                    </tr>
+                    <tr>
+                        <th scope='row'>网站开关</th>
+                        <td>".$status."</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>";
+
+            return $str;
+
     }
 
 

@@ -62,12 +62,18 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::get('visit','DataStaController@visit');
     //网站管理
     Route::resource('web', 'WebsiteController');
+    // 详细网站信息
+    Route::post('web/show', 'WebsiteController@show_web');
     // 友情链接
     Route::resource('links', 'LinksController');
     // 相关问题
     Route::resource('problems', 'ProblemsController');
+    // 问题内容
+    Route::post('problems/show', 'ProblemsController@show_pro');
     // 相关文章
     Route::resource('article', 'ArticleConteoller');
+    // 查看文章
+    Route::post('article/show', 'ArticleConteoller@show_work');
     // 文章、问题状态修改
     Route::get('problem/{id}/{pid}', 'StatusController@problem');
     Route::get('work/{id}/{wid}', 'StatusController@work');

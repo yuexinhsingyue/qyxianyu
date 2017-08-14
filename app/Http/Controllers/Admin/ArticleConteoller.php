@@ -71,15 +71,6 @@ class ArticleConteoller extends Controller
 
     }
 
-    /**
-     *
-     * 
-     * 单条页
-     */
-    public function show($id)
-    {
-        echo '查看单条';
-    }
 
     /**
      *
@@ -90,6 +81,14 @@ class ArticleConteoller extends Controller
     {
         $res = Works::find($id);
         return view('admin.articles.edit',compact('res'));
+    }
+
+
+    public function show_work(Request $req)
+    {
+        $res = Works::find($req->wid);
+
+        return $res->wcontent;
     }
 
     /**
