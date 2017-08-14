@@ -26,13 +26,15 @@
 		</div>
 		<!--侧边导航 -->
 		<div id="nav" class="navfull">
+
 			<div class="area clearfix">
 				<div class="category-content" id="guide_2">
 					<div class="category">
 						<ul class="category-list" id="js_climit_li">
-							<li class="appliance js_toggle relative first">
+							@foreach($ptype as $k=>$v)
+							<li class="appliance js_toggle relative">
 								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
+									<h3 class="category-name b-category-name"><a class="ml-22" title=""> {{$v->tname}}</a></h3>
 									<em>&gt;</em></div>
 								<div class="menu-item menu-in top">
 									<div class="area-in">
@@ -40,8 +42,14 @@
 											<div class="menu-srot">
 												<div class="sort-side">
 													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="{{ url('home/list') }}"><span>手机 相机 笔记本</span></a></dd>
+														@foreach($a as $m=>$n)
+															@if($k == $m)
+															@foreach($n as $j=>$h)
+														<dd><a title="" href="{{ url('home/list') }}"><span>{{$h->tname}}</span></a></dd>
+
+															@endforeach
+															@endif
+														@endforeach
 													</dl>
 												</div>
 											</div>
@@ -50,190 +58,12 @@
 								</div>
 								<b class="arrow"></b>
 							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative last">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
 			</div>
+
 		</div>
 		<!--轮播-->
 		<script type="text/javascript">
@@ -467,3 +297,9 @@
 	</div>
 </div>
 @endsection
+@section('js')
+	<script>
+		$('.category-list li').eq(0).addClass("first");
+        $('.category-list li').eq(9).addClass("last");
+	</script>
+	@endsection

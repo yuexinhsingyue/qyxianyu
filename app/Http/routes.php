@@ -104,6 +104,8 @@ Route::get('home/new','Home\IndexController@new');
  * 命名空间：home
  */
 Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
+    //商品添加页
+    Route::resource('goods','GoodsController');
     //商品购物车页
     Route::get('car','IndexController@car');
     //商品订单页
@@ -113,7 +115,7 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     //商品支付页
     Route::get('car','IndexController@car');
     //个人中心页
-    Route::get('car','IndexController@car');
+    Route::get('person','IndexController@person');
     //鱼塘页
     Route::get('car','IndexController@car');
 });
