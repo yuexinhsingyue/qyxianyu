@@ -41,12 +41,12 @@ class IndexController extends Controller
     //个人中心页
     public function person()
     {
-        return view('home.person');
+        return view('home.persion.index');
     }
     //问题
     public function news()
     {
-        return 'new';
+        return view('home.news');
     }
     //鱼塘
     public function fish()
@@ -54,6 +54,22 @@ class IndexController extends Controller
         return 'fish';
 
     }
+    //购物车
+    public function car()
+    {
+        return view('home.car');
+    }
+    //订单页
+    public function pay()
+    {
+        return view('home.pay');
+    }
+    //订单完成页
+    public function success()
+    {
+        return view('home.success');
+    }
+
 
 
 
