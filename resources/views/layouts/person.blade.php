@@ -58,9 +58,9 @@
                 <li class="person">
                     <a href="#">我的商品</a>
                     <ul>
-                        <li> <a href="{{url('home/goods')}}">商品列表 </a></li>
-                        <li> <a href="{url('home/goods/create')}}">添加商品</a></li>
-                        <li> <a href="bill.html">账单明细</a></li>
+                       {{-- <li> <a href="{{url('home/goods'.$id)}}">商品列表 </a></li>
+                        <li> <a href="{{url('home/goods/'.$id.'/edit')}}">修改商品 </a></li>--}}
+                        <li> <a href="{{url('home/goods/create')}}">添加商品</a></li>
                     </ul>
                 </li>
 
