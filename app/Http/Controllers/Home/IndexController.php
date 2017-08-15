@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Advert;
 use App\Http\Model\Type;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,10 @@ class IndexController extends Controller
             //遍历商品表父级下的二级分类
          $a[] = Type::where('pid',$v->tid)->get();
         }
-        return view('home.index',compact('ptype','a'));
+
+        //  广告位
+        $advert = Advert::where('status',1)->groupBy('adposition')->orderBy('adposition')-> get();
+        return view('home.index',compact('ptype','a','advert'));
     }
     //前台列表页
     public function list()

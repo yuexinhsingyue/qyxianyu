@@ -100,6 +100,8 @@ Route::get('home/detail','Home\IndexController@detail');
 Route::get('home/news','Home\IndexController@news');
 //鱼塘页
 Route::get('home/fish','Home\IndexController@fish');
+
+
 /*
  * 前台
  * 路由前缀：home
