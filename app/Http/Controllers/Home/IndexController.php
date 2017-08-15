@@ -33,11 +33,24 @@ class IndexController extends Controller
     {
         return view('home.detail');
     }
+
     //个人中心页
     public function person()
     {
         return view('home.person');
     }
+    //问题
+    public function news()
+    {
+        return 'new';
+    }
+    //鱼塘
+    public function fish()
+    {
+        return 'fish';
+
+    }
+
 
 
 }
