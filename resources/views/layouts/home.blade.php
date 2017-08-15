@@ -10,6 +10,9 @@
     <link href="{{ url('home/css/amazeui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/admin.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/demo.css') }}" rel="stylesheet" type="text/css" />
+
+
+
     @section('header')
     @show
 </head>
