@@ -89,7 +89,7 @@
     </div>
     <nav class="text-xs-right">
         
-          
+        
           {!! $data->appends(['keywords' => $keyword])->render() !!}
           
         

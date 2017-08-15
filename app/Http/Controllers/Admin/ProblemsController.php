@@ -16,11 +16,13 @@ class ProblemsController extends Controller
      *
      *  问题列表
      */
-    public function index()
+    public function index(Request $req)
     {
-        $data = Problem::all();
 
-        return view('admin.problems.index',compact('data'));
+        $data = Problem::where('ptitle','like','%'.$req['proName'].'%')->paginate(2);
+        $Name = $req->input('proName');
+
+        return view('admin.problems.index',compact('data','Name'));
     }
 
     /**

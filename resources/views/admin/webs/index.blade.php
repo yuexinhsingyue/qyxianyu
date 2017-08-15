@@ -14,11 +14,11 @@
             </div>
         </div>
         <div class="items-search">
-            <form class="form-inline">
+            <form class="form-inline" action="{{url('admin/web')}}" method="get">
                 <div class="input-group">
-                    <input class="form-control boxed rounded-s" placeholder="搜索..." type="text">
+                    <input class="form-control boxed rounded-s" value="{{isset($Name)?$Name:''}}" name="webName" placeholder="搜索..." type="text">
                     <span class="input-group-btn">
-                        <button class="btn btn-secondary rounded-s" type="button">
+                        <button class="btn btn-secondary rounded-s" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
                     </span>
@@ -66,7 +66,7 @@
                         <div class="no-overflow">{{$v->name}}</div>
                     </div>
                     <div class="item-col fixed item-col-img md">
-                        <img src="{{$v->logo}}" width="100" height="100%" style="border-radius:10px">
+                        @if($v->logo) <img src="{{$v->logo}}" width="100" height="100%" style="border-radius:10px"> @elseif(!$v->logo) <span style='color:#21B4C1;font-weight:bold;'>文字式</span> @endif
                     </div>
                     
                     <div class="item-col item-col-stats no-overflow">
@@ -89,29 +89,16 @@
 
 
     <nav class="text-xs-right">
-        <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="">
-                    Prev
-                </a> </li>
-            <li class="page-item active"> <a class="page-link" href="">
-                    1
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    2
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    Next
-                </a> </li>
-        </ul>
+          {!! $webs->appends(['webName' => $Name])->render() !!}
     </nav>
+
 </article>
 
-<!-- 单条详情 -->
-
-
-
-
 <script type="text/javascript">
+        
+    // 分页样式
+    $('.text-xs-right li').addClass('page-link');
+    $('.text-xs-right li').attr('style','list-style:none');
         
     function doDel(id)
     {

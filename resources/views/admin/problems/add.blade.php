@@ -63,9 +63,9 @@
 	                        <span>不显示</span>
 	                    </label>
 		            </div>
-						<input class="btn btn-primary" type="submit" value="确认添加">
-						<button class="btn btn-warning" onclick="history.go(-1)" style="border-radius:20px;margin-left:200px">返回</button>
+						<input class="btn btn-primary" type="submit" value="确认添加" style="border-radius:20px">
 				</form>
+				<button class="btn btn-warning" onclick="history.go(-1)" style="border-radius:20px;margin-left:400px;margin-top:-70px">返回</button>
 			</div>
 		</div>
 	</div>

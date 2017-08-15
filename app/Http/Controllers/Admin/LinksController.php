@@ -18,10 +18,13 @@ class LinksController extends Controller
      *  
      * 链接列表
      */
-    public function index()
+    public function index(Request $req)
     {
-        $link = Links::get();
-        return view('admin.links.index',compact('link'));
+
+        $link = Links::where('lname','like','%'.$req['linkName'].'%')->paginate(2);
+        $Name = $req->input('linkName');
+
+        return view('admin.links.index',compact('link','Name'));
     }
 
     /**
@@ -50,7 +53,7 @@ class LinksController extends Controller
 
             $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
         
-            $newName = date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
+            $newName = 'link_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
          
             $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
 
@@ -97,22 +100,20 @@ class LinksController extends Controller
     public function update(Request $req, $id)
     {
 
-
-        $input = Links::find($id);
-
         $data = $req->except(['_token','_method','pic']);       // 过滤一下子数据 
 
-        if($req->pic){              // 如果有照片，删除
-            unlink(public_path().$input->limg);
-        }
-
         if($req->hasFile('limg')){     // 文件上传
+
+            // 如果有文件上传的话就删除上次的图片
+            if($req->pic){
+               unlink(public_path().$req->pic);      
+            }
 
             $file = Input::file('limg');
 
             $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
         
-            $newName = date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
+            $newName = 'link_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
          
             $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
 
@@ -123,11 +124,7 @@ class LinksController extends Controller
 
         $res = Links::where('lid','=',$id)->update($data);     // 执行修改动作
 
-        if($res){       // 判断是否修改成功
-            return redirect('admin/links');
-        }else{
-            return black();
-        }
+        return redirect('admin/links');
 
     }
 

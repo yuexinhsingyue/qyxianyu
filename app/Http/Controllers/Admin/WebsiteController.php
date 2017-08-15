@@ -18,11 +18,12 @@ class WebsiteController extends Controller
      *
      *   网站信息显示页
     */
-    public function index()
+    public function index(Request $req)
     {
+        $webs = Webs::where('name','like','%'.$req['webName'].'%')->paginate(2);
+        $Name = $req->input('webName');
         
-        $webs =  Webs::all();
-        return view('admin.webs.index',compact('webs'));
+        return view('admin.webs.index',compact('webs','Name'));
     }
 
 
@@ -72,7 +73,7 @@ class WebsiteController extends Controller
 
             $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
         
-            $newName = date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
+            $newName = 'logo_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
          
             $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
 
@@ -117,6 +118,12 @@ class WebsiteController extends Controller
             $status = '维护中 ··· ···';
         }
 
+        if($webs->logo){
+            $logo = "<td><img src='".$webs->logo."' width='150' height='110' style='border-radius:10px'></td>";
+        }else if(empty($webs->logo)){
+            $logo = '<td><span style="color:#21B4C1;font-weight:bold;">文字式</span></td>';
+        }
+
         $str="<section class='example'>
                 <table class='table table-bordered'>
                     <tbody>
@@ -150,7 +157,7 @@ class WebsiteController extends Controller
                     </tr>
                     <tr>
                         <th scope='row'>网站Logo</th>
-                        <td><img src='".$webs->logo."' width='100' height='110' style='border-radius:10px'></td>
+                        ".$logo."
                     </tr>
                     <tr>
                         <th scope='row'>网站开关</th>
@@ -172,10 +179,6 @@ class WebsiteController extends Controller
     public function update(Request $req, $id)
     {
         $data = $req->except(['_token','logo','_method','pic']);     //过滤一下子数据
-
-        if($req->pic){
-            unlink(public_path().$req->pic);      //  有过有图片传来就删除
-        }
 
         // 表单验证
          $rule = [
@@ -202,11 +205,16 @@ class WebsiteController extends Controller
 
         if($req->hasFile('logo')){             //  如果有图片上传：
 
+            // 如果有文件上传的话就删除上次的图片
+            if($req->pic){
+               unlink(public_path().$req->pic);      
+            }
+
             $file = Input::file('logo');
 
             $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
         
-            $newName = date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
+            $newName = 'logo_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
          
             $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
 

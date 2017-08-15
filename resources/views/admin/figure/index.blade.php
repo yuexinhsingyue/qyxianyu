@@ -19,14 +19,14 @@
         <div class="title-block">
             <div class="row">
                 <div class="col-md-6">
-                    <h3 class="title"> 链接列表 </h3>
+                    <h3 class="title"> 轮播图列表 </h3>
                 </div>
             </div>
         </div>
         <div class="items-search">
-            <form class="form-inline" action="{{url('admin/links')}}" method="get">
+            <form class="form-inline" action="{{url('admin/figure')}}" method="get">
                 <div class="input-group">
-                    <input class="form-control boxed rounded-s" value="{{isset($Name)?$Name:''}}" name="linkName" placeholder="搜索..." type="text">
+                    <input class="form-control boxed rounded-s" value="{{isset($Name)?$Name:''}}" name="figName" placeholder="搜索..." type="text">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary rounded-s" type="submit">
                             <i class="fa fa-search"></i>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <form action="{{ url('amdin/links') }}" method='post' name='myform'>
+    <form action="{{ url('amdin/figure') }}" method='post' name='myform'>
       <input type='hidden' name='_token' value='{{ csrf_token() }}'>
       <input type='hidden' name='_method' value='DELETE'>
     </form>
@@ -51,13 +51,16 @@
                             <span>ID</span>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>名称</span> </div>
+                        <div class="no-overflow"> <span style='margin-left:-66px'>名称</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>链接</span> </div>
+                        <div class="no-overflow"> <span style='margin-left:-200px'>目标地址</span> </div>
                     </div>
                     <div class="item-col item-col-header fixed item-col-img md">
-                        <div> <span>图片</span> </div>
+                        <div> <span style='margin-left:-240px'>图片</span> </div>
+                    </div>
+                    <div class="item-col item-col-header fixed item-col-img md">
+                        <div> <span>状态</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>操作</span> </div>
@@ -66,25 +69,30 @@
             </li>
             {{--表内容--}}
 
-            @foreach($link as $k=>$v)
+            @foreach($slids as $k=>$v)
             <li class="item">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check">
-                            <span>{{$v->lid}}</span>
+                            <span>{{$v->sid}}</span>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$v->lname}}</div>
+                        <div class="no-overflow">{{$v->stitle}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$v->lurl}}</div>
+                        <div class="no-overflow">{{$v->surl}}</div>
                     </div>
                     <div class="item-col fixed item-col-img md">
-                    @if($v->limg) <img src="{{$v->limg}}" width="100" height="100%" style="border-radius:10px"> @elseif(!$v->limg) <span style='color:#AA00FF;font-weight:bold;'>文字式</span> @endif
+                        <div class="item-img rounded" style="padding-bottom: 0px; height: 60px;border-radius:4px;border:1px solid #ccc">
+                            <img src="{{ url($v->spic) }}" width="100" height="100%">
+                        </div>
+                    </div>
+                    <div class="item-col item-col-stats no-overflow" style="margin-left:65px">
+                        <div class="no-overflow"> @if($v->status == '1') 显示  @elseif($v->status == '2') 不显示 @endif </div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">
-                            <a href="{{url('admin/links/'.$v->lid.'/edit')}}" class="btn btn-primary" style="border-radius:20px">修改</a>
-                            <a href="javascript:doDel({{ $v->lid }})" class="btn btn-danger" style="border-radius:20px">删除</a>
+                            <a href="{{url('admin/figure/'.$v->sid.'/edit')}}" class="btn btn-primary" style="border-radius:20px">修改</a>
+                            <a href="javascript:doDel({{ $v->sid }})" class="btn btn-danger" style="border-radius:20px">删除</a>
                         </div>
                     </div>
                 </div>
@@ -94,23 +102,21 @@
         </ul>
     </div>
 
-    <a href="{{url('admin/links/create')}}" class="btn btn-success" style="border-radius:20px">链接添加</a>
-
+    <a href="{{url('admin/figure/create')}}" class="btn btn-success" style="border-radius:20px">轮播图添加</a>
     <nav class="text-xs-right">
-          {!! $link->appends(['linkName' => $Name])->render() !!}
+          {!! $slids->appends(['figName' => $Name])->render() !!}
     </nav>
-    
     <script type="text/javascript">
 
         // 分页样式
         $('.text-xs-right li').addClass('page-link');
         $('.text-xs-right li').attr('style','list-style:none');
-
+    
         function doDel(id)
         {
           if(confirm('确定要删除吗？')){
             var form = document.myform;
-            form.action = '/admin/links/'+id;
+            form.action = '/admin/figure/'+id;
             form.submit();
           }
         }
