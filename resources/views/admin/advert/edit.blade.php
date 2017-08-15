@@ -18,16 +18,13 @@
                 </ul>
             </div>
         @endif
-
      
-       <?php
-            var_dump($advert);
-
-       ?>
         <script type="text/javascript" src="/admin/jeDate/jedate.js"></script>
 
-        <form  method="post" action="{{ url('/admin/advert') }}" enctype="multipart/form-data">
+        <form  method="post" action="{{ url('/admin/advert/'.$advert->id) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="pic" value="{{$advert->pic}}">
             <div class="card card-block">
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">广告名称:</label>
@@ -45,11 +42,11 @@
                     <label class="col-sm-2 form-control-label text-xs-right">广告位置:</label>
                     <div class="col-sm-4" >
                         <select class="form-control" name="adposition" style="width:232px">
-                                <option value="0" selected>--请您选择要投放的广告位--</option>
-                                <option value="1" @i($advert->adposition == 1) selected  >中部 优选广告位1 左起1</option>
-                                <option value="2" >中部 优选广告位1 左起2</option>
-                                <option value="3" >中部 优选广告位1 左起3</option>
-                                <option value="4" >中部 优选广告位1 左起4</option>
+                                <option value="0" @if($advert->adposition == 0) selected @endif  >--请您选择要投放的广告位--</option>
+                                <option value="1" @if($advert->adposition == 1) selected @endif >中部 优选广告位1 左起1</option>
+                                <option value="2" @if($advert->adposition == 2) selected @endif  >中部 优选广告位1 左起2</option>
+                                <option value="3" @if($advert->adposition == 3) selected @endif  >中部 优选广告位1 左起3</option>
+                                <option value="4" @if($advert->adposition == 4) selected @endif  >中部 优选广告位1 左起4</option>
                         </select>
                     </div>
                 </div>
@@ -57,13 +54,13 @@
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right" >开始时间:</label>
                     <div class="col-sm-5">
-                        <p class="datep"><input class="form-control boxed dateinfo1" placeholder="" type="text" name="adstart" name="asposition"style="width: 230px;"></p>
+                        <p class="datep"><input class="form-control boxed dateinfo1" placeholder="" type="text" name="adstart" value="{{$advert->adstart}}"  style="width: 230px;"></p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right" >结束时间:</label>
                     <div class="col-sm-10">
-                        <p class="datep"><input class="form-control boxed dateinfo2" placeholder="" type="text" name="adstop" name="asposition"style="width: 230px;"></p>
+                        <p class="datep"><input class="form-control boxed dateinfo2" placeholder="" type="text" name="adstop" value="{{$advert->adstop}}"  style="width: 230px;"></p>
 
                     </div>
                 </div>
@@ -71,21 +68,23 @@
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">广告链接:</label>
                     <div class="col-sm-5">
-                        <input class="form-control boxed" placeholder="" type="text" name="adlink"style="width: 700px;">
+                        <input class="form-control boxed" placeholder="" type="text" value="{{$advert->adlink}}" name="adlink"style="width: 700px;">
                     </div>
                 </div>
-
 
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">上传广告图片: </label>
                     <div class="col-sm-10">
-                        <input type="file" name="pic">
+                        <input type="file" name="pic" value="{{$advert->pic}}">
+                                    <div class="item-img rounded" style="padding-bottom: 0px; height: 60px; width: 60px; border-radius:4px;border:1px solid #ccc">
+                                        <img id="editpic" src="{{ url($advert->pic) }}" width="100%" height="100%">
+                                    </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">或图片网址:</label>
                     <div class="col-sm-10">
-                        <input class="form-control boxed" placeholder="" type="text" name="piclink"style="width: 700px;">
+                        <input class="form-control boxed" placeholder="" type="text" value="{{$advert->piclink}}"  name="piclink" style="width: 700px;">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -93,12 +92,13 @@
                         状态:
                     </label>
                     <div class="col-sm-10">
+
                         <label>
-                            <input class="radio" name="status" type="radio" value="1">
+                            <input class="radio" name="status" type="radio" value="1" @if($advert->status == 1) checked @endif >
                             <span>启用</span>
                         </label>
                         <label>
-                            <input class="radio" name="status" type="radio" checked  value="0">
+                            <input class="radio" name="status" type="radio" value="0" @if($advert->status == 0) checked @endif >
                             <span>禁用</span>
                         </label>
                     </div>
@@ -117,6 +117,11 @@
 @section('js')
 
 <script type="text/javascript">
+    $("input:file").change( function() {
+        alert('dddddddddddd');
+        
+    });
+
     jeDate({
         dateCell:".dateinfo1",
         format:"YYYY年MM月DD日 hh:mm:ss",

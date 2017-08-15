@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/admin/css/app.css">
 
     <script type="text/javascript" src="{{ URL::asset('admin/js/jquery.js') }}"></script>
+    <!-- <script type="text/javascript" src="admin/js/jquery.js"></script> -->
 
     <script type="text/javascript" src="/layer/layer.js"></script>
 

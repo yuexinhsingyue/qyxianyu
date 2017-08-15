@@ -115,7 +115,7 @@
 		                    <div class="item-col item-col-stats no-overflow">
 		                        <div class="no-overflow">
 		                            <a href="{{ url('admin/advert/'.$res->id.'/edit') }}" class="btn btn-sm btn-info">修改</a>
-		                            <a href="{{ url('admin/advert/'.$res->id.'/edit') }}" class="btn btn-sm btn-danger">删除</a>
+		                            <a href="javascript:void(0)" onclick="deladvert({{$res->id}})" class="btn btn-sm btn-danger">删除</a>
 		                        </div>
 		                    </div>
 		                </div>
@@ -133,6 +133,33 @@
 @endsection
 @section('js')
     <script>
+
+        function deladvert(tid){
+
+            layer.confirm('确认删除吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.post("{{url('admin/advert/')}}/"+tid,{'_method':'delete','_token':'{{csrf_token()}}'},function(data){
+                    if(data.status == 0){
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 5});
+                    }else if(data.status == 2){
+                        layer.msg(data.msg, {icon: 6});
+                    }else{
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 6});
+                    }
+
+                });
+
+            }, function(){
+
+            });
+
+        }
+
+
+
         $('.text-xs-right li').addClass('page-item');
         $('.text-xs-right li').attr('style','list-style:none');
         $('.text-xs-right span').addClass('page-link');
