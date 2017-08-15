@@ -17,11 +17,8 @@ class AdminLogin
     {
         if(!session('user'))
         {
-<<<<<<< HEAD
-           return redirect('admin/login');
-=======
             return redirect('admin/login');
->>>>>>> origin/qin
+
         }
         return $next($request);
     }

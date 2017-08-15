@@ -10,6 +10,13 @@
     <link href="{{ url('home/css/admin.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/demo.css') }}" rel="stylesheet" type="text/css" />
 
+    <link href="{{url('home/css/personal.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ url('home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url('home/css/skin.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{url('home/css/systyle.css')}}" rel="stylesheet" type="text/css">
+    <script src="{{ url('home/js/jquery.min.js') }}"></script>
+    <script src="{{ url('home/js/amazeui.min.js') }}"></script>
+
     @section('header')
     @show
 </head>
