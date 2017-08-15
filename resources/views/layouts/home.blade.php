@@ -6,17 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>@yield('title')</title>
+
     <link href="{{ url('home/css/amazeui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/admin.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/demo.css') }}" rel="stylesheet" type="text/css" />
-
-    <link href="{{url('home/css/personal.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ url('home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('home/css/skin.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{url('home/css/systyle.css')}}" rel="stylesheet" type="text/css">
-    <script src="{{ url('home/js/jquery.min.js') }}"></script>
-    <script src="{{ url('home/js/amazeui.min.js') }}"></script>
-
     @section('header')
     @show
 </head>
@@ -51,7 +44,7 @@
     <div class="nav white">
         {{--logo--}}
         <div class="logoBig">
-            <li><img src="{{ url('home/img/logobig.png') }}" /></li>
+            <li><a href="{{ url('/') }}"><img src="{{ url('home/img/logobig.png') }}" /></a></li>
         </div>
         {{--搜索--}}
         <div class="search-bar pr">
@@ -66,7 +59,7 @@
 @section('content')
 
 @show
-<div class="footer ">
+<div class="footer">
         <div class="footer-hd ">
             <p>
                 <a href="# ">群英闲鱼</a>
