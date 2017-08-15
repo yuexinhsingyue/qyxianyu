@@ -8,6 +8,7 @@ use App\Http\Model\GoodsDetail;
 use App\Http\Model\Type;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -15,13 +16,17 @@ use App\Http\Controllers\Controller;
 class GoodsController extends Controller
 {
     /**
-     *大厅的商品列表页
+     *个人的商品列表页
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-    return view('home.goods.list');
+        //获取发布商品的用户id
+
+        //根据uid获取此用户发布的所有商品
+
+     return view('home.goods.list');
     }
 
     /**
@@ -42,14 +47,29 @@ class GoodsController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     *执行个人闲置添加方法
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $input = $request->except('_token','addr');
-        dd($input);
+        $rule = [
+            'gname' => 'required|alpha|unique:users,uname',
+            'nprice' => 'required',
+            'goodsNum' => 'required',
+        ];
+
+        $msg = [
+            'gname.required' => '宝贝名称必须输入',
+            'nprice.required' => '宝贝价格必须输入',
+            'goodsNum.required' => '宝贝数量必须输入',
+        ];
+        $validator = Validator::make($input,$rule,$msg);
+        //如果验证失败
+        if($validator->fails()){
+            return back() -> withErrors($validator) -> withInput();
+        }
         //是否有上传文件(上传商品图片)
         if(!$request -> hasFile('pic'))
         {
@@ -76,7 +96,6 @@ class GoodsController extends Controller
         }
         //上传图片
         $input['pic'] = $res['pic'];
-        dd($input);
 
         $data = Goods::create($input);
         if($data){

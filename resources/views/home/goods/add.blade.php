@@ -16,6 +16,13 @@
                 <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增宝贝</strong></div>
             </div>
             <hr>
+            <div class="alert alert-danger" id="error">
+                <ul>
+                    @foreach($errors -> all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
 
             <div style="margin-top: 20px;" class="am-u-md-12 am-u-lg-8">
                 <form class="am-form am-form-horizontal"  method="post" action="{{ url('/home/goods') }}" enctype="multipart/form-data">

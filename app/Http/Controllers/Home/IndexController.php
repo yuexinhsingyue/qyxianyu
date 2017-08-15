@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Model\Advert;
+use App\Http\Model\Goods;
 use App\Http\Model\Type;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ class IndexController extends Controller
     //前台主页
     public function index()
     {
+        //获取首页上所有电脑分类的信息
+        $com = Type::where('tid',38)->get();
         //获取商品分类里的所有父类
         $ptype = Type::where('pid',0)->get();
         foreach($ptype as $k => $v){
@@ -26,11 +29,18 @@ class IndexController extends Controller
         $advert = Advert::where('status',1)->groupBy('adposition')->orderBy('adposition')-> get();
         return view('home.index',compact('ptype','a','advert'));
     }
-    //前台列表页
+    //前台大厅列表页
     public function list()
     {
+        //获取商品分类里的所有父类
+        $ptype = Type::where('pid',0)->get();
+        foreach($ptype as $k => $v){
 
-        return view('home.list');
+            //遍历商品表父级下的二级分类
+            $a[] = Type::where('pid',$v->tid)->get();
+        }
+        $goods = Goods::get();
+        return view('home.list',compact('ptype','a','goods'));
     }
     //详情页
     public function detail()
