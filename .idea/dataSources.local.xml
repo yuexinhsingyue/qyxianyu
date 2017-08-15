@@ -6,7 +6,6 @@
       <secret-storage>master_key</secret-storage>
       <first-sync>true</first-sync>
       <user-name>root</user-name>
-      <introspection-schemas>*</introspection-schemas>
       <ssh-properties>
         <enabled>true</enabled>
         <proxy-host>60.205.182.26</proxy-host>

@@ -80,11 +80,11 @@
 		                    <div class="item-col item-col-stats no-overflow">
 		                        @if($res -> adposition == 1)
 		                        <div class="no-overflow">中部 优选广告位1 左起1</div>
-		                        @elseif($res -> id == 2)
+		                        @elseif($res -> adposition == 2)
 		                            <div class="no-overflow">中部 优选广告位1 左起2</div>
-		                        @elseif($res -> id == 3)
+		                        @elseif($res -> adposition == 3)
 		                            <div class="no-overflow">中部 优选广告位1 左起3</div>
-		                        @else
+		                        @else($res -> adposition == 4)
 		                            <div class="no-overflow">中部 优选广告位1 左起4</div>
 		                        @endif
 

@@ -169,26 +169,14 @@
 			<h4>广告栏</h4>
 		</div>
 		<div class="am-g am-g-fixed ">
+			@foreach($advert as $ad)
 			<div class="am-u-sm-3 ">
 				<div class="activityMain ">
-					<img src="{{ url('home/img/activity4.jpg') }} "></img>
+					<a href="{{$ad['adlink']}}"  target="_blank"><img src="{{ url($ad['pic']) }} " title="{{$ad['addescribe']}}"></a>
 				</div>
 			</div>
-			<div class="am-u-sm-3 ">
-				<div class="activityMain ">
-					<img src="{{ url('home/img/activity4.jpg') }} ">
-				</div>
-			</div>
-			<div class="am-u-sm-3 ">
-				<div class="activityMain ">
-					<img src="{{ url('home/img/activity4.jpg') }} ">
-				</div>
-			</div>
-			<div class="am-u-sm-3 last ">
-				<div class="activityMain ">
-					<img src="{{ url('home/img/activity4.jpg') }} "></img>
-				</div>
-			</div>
+			@endforeach
+
 		</div>
 	</div>
 	<div class="clear "></div>

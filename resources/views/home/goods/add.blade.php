@@ -1,6 +1,11 @@
 @extends('layouts.person')
 @section('title','商品添加页')
-
+@section('header')
+    <link href="{{url("home/css/personal.css")}}" rel="stylesheet" type="text/css">
+    <link href="{{url("home/css/addstyle.css") }}" rel="stylesheet" type="text/css">
+    <script src="{{url("home/js/jquery.min.js") }}" type="text/javascript"></script>
+    <script src="{{url("home/js/amazeui.js") }}"></script>
+    @endsection
 @section('content1')
     <div id="doc-modal-1" class="">
 

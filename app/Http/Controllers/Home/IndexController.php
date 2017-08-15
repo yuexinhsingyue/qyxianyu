@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Advert;
 use App\Http\Model\Type;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,10 @@ class IndexController extends Controller
             //遍历商品表父级下的二级分类
          $a[] = Type::where('pid',$v->tid)->get();
         }
-        return view('home.index',compact('ptype','a'));
+
+        //  广告位
+        $advert = Advert::where('status',1)->groupBy('adposition')->orderBy('adposition')-> get();
+        return view('home.index',compact('ptype','a','advert'));
     }
     //前台列表页
     public function list()
@@ -37,12 +41,12 @@ class IndexController extends Controller
     //个人中心页
     public function person()
     {
-        return view('home.person');
+        return view('home.persion.index');
     }
     //问题
     public function news()
     {
-        return 'new';
+        return view('home.news');
     }
     //鱼塘
     public function fish()
@@ -50,6 +54,22 @@ class IndexController extends Controller
         return 'fish';
 
     }
+    //购物车
+    public function car()
+    {
+        return view('home.car');
+    }
+    //订单页
+    public function pay()
+    {
+        return view('home.pay');
+    }
+    //订单完成页
+    public function success()
+    {
+        return view('home.success');
+    }
+
 
 
 
