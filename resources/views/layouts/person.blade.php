@@ -75,4 +75,7 @@
 
 
 @endsection
-
+@section('js')
+        @section('js')
+        @show
+    @endsection

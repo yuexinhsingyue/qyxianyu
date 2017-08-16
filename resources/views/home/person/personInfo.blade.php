@@ -1,5 +1,5 @@
 @extends('layouts.person')
-@section('title','商品添加页')
+@section('title','个人信息')
 @section('header')
     <link href="{{url("home/css/personal.css")}}" rel="stylesheet" type="text/css">
     <link href="{{url("home/css/addstyle.css") }}" rel="stylesheet" type="text/css">

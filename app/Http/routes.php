@@ -115,7 +115,7 @@ Route::group(/**
     Route::resource('goods','GoodsController');
     //商品购物车页
     Route::get('car/{id}','IndexController@car');
-    //商品订单页
+    //商品订单页 `
     Route::get('order','IndexController@pay');
     //商品订单完成页
     Route::get('success','IndexController@success');
@@ -127,7 +127,7 @@ Route::group(/**
     //  修改个人信息
     Route::post('savepersoninfo','PersonController@savePersonInfo');
     //  地址管理
-    Route::post('personaddr','PersonController@personaddr');
+    Route::get('personaddr','PersonController@personaddr');
 
 });
 

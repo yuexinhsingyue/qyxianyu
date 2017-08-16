@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Address;
 use App\Http\Model\User;
 use App\Http\Model\UserDetail;
 use Illuminate\Http\Request;
@@ -13,7 +14,14 @@ use Validator;
 
 class PersonController extends Controller
 {
-    //打开个人信息页
+    /**
+     * 打开个人中心模块中----个人信息页
+     * auth:hsingyue
+     * data:2017-08-16
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function personInfo()
     {
         $uname = User::where('uid',15) -> value('uname');
@@ -23,7 +31,14 @@ class PersonController extends Controller
 
         return view('home.person.personInfo',compact('uname','userdetail'));
     }
-
+    /**
+     * 执行个人信息页内容保存到数据库
+     * auth:hsingyue
+     * data:2017-08-16
+     * @param  \Illuminate\Http\Request  $request
+     * @param
+     * @return \Illuminate\Http\Response
+     */
     public function savePersonInfo(Request $request)
     {
 //        dd($request);
@@ -75,12 +90,24 @@ class PersonController extends Controller
         }
 
 //        UserDetail::where('uid',session('user')['uid'])-> update($res);
-//        dd($res);
         UserDetail::where('uid',15)-> update($res);
 
         return redirect('home/personinfo');
 
     }
+    /**
+     * 打开个人中心模块中----地址管理
+     * auth:hsingyue
+     * data:2017-08-16
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function personaddr ()
+    {
+        $addr = Address::where('uid',15)->get();
 
+        return view('home.person.personAddr',$addr);
+    }
 
 }
