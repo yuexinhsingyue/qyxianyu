@@ -16,47 +16,58 @@
                 <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增宝贝</strong></div>
             </div>
             <hr>
+            <div class="alert alert-danger" id="error">
+                <ul>
+                    @foreach($errors -> all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
 
             <div style="margin-top: 20px;" class="am-u-md-12 am-u-lg-8">
-                <form class="am-form am-form-horizontal"  method="get" action="{{ url('/home/goods') }}" enctype="multipart/form-data">
+                <form class="am-form am-form-horizontal"  method="post" action="{{ url('/home/goods') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="am-form-group">
                         <label class="am-form-label" for="user-name">宝贝名称&nbsp; &nbsp;</label>
                         <div class="am-form-content">
-                            <input type="text" placeholder="商品名称必填" id="user-name">
+                            <input type="text" name="gname" placeholder="商品名称必填" id="user-name">
                         </div>
                     </div>
                     <div class="am-form-group">
                         <label class="am-form-label" for="user-name">宝贝现价&nbsp; &nbsp;</label>
                         <div class="am-form-content">
-                            <input type="text" placeholder="宝贝现价必填" id="user-name">
+                            <input type="text"  name="nprice" placeholder="宝贝现价必填" id="user-name">
                         </div>
                     </div>
                     <div class="am-form-group">
                         <label class="am-form-label" for="user-name">宝贝原价&nbsp; &nbsp;</label>
                         <div class="am-form-content">
-                            <input type="text"  id="user-name">
+                            <input type="text"  id="user-name" name="oprice">
                         </div>
                     </div>
                     <div class="am-form-group">
                         <label class="am-form-label" for="user-name">宝贝数量&nbsp; &nbsp;</label>
                         <div class="am-form-content">
-                            <input type="text" placeholder="商品名称必填" id="user-name">
+                            <input type="text" placeholder="商品名称必填" id="user-name" name="goodsNum">
                         </div>
                     </div>
 
                     <div class="am-form-group">
                         <label class="am-form-label" for="user-name">宝贝类别&nbsp; &nbsp;</label>
+
                         <div class="am-form-content">
-                            <select>
-                                <option selected value="1">数码</option>
+                            <select name="tid">
+                                @foreach ($type as $k=>$v)
+                                <option selected value="{{$v->tid}}">{{$v['tname']}}</option>
+                                @endforeach
                             </select>
                         </div>
+
                     </div>
                     <div class="am-form-group">
                         <label class="am-form-label" for="user-name">所属地&nbsp; &nbsp;</label>
                         <div class="am-form-content">
-                            <input type="text" placeholder="所属地" id="user-name">
+                            <input type="text" placeholder="所属地" id="user-name" name="addr">
                         </div>
                     </div>
 
@@ -69,9 +80,11 @@
                     <div class="am-form-group">
                         <label class="am-form-label" for="user-name" style="float:left">选择发布&nbsp; &nbsp;</label>
                         <div class="am-form-content">
-                        <select>
-                            <option selected value="1">大厅</option>
-                            <option selected value="1">鱼塘</option>
+                        <select name="fid">
+                            <option selected value="0">大厅</option>
+                            @foreach($fish as $k=>$v)
+                            <option  value="{{$v->id}}">{{$v['fishpondname']}}</option>
+                                @endforeach
                         </select>
                         </div>
                     </div>
@@ -80,14 +93,14 @@
                     <div class="am-form-group">
                         <label class="am-form-label" for="user-intro">宝贝描述&nbsp; &nbsp;</label>
                         <div class="am-form-content">
-                            <textarea placeholder="输入详细描述" id="user-intro" rows="3" class=""></textarea>
+                            <textarea placeholder="输入详细描述" id="user-intro" rows="3" class="" name="goodsDes"></textarea>
                             <small>100字以内写出你的详细描述...</small>
                         </div>
                     </div>
 
                     <div class="am-form-group">
                         <div class="am-u-sm-9 am-u-sm-push-3">
-                            <button type="submit">发布</button>
+                            <button type="submit"> <a class="am-btn am-btn-danger">发布</a></button>
                             <a class="am-btn am-btn-danger">返回</a>
                             {{--<a data-am-modal-close="" class="am-close am-btn am-btn-danger" href="javascript: void(0)">取消</a>--}}
                         </div>

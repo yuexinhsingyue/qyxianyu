@@ -198,10 +198,10 @@
 			<div class="am-u-sm-5 am-u-md-4 text-one list ">
 				<div class="word">
 					<a class="outer" href="#"><span class="inner"><b class="text">内存</b></span></a>
-					<a class="outer" href="#"><span class="inner"><b class="text">内存</b></span></a>
-					<a class="outer" href="#"><span class="inner"><b class="text">内存</b></span></a>
-					<a class="outer" href="#"><span class="inner"><b class="text">内存</b></span></a>
-					<a class="outer" href="#"><span class="inner"><b class="text">内存</b></span></a>
+					<a class="outer" href="#"><span class="inner"><b class="text">CPU</b></span></a>
+					<a class="outer" href="#"><span class="inner"><b class="text">硬件</b></span></a>
+					<a class="outer" href="#"><span class="inner"><b class="text">键盘</b></span></a>
+					<a class="outer" href="#"><span class="inner"><b class="text">鼠标</b></span></a>
 
 				</div>
 				<a href="# ">
