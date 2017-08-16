@@ -26,9 +26,9 @@
 				    <input type="hidden" name="pic" value="{{$res->limg}}">
 				    <img src="{{$res->limg}}" alt="" width="100" height="100" style="margin-left:100px;border-radius:20px">
 				  </div>
-				<a href="{{url('/admin/links')}}" class="btn btn-primary active" role="button" style="position:relative;left:500px;float:left;border-radius:20px">链接列表</a>
-				<input class="btn btn-default" type="submit" value="确认修改" style="border-radius:20px">
+				<input class="btn btn-info" type="submit" value="确认修改" style="border-radius:20px">
 				</form>
+				<button class="btn btn-warning" onclick="history.go(-1)" style="border-radius:20px;margin-left:400px;margin-top:-70px">返回</button>
 			</div>
 		</div>
 	</div>

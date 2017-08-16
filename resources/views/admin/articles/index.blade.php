@@ -14,11 +14,11 @@
             </div>
         </div>
         <div class="items-search">
-            <form class="form-inline">
+            <form class="form-inline" action="{{url('admin/article')}}" method="get">
                 <div class="input-group">
-                    <input class="form-control boxed rounded-s" placeholder="搜索..." type="text">
+                    <input class="form-control boxed rounded-s" value="{{isset($Name)?$Name:''}}" name="artName" placeholder="搜索..." type="text">
                     <span class="input-group-btn">
-                        <button class="btn btn-secondary rounded-s" type="button">
+                        <button class="btn btn-secondary rounded-s" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
                     </span>
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form action="{{ url('amdin/figure') }}" method='post' name='myform'>
+    <form action="{{ url('amdin/article') }}" method='post' name='myform'>
       <input type='hidden' name='_token' value='{{ csrf_token() }}'>
       <input type='hidden' name='_method' value='DELETE'>
     </form>  
@@ -89,31 +89,19 @@
     </div>
  	<a href="{{url('admin/article/create')}}" class="btn btn-success" style="border-radius:20px">网站信息添加</a>
 
-
     <nav class="text-xs-right">
-        <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="">
-                    Prev
-                </a> </li>
-            <li class="page-item active"> <a class="page-link" href="">
-                    1
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    2
-                </a> </li>
-            <li class="page-item"> <a class="page-link" href="">
-                    Next
-                </a> </li>
-        </ul>
+          {!! $data->appends(['artName' => $Name])->render() !!}
     </nav>
+    
+
 </article>
-
-<!-- 单条详情 -->
-
-
 
 
 <script type="text/javascript">
+        
+    // 分页样式
+    $('.text-xs-right li').addClass('page-link');
+    $('.text-xs-right li').attr('style','list-style:none');
         
     function doDel(id)
     {

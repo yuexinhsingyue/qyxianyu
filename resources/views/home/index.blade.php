@@ -14,8 +14,9 @@
 	<!--轮播 -->
 	<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
 		<ul class="am-slides">
-			<li class="banner1"><a href="#"><img src="{{ url('home/img/ad5.jpg') }}" /></a></li>
-			<li class="banner2"><a href="#"><img src="{{ url('home/img/ad6.jpg') }}" /></a></li>
+			@foreach($figure as $k=>$v)
+				{!! $v->simg !!}
+			@endforeach
 		</ul>
 	</div>
 

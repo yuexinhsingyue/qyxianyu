@@ -11,11 +11,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
+use App\Http\Model\Slid;
+
 class IndexController extends Controller
 {
     //前台主页
     public function index()
     {
+
         //获取首页上所有电脑分类的信息
         $com = Goods::where('tid',30)->get();
         //获取商品分类里的所有父类
@@ -28,7 +31,9 @@ class IndexController extends Controller
 
         //  广告位
         $advert = Advert::where('status',1)->groupBy('adposition')->orderBy('adposition')-> get();
-        return view('home.index',compact('ptype','a','advert','com'));
+        // 轮播图
+        $figure = Slid::where('status','=',1)->get();
+        return view('home.index',compact('ptype','a','advert','figure','com'));
     }
     //前台大厅列表页
     public function list()
