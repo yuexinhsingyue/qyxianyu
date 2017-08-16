@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="/admin/css/vendor.css">
     <!-- Theme initialization -->
     <link rel="stylesheet" href="/admin/css/app.css">
-    <script type="text/javascript" src="/admin/js/jquery.js"></script>
+
+    <script type="text/javascript" src="{{ URL::asset('admin/js/jquery.js') }}"></script>
+    <!-- <script type="text/javascript" src="admin/js/jquery.js"></script> -->
+
     <script type="text/javascript" src="/layer/layer.js"></script>
 
 
     @section('header')
     @show
+
 </head>
 
 <body>
@@ -152,15 +156,21 @@
                                         鱼&nbsp;塘&nbsp;列&nbsp;表&nbsp;
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        推&nbsp;荐&nbsp;鱼&nbsp;塘&nbsp;
-                                    </a>
-                                </li>
+
                             </ul>
                         </li>
 
-						<li> <a href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;广&nbsp;告&nbsp;管&nbsp;理&nbsp;</a> </li>
+                        <li> <a href="#">
+                                <i class="fa fa-th-large"></i> &nbsp;&nbsp;&nbsp;广&nbsp;告&nbsp;管&nbsp;理&nbsp;
+                                <i class="fa arrow"></i>
+                            </a>
+                            <ul class="collapse">
+                                <li> <a href="{{url('/admin/advert/create')}}"> &nbsp;添&nbsp; 加&nbsp;广&nbsp; 告&nbsp;</a> </li>
+                                <li> <a href="{{url('/admin/advert')}}"> &nbsp;广&nbsp;告&nbsp;列&nbsp;表</a> </li>
+                                <!-- <li> <a href="#"> 活&nbsp;跃&nbsp;度&nbsp;</a> </li> -->
+
+                            </ul>
+                        </li>
 						<li> <a href="#">
                                 <i class="fa fa-th-large"></i> &nbsp;&nbsp;数&nbsp;据&nbsp;统&nbsp;计&nbsp;
                                 <i class="fa arrow"></i>

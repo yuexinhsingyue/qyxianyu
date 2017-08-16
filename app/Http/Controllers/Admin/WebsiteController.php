@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
+
 
 
 class WebsiteController extends Controller
@@ -47,7 +49,7 @@ class WebsiteController extends Controller
         // 表单验证
          $rule = [
             'name'          =>'required',
-            'describe'      =>'required|between:5,50',
+            'describe'      =>'required|between:5,100',
             'url'           =>'required',
             'filing'        =>'required',
             'cright'        =>'required',
@@ -55,7 +57,7 @@ class WebsiteController extends Controller
         $mess = [
             'name.between'          =>'网站名称必须在2-15位之间',
             'describe.required'     =>'请写入网站描述',
-            'describe.between'      =>'网站描述必须在5~50之间',
+            'describe.between'      =>'网站描述必须在5~100之间',
             'url.required'          =>'请输入网站地址',
             'filing.required'          =>'请填写备案号信息',
             'cright.required'          =>'请填写版权信息',
@@ -66,20 +68,28 @@ class WebsiteController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
+        // 文件上传
+        $pic = $req -> file('logo');
 
-        if($req->hasFile('logo')){             //  如果有图片上传：
+        if($pic->isValid()){  //  检车是否为有效文件
 
-            $file = Input::file('logo');
+            $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
+            
+            if(in_array($enev,['jpg','jpeg','png','gif']))
+            {
+                $newName = 'logo_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
 
-            $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
-        
-            $newName = 'logo_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
+                $pic->move(public_path('uploads/'),$newName);     // 移动文件
          
-            $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
+                // 生成缩略图
+                $sm = Image::make(public_path('uploads/').$newName)->resize(200,90)->save(public_path('uploads/').'sm_'.$newName);
 
-            $filepath = '/uploads/'.$newName;             //拼接文件路径
+                $data['logo'] = '/uploads/'.'sm_'.$newName;
 
-            $data['logo'] = $filepath; 
+            }else{
+                return redirect()->back()->withInput()->withErrors('文件上传失败');
+            }
+             
         }
 
         // 如果没有图片上传就直接添加
@@ -183,7 +193,7 @@ class WebsiteController extends Controller
         // 表单验证
          $rule = [
             'name'          =>'required|between:2,15',
-            'describe'      =>'required|between:5,50',
+            'describe'      =>'required|between:5,100',
             'url'           =>'required',
             'filing'        =>'required',
             'cright'        =>'required',
@@ -192,7 +202,7 @@ class WebsiteController extends Controller
             'name.required'         =>'请输入网站名称',
             'name.between'          =>'网站名称必须在2-15位之间',
             'describe.required'     =>'请写入网站描述',
-            'describe.between'      =>'网站描述必须在5~50之间',
+            'describe.between'      =>'网站描述必须在5~100之间',
             'url.required'          =>'请输入网站地址',
             'filing.required'          =>'请填写备案号信息',
             'cright.required'          =>'请填写版权信息',
@@ -203,25 +213,31 @@ class WebsiteController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        if($req->hasFile('logo')){             //  如果有图片上传：
+        // 文件上传
+        if(Input::hasFile('logo')){  //  检车是否为有效文件
 
-            // 如果有文件上传的话就删除上次的图片
             if($req->pic){
                unlink(public_path().$req->pic);      
             }
 
-            $file = Input::file('logo');
+            $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
+            
+            if(in_array($enev,['jpg','jpeg','png','gif']))
+            {
+                $newName = 'logo_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
 
-            $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
-        
-            $newName = 'logo_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
-         
-            $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
+                $pic->move(public_path('uploads/'),$newName);     // 移动文件
 
-            $filepath = '/uploads/'.$newName;             //拼接文件路径
+                // 生成缩略图
+                $sm = Image::make(public_path('uploads/').$newName)->resize(200,90)->save(public_path('uploads/').'sm_'.$newName);
 
-            $data['logo'] = $filepath; 
+                $data['logo'] = '/uploads/'.'sm_'.$newName;    // 压入数组
 
+
+            }else{
+                return redirect()->back()->withInput()->withErrors('文件上传失败');
+            }
+             
         }
 
         $webs = Webs::find($id);       // 执行修改

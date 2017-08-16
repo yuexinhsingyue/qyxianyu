@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Model\User;
+use App\Http\Model\UserDetail;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -52,7 +53,7 @@ class LoginController extends Controller
     {
         $res = Input::except('_token');
         $user = User::where('uname',$res['uname'])->first();
-
+        $UserDetail = UserDetail::where('uid',$user['uid'])->first();
         //如果数据库中没有此用户，返回登录页面
         if(!$user)
         {
@@ -72,6 +73,9 @@ class LoginController extends Controller
         if($user['identity'] != 1)
         {
             return back()->withErrors('您没有管理员权限') -> withInput();
+        }
+        if ( $UserDetail['status'] == 0) {
+            return back()->withErrors('当前用户已被禁用，请您联系客服。') -> withInput();
         }
         session(['user'=>$user]);
         return redirect('/admin/index');

@@ -19,7 +19,6 @@ class StatusController extends Controller
    {
 
         if($id == '1'){
-            echo '不显示';
             $res = Problem::where('pid', $pid)->update(['status' => 2]);
 
             if($res){
@@ -29,7 +28,6 @@ class StatusController extends Controller
             }
 
         }else if($id == '2'){
-            echo '显示';
             $res = Problem::where('pid',$pid)->update(['status' => 1]);
 
             if($res){
@@ -39,6 +37,8 @@ class StatusController extends Controller
             }
         }
    }
+
+   
 
    // 相关文章状态
    public function work($id, $wid)

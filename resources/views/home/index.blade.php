@@ -1,5 +1,13 @@
 @extends('layouts.home')
-@section('title','首页')
+@section('title',$web->name)
+
+@section('header')
+	<link href="{{ url('home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
+	<link href="{{ url('home/css/skin.css') }}" rel="stylesheet" type="text/css" />
+
+	<script src="{{ url('home/js/jquery.min.js') }}"></script>
+	<script src="{{ url('home/js/amazeui.min.js') }}"></script>
+@endsection
 
 @section('content')
 <div class="banner">
@@ -20,20 +28,22 @@
 		<div class="long-title"><span class="all-goods">全部分类</span></div>
 		<div class="nav-cont">
 			<ul>
-				<li class="index"><a href="#">首页</a></li>
-				<li class="qc"><a href="#">文章与问题</a></li>
-				<li class="qc last"><a href="#">鱼塘</a></li>
+				<li class="index"><a href="{{ url('/') }}">首页</a></li>
+				<li class="qc"><a href="{{ url('home/news') }}">文章与问题</a></li>
+				<li class="qc last"><a href="{{ url('home/fish') }}">鱼塘</a></li>
 			</ul>
 		</div>
 		<!--侧边导航 -->
 		<div id="nav" class="navfull">
+
 			<div class="area clearfix">
 				<div class="category-content" id="guide_2">
 					<div class="category">
 						<ul class="category-list" id="js_climit_li">
-							<li class="appliance js_toggle relative first">
+							@foreach($ptype as $k=>$v)
+							<li class="appliance js_toggle relative">
 								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
+									<h3 class="category-name b-category-name"><a class="ml-22" title=""> {{$v->tname}}</a></h3>
 									<em>&gt;</em></div>
 								<div class="menu-item menu-in top">
 									<div class="area-in">
@@ -41,8 +51,14 @@
 											<div class="menu-srot">
 												<div class="sort-side">
 													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="{{ url('home/list') }}"><span>手机 相机 笔记本</span></a></dd>
+														@foreach($a as $m=>$n)
+															@if($k == $m)
+															@foreach($n as $j=>$h)
+														<dd><a title="" href="{{ url('home/list') }}"><span>{{$h->tname}}</span></a></dd>
+
+															@endforeach
+															@endif
+														@endforeach
 													</dl>
 												</div>
 											</div>
@@ -51,190 +67,12 @@
 								</div>
 								<b class="arrow"></b>
 							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative ">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置数码 </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 手机 相机 笔记本 </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
-							<li class="appliance js_toggle relative last">
-								<div class="category-info">
-									<h3 class="category-name b-category-name"><a class="ml-22" title=""> 闲置母婴  </a></h3>
-									<em>&gt;</em></div>
-								<div class="menu-item menu-in top">
-									<div class="area-in">
-										<div class="area-bg">
-											<div class="menu-srot">
-												<div class="sort-side">
-													<dl class="dl-sort">
-														<dt><span title=""> 童装 宝宝用品 玩具  </span></dt>
-														<dd><a title="" href="#"><span>手机 相机 笔记本</span></a></dd>
-													</dl>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<b class="arrow"></b>
-							</li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
 			</div>
+
 		</div>
 		<!--轮播-->
 		<script type="text/javascript">
@@ -332,26 +170,14 @@
 			<h4>广告栏</h4>
 		</div>
 		<div class="am-g am-g-fixed ">
+			@foreach($advert as $ad)
 			<div class="am-u-sm-3 ">
 				<div class="activityMain ">
-					<img src="{{ url('home/img/activity4.jpg') }} "></img>
+					<a href="{{$ad['adlink']}}"  target="_blank"><img src="{{ url($ad['pic']) }} " title="{{$ad['addescribe']}}"></a>
 				</div>
 			</div>
-			<div class="am-u-sm-3 ">
-				<div class="activityMain ">
-					<img src="{{ url('home/img/activity4.jpg') }} ">
-				</div>
-			</div>
-			<div class="am-u-sm-3 ">
-				<div class="activityMain ">
-					<img src="{{ url('home/img/activity4.jpg') }} ">
-				</div>
-			</div>
-			<div class="am-u-sm-3 last ">
-				<div class="activityMain ">
-					<img src="{{ url('home/img/activity4.jpg') }} "></img>
-				</div>
-			</div>
+			@endforeach
+
 		</div>
 	</div>
 	<div class="clear "></div>
@@ -464,7 +290,95 @@
 				<a href="# "><img src="{{ url('home/img/1.jpg') }}" /></a>
 			</div>
 		</div>
+
+
+		<div class="guide clearfix" style="margin-left:290px;margin-top:20px">
+
+			  <div class="recycle col">
+			    <h4>数码回收 — 5分钟全部变现，全程免邮！</h4>
+			    <div class="recycel-type mobile">
+			      <a href="//2.taobao.com/recycle/index.htm" class="img">手机回收</a>
+			      <a href="//2.taobao.com/recycle/index.htm" class="btn">手机回收<b></b></a>
+			    </div>
+			    <div class="recycel-type table">
+			      <a href="//2.taobao.com/recycle/index.htm?categoryId=50019780" class="img">平板回收</a>
+			      <a href="//2.taobao.com/recycle/index.htm?categoryId=50019780" class="btn">平板回收<b></b></a>
+			    </div>
+			    <div class="recycel-type notebook">
+			      <a href="//2.taobao.com/recycle/index.htm?categoryId=1101" class="img">笔记本回收</a>
+			      <a href="//2.taobao.com/recycle/index.htm?categoryId=1101" class="btn">笔记本回收<b></b></a>
+			    </div>
+			  </div>
+
+			  <div class="module">
+			  <div class="tutorial col J_TMSArea" data-tms-id="690942">
+			    <div class="mod col">
+			      <h4>
+			        相关文章
+			      </h4>
+			      <div>
+			        <ul class="list" style="background-color:#FCFCFC;border-radius:10px">
+			        @foreach($work as $k=>$v)
+			          <li>
+			            <b>
+			            </b>
+			            <a href="{{ url('home/work').'/'.$v->wid}}289.html">
+			              {{ $v->wtitle }}
+			            </a>
+			          </li>
+					@endforeach		
+			        </ul>
+			      </div>
+			    </div>
+			    <div class="mod col">
+			      <h4>
+			        相关问题<!-- 6条 -->
+			      </h4>
+			      <div>
+			        <ul class="list" style="background-color:#FCFCFC;border-radius:10px">
+			       		@foreach($problem as $k=>$v)
+				          <li>
+				            <b>
+				            </b>
+				            <a href="{{ url('home/pro').'/'.$v->pid}}484.html">
+			             		{{ $v->ptitle }}
+				            </a>
+				          </li>
+				        @endforeach
+
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+</div>
+<style type="text/css">
+	
+	.guide {
+	    border: 1px solid #e6e6e6;
+	    height: 260px;
+	    width:1000px;
+	}
+
+</style>
 		<div class="clear "></div>
+
 	</div>
 </div>
+
+@endsection
+
+@section('js')
+	<script>
+		$('.category-list li').eq(0).addClass("first");
+        $('.category-list li').eq(9).addClass("last");
+	</script>
+@endsection
+
+
+@section('js')
+	<script>
+        window.jQuery || document.write('<script src="{{ url('home/js/jquery.min.js') }}"><\/script>');
+	</script>
+	<script type="text/javascript " src="{{ url('home/js/quick_links.js') }}"></script>
 @endsection

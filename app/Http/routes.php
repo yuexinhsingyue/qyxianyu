@@ -22,7 +22,7 @@ Route::post('admin/dologin','Admin\LoginController@dologin');
 //验证码
 Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
 // 百度地图
-Route::get('/baiduapi', function(){
+Route::get('admin/baiduapi', function(){
     // echo 'dddddddd';
     return view('admin.baiduapi.baiduapi');
 });
@@ -52,10 +52,12 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     Route::resource('type','TypeController');
     //订单管理
     Route::resource('order','OrderController');
+    //查看订单详情页
+    Route::get('detail','OrderController@detail');
     //鱼塘管理
     Route::resource('fish','FishController');
     //广告管理
-    Route::resource('ad','AdController');
+    Route::resource('advert','advertController');
     //数据统计
     // Route::resource('dataSta','DataStaController');
     Route::get('dataSta','DataStaController@dataSta');
@@ -95,25 +97,29 @@ Route::get('home/list','Home\IndexController@list');
 //商品详情页
 Route::get('home/detail','Home\IndexController@detail');
 //问题页
-Route::get('home/new','Home\IndexController@new');
+Route::get('home/pro/{pid}484.html','Home\IndexController@problems');
+// 文章页
+Route::get('home/work/{wid}289.html','Home\IndexController@works');
+//鱼塘页
+Route::get('home/fish','Home\IndexController@fish');
+
+
 /*
  * 前台
  * 路由前缀：home
  * 命名空间：home
  */
 Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
+    //商品添加页
+    Route::resource('goods','GoodsController');
     //商品购物车页
     Route::get('car','IndexController@car');
     //商品订单页
-    Route::get('car','IndexController@car');
+    Route::get('order','IndexController@pay');
     //商品订单完成页
-    Route::get('car','IndexController@car');
-    //商品支付页
-    Route::get('car','IndexController@car');
+    Route::get('success','IndexController@success');
     //个人中心页
-    Route::get('car','IndexController@car');
-    //鱼塘页
-    Route::get('car','IndexController@car');
+    Route::get('person','IndexController@person');
 });
 
 

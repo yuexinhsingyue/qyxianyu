@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
-
 class UserController extends Controller
 {
     /**
@@ -25,7 +24,6 @@ class UserController extends Controller
         $res = $res -> where('uname','like','%'.Input::get('search').'%') -> paginate(2);
         //条件
         $search = Input::get('search');
-
         return view('admin.user.list',compact('res','search'));
     }
 

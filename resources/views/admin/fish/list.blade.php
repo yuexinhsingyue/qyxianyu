@@ -18,7 +18,7 @@
                     <input class="form-control boxed rounded-s" name="keywords" placeholder="搜索..." type="text">
                     <span class="input-group-btn">
                         <button class="btn btn-secondary rounded-s" type="button">
-                            <i class="fa fa-search"><input type="submit"  value=""></i>
+                            <i class="fa fa-search"></i>
                         </button>
                     </span>
                 </div>

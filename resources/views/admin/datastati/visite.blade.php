@@ -16,7 +16,7 @@
       <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div class="col">  
     <div class="card  stats">  
-        <div id="main" style="width: 900px;height:400px;"></div>
+        <div id="main" style="width: 1036px;height:400px;"></div>
         <script type="text/javascript" src="/admin/js/jquery.js"></script>
         <script type="text/javascript" src="/admin/js/echarts.js"></script>
         <script type="text/javascript">
