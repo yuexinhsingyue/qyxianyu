@@ -107,7 +107,10 @@ Route::get('home/fish','Home\IndexController@fish');
  * 路由前缀：home
  * 命名空间：home
  */
-Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
+Route::group(/**
+ *
+ */
+    ['prefix' => 'home', 'namespace' => 'Home'], function () {
     //商品添加页
     Route::resource('goods','GoodsController');
     //商品购物车页
@@ -117,7 +120,15 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     //商品订单完成页
     Route::get('success','IndexController@success');
     //个人中心页
-    Route::get('person','IndexController@person');
+    Route::get('personnal','IndexController@person');
+
+    // 个人信息
+    Route::get('personinfo','PersonController@personInfo');
+    //  修改个人信息
+    Route::post('savepersoninfo','PersonController@savePersonInfo');
+    //  地址管理
+    Route::post('personaddr','PersonController@personaddr');
+
 });
 
 
