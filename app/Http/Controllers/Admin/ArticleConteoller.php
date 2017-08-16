@@ -16,10 +16,13 @@ class ArticleConteoller extends Controller
      *
      *  问题列表
      */
-    public function index()
+    public function index(Request $req)
     {
-        $data = Works::all();
-        return view('admin.articles.index',compact('data'));
+
+        $data = Works::where('wtitle','like','%'.$req['artName'].'%')->paginate(2);
+        $Name = $req->input('artName');
+
+        return view('admin.articles.index',compact('data','Name'));
     }
 
     /**

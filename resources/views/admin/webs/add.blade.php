@@ -50,17 +50,26 @@
 				    <label for="exampleInputPassword1">网站地址：</label>
 				    <input type="text" class="form-control" name="url" id="exampleInputPassword1" value="">
 				  </div>
-				  <div class="form-group">
+				  <div class="form-group row">
+		                <label class="col-sm-2 text-xs-right" style="margin-left:-55px">
+		                    网站开关:
+		                </label>
+	                    <label>
+	                        <input class="radio" name="status" type="radio" checked value="1">
+	                        <span>开</span>
+	                    </label>
+	                    <label>
+	                        <input class="radio" name="status" type="radio" value="2">
+	                        <span>关</span>
+	                    </label>
+		            </div>
+		            <div class="form-group">
 				    <label for="exampleInputFile">网站Logo:</label>
 				    <input type="file" name="logo" value="" />
 				    <img src="" alt="" width="100" height="80" style="margin-left:150px;margin-top:-10px">
 				  </div>
-				  <div class="form-group">
-				    <label for="exampleInputPassword1">网站开关:</label><br>
-				    开<input type="radio" name="status" class="form-control" checked value="1" id="exampleInputPassword1">
-				    关<input type="radio" name="status" class="form-control" value="2" id="exampleInputPassword1">
-				  </div>{{csrf_field()}}
-				<input class="btn btn-success" type="submit" value="确认添加">
+				  {{csrf_field()}}
+				<input class="btn btn-success" type="submit" value="确认添加" style="border-radius:20px">
 
 				</form>
 			</div>

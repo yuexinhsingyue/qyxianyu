@@ -51,7 +51,7 @@
 				  <div class="form-group">
 				    <label for="exampleInputFile">网站Logo:</label>
 				    <input type="file" name="logo" value="" />
-				    <img src="{{$webs->logo}}" alt="" width="100" height="80" style="margin-left:150px;margin-top:-10px">
+				    <img src="{{$webs->logo}}" alt="" width="100" height="80" style="margin-left:100px;margin-top:-10px;border-radius:10px">
 				    <input type="hidden" name="pic" value="{{$webs->logo}}">
 				  </div>
 				  <div class="form-group">
@@ -60,7 +60,7 @@
 				    关<input type="radio" name="status" class="form-control" value="2" id="exampleInputPassword1">
 				  </div>{{csrf_field()}}
 					<input type="hidden" name="_method" value="put" />
-				<input class="btn btn-primary" type="submit" value="确认修改">
+				<input class="btn btn-primary" type="submit" value="确认修改" style="border-radius:20px">
 
 				</form>
 			</div>

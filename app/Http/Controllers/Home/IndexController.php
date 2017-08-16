@@ -9,11 +9,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Model\Slid;
+
 class IndexController extends Controller
 {
     //前台主页
     public function index()
     {
+
         //获取商品分类里的所有父类
         $ptype = Type::where('pid',0)->get();
         foreach($ptype as $k => $v){
@@ -24,7 +27,10 @@ class IndexController extends Controller
 
         //  广告位
         $advert = Advert::where('status',1)->groupBy('adposition')->orderBy('adposition')-> get();
-        return view('home.index',compact('ptype','a','advert'));
+
+        // 轮播图
+        $figure = Slid::where('status','=',1)->get();
+        return view('home.index',compact('ptype','a','advert','figure'));
     }
     //前台列表页
     public function list()
