@@ -61,19 +61,18 @@
                     </li>
                     <li class="td td-item">
                         <div class="item-pic">
-                            <a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12">
-                                <img src="{{ url('home/img/kouhong.jpg_80x80.jpg') }}" class="itempic J_ItemImg"></a>
+                            <a href="#" target="_blank" data-title="{{$input['gname']}}" class="J_MakePoint" data-point="tbcart.8.12">
+                                <img src="/{{ $input['pic'] }}" class="itempic J_ItemImg"></a>
                         </div>
                         <div class="item-info">
                             <div class="item-basic-info">
-                                <a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
+                                <a href="#" target="_blank" title="{{$input['gname']}}" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$input['gname']}}</a>
                             </div>
                         </div>
                     </li>
                     <li class="td td-info">
                         <div class="item-props item-props-can">
-                            <span class="sku-line">颜色：10#蜜橘色</span>
-                            <span class="sku-line">包装：两支手袋装（送彩带）</span>
+                            <span class="sku-line">{{$input['goodsDes']}}</span>
                             <span tabindex="0" class="btn-edit-sku theme-login">修改</span>
                             <i class="theme-login am-icon-sort-desc"></i>
                         </div>
@@ -82,10 +81,10 @@
                         <div class="item-price price-promo-promo">
                             <div class="price-content">
                                 <div class="price-line">
-                                    <em class="price-original">78.00</em>
+                                    <em class="price-original">{{$input['oprice']}}</em>
                                 </div>
                                 <div class="price-line">
-                                    <em class="J_Price price-now" tabindex="0">39.00</em>
+                                    <em class="J_Price price-now" tabindex="0">{{$input['nprice']}}</em>
                                 </div>
                             </div>
                         </div>
@@ -94,16 +93,14 @@
                         <div class="amount-wrapper ">
                             <div class="item-amount ">
                                 <div class="sl">
-                                    <input class="min am-btn" name="" type="button" value="-">
-                                    <input class="text_box" name="" type="text" value="3" style="width:30px;">
-                                    <input class="add am-btn" name="" type="button" value="+">
+                                    {{$input['goodsNum']}}
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li class="td td-sum">
                         <div class="td-inner">
-                            <em tabindex="0" class="J_ItemSum number">117.00</em>
+                            <em tabindex="0" class="J_ItemSum number">{{$price}}</em>
                         </div>
                     </li>
                     <li class="td td-op">
@@ -144,7 +141,7 @@
             </div>
             <div class="price-sum">
                 <span class="txt">合计:</span>
-                <strong class="price">¥<em id="J_Total">0.00</em></strong>
+                <strong class="price">¥<em id="J_Total">{{$price}}</em></strong>
             </div>
             <div class="btn-area">
                 <a href="{{ url('home/order') }}" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">

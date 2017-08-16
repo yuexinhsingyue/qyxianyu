@@ -217,77 +217,103 @@
 				</a>
 				<div class="triangle-topright"></div>
 			</div>
+
 			<div class="am-u-sm-7 am-u-md-4 text-two sug">
+				@foreach($com as $k=>$v)
+					@if($k == 0 )
 				<div class="outer-con ">
 					<div class="title ">
-						雪之恋和风大福
+						{{$v->gname}}
 					</div>
 					<div class="sub-title ">
-						¥13.8
+						¥{{$v->nprice}}
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="{{ url('home/img/1.jpg') }}" /></a>
+				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+					@endif
+				@endforeach
 			</div>
+
 			<div class="am-u-sm-7 am-u-md-4 text-two">
+				@foreach($com as $k=>$v)
+					@if($k == 1 )
 				<div class="outer-con ">
 					<div class="title ">
-						雪之恋和风大福
+						{{$v->gname}}
 					</div>
 					<div class="sub-title ">
-						¥13.8
+						¥{{$v->nprice}}
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="{{ url('home/img/1.jpg') }}" /></a>
+				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+					@endif
+				@endforeach
 			</div>
 			<div class="am-u-sm-3 am-u-md-2 text-three big">
+				@foreach($com as $k=>$v)
+					@if($k == 2 )
 				<div class="outer-con ">
 					<div class="title ">
-						小优布丁
+						{{$v->gname}}
 					</div>
 					<div class="sub-title ">
-						¥4.8
+						¥{{$v->nprice}}
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="{{ url('home/img/1.jpg') }}" /></a>
+				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+					@endif
+				@endforeach
 			</div>
 			<div class="am-u-sm-3 am-u-md-2 text-three sug">
+				@foreach($com as $k=>$v)
+					@if($k == 3 )
 				<div class="outer-con ">
 					<div class="title ">
-						小优布丁
+						{{$v->gname}}
 					</div>
 					<div class="sub-title ">
-						¥4.8
+						¥{{$v->nprice}}
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="{{ url('home/img/1.jpg') }}" /></a>
+				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+					@endif
+				@endforeach
 			</div>
 			<div class="am-u-sm-3 am-u-md-2 text-three ">
+				@foreach($com as $k=>$v)
+					@if($k == 4 )
 				<div class="outer-con ">
 					<div class="title ">
-						小优布丁
+						{{$v->gname}}
 					</div>
 					<div class="sub-title ">
-						¥4.8
+						¥{{$v->nprice}}
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="{{ url('home/img/1.jpg') }}" /></a>
+				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+					@endif
+				@endforeach
 			</div>
 			<div class="am-u-sm-3 am-u-md-2 text-three last big ">
+				@foreach($com as $k=>$v)
+					@if($k == 5 )
 				<div class="outer-con ">
 					<div class="title ">
-						小优布丁
+						{{$v->gname}}
 					</div>
 					<div class="sub-title ">
-						¥4.8
+						¥{{$v->nprice}}
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="{{ url('home/img/1.jpg') }}" /></a>
+				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+					@endif
+				@endforeach
 			</div>
 		</div>
 		<div class="clear "></div>

@@ -95,7 +95,7 @@ Route::get('/','Home\IndexController@index');
 //商品列表页
 Route::get('home/list','Home\IndexController@list');
 //商品详情页
-Route::get('home/detail','Home\IndexController@detail');
+Route::get('home/detail/{id}','Home\IndexController@detail');
 //问题页
 Route::get('home/news','Home\IndexController@news');
 //鱼塘页
@@ -114,7 +114,7 @@ Route::group(/**
     //商品添加页
     Route::resource('goods','GoodsController');
     //商品购物车页
-    Route::get('car','IndexController@car');
+    Route::get('car/{id}','IndexController@car');
     //商品订单页
     Route::get('order','IndexController@pay');
     //商品订单完成页
