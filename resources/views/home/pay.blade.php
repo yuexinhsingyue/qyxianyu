@@ -128,9 +128,6 @@
                         <div class="th th-sum">
                             <div class="td-inner">金额</div>
                         </div>
-                        <div class="th th-oplist">
-                            <div class="td-inner">配送方式</div>
-                        </div>
 
                     </div>
                 </div>
@@ -142,25 +139,24 @@
                                 <li class="td td-item">
                                     <div class="item-pic">
                                         <a href="#" class="J_MakePoint">
-                                            <img src="{{ url('home/img/kouhong.jpg_80x80.jpg') }}" class="itempic J_ItemImg">
+                                            <img src="/{{ $input['pic'] }}" class="itempic J_ItemImg">
                                         </a>
                                     </div>
                                     <div class="item-info">
                                         <div class="item-basic-info">
-                                            <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
+                                            <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$input['gname']}}</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="td td-info">
                                     <div class="item-props">
-                                        <span class="sku-line">颜色：12#川南玛瑙</span>
-                                        <span class="sku-line">包装：裸装</span>
+                                        <span class="sku-line">{{$input['goodsDes']}}</span>
                                     </div>
                                 </li>
                                 <li class="td td-price">
                                     <div class="item-price price-promo-promo">
                                         <div class="price-content">
-                                            <em class="J_Price price-now">39.00</em>
+                                            <em class="J_Price price-now">{{$input['nprice']}}</em>
                                         </div>
                                     </div>
                                 </li>
@@ -170,88 +166,23 @@
                                     <div class="item-amount ">
                                         <span class="phone-title">购买数量</span>
                                         <div class="sl">
-                                            <input class="min am-btn" name="" type="button" value="-">
+                                            {{$input['goodsNum']}}
+                                            {{--<input class="min am-btn" name="" type="button" value="-">
                                             <input class="text_box" name="" type="text" value="3" style="width:30px;">
-                                            <input class="add am-btn" name="" type="button" value="+">
+                                            <input class="add am-btn" name="" type="button" value="+">--}}
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li class="td td-sum">
                                 <div class="td-inner">
-                                    <em tabindex="0" class="J_ItemSum number">117.00</em>
-                                </div>
-                            </li>
-                            <li class="td td-oplist">
-                                <div class="td-inner">
-                                    <span class="phone-title">配送方式</span>
-                                    <div class="pay-logis">
-                                        快递<b class="sys_item_freprice">10</b>元
-                                    </div>
+                                    <em tabindex="0" class="J_ItemSum number">{{$price}}</em>
                                 </div>
                             </li>
                         </ul>
                         <div class="clear"></div>
                     </div>
                     <div class="clear"></div>
-                </div>
-                <div id="J_Bundle_s_1911116345_1_0" class="bundle  bundle-last">
-                    <div class="bundle-main">
-                        <ul class="item-content clearfix">
-                            <div class="pay-phone">
-                                <li class="td td-item">
-                                    <div class="item-pic">
-                                        <a href="#" class="J_MakePoint">
-                                            <img src="{{ url('home/img/kouhong.jpg_80x80.jpg') }}" class="itempic J_ItemImg"></a>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="item-basic-info">
-                                            <a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="td td-info">
-                                    <div class="item-props">
-                                        <span class="sku-line">颜色：10#蜜橘色+17#樱花粉</span>
-                                        <span class="sku-line">包装：两支手袋装（送彩带）</span>
-                                    </div>
-                                </li>
-                                <li class="td td-price">
-                                    <div class="item-price price-promo-promo">
-                                        <div class="price-content">
-                                            <em class="J_Price price-now">39.00</em>
-                                        </div>
-                                    </div>
-                                </li>
-                            </div>
-                            <li class="td td-amount">
-                                <div class="amount-wrapper ">
-                                    <div class="item-amount ">
-                                        <span class="phone-title">购买数量</span>
-                                        <div class="sl">
-                                            <input class="min am-btn" name="" type="button" value="-">
-                                            <input class="text_box" name="" type="text" value="3" style="width:30px;">
-                                            <input class="add am-btn" name="" type="button" value="+">
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="td td-sum">
-                                <div class="td-inner">
-                                    <em tabindex="0" class="J_ItemSum number">117.00</em>
-                                </div>
-                            </li>
-                            <li class="td td-oplist">
-                                <div class="td-inner">
-                                    <span class="phone-title">配送方式</span>
-                                    <div class="pay-logis">
-                                        包邮
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="clear"></div>
-                    </div>
                 </div>
                 <div class="clear"></div>
                 <div class="pay-total">
@@ -289,7 +220,7 @@
                 <!--含运费小计 -->
                 <div class="buy-point-discharge ">
                     <p class="price g_price ">
-                        合计（含运费） <span>¥</span><em class="pay-sum">244.00</em>
+                        合计（含运费） <span>¥</span><em class="pay-sum">{{$price}}</em>
                     </p>
                 </div>
                 <!--信息 -->
@@ -298,7 +229,7 @@
                         <div class="box">
                             <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
                                 <span class="price g_price ">
-                                <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>
+                                <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">{{$price}}</em>
                                         </span>
                             </div>
                             <div id="holyshit268" class="pay-address">

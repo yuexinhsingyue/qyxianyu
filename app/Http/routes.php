@@ -115,8 +115,13 @@ Route::group(/**
     Route::resource('goods','GoodsController');
     //商品购物车页
     Route::get('car/{id}','IndexController@car');
-    //商品订单页 `
-    Route::get('order','IndexController@pay');
+
+
+    //删除商品购物车
+    Route::get('delCar/{id}','IndexController@delCar');
+    //商品订单页
+    Route::get('order/{id}','IndexController@pay');
+
     //商品订单完成页
     Route::get('success','IndexController@success');
     //个人中心页
