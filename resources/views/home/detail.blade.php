@@ -71,7 +71,7 @@
                     </script>
                     <div class="tb-booth tb-pic tb-s310">
                         <a href="{{ url('home/img/01.jpg') }}">
-                            <img src="{{ url('home/img/01_mid.jpg') }}" alt="细节展示放大镜特效" rel="{{ url('home/img/01.jpg') }}"
+                            <img src="/{{ $input['pic']}}" alt="细节展示放大镜特效" rel="{{ url('home/img/01.jpg') }}"
                                  class="jqzoom" />
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                         <li class="tb-selected">
                             <div class="tb-pic tb-s40">
                                 <a href="#">
-                                    <img src="{{ url('home/img/01_small.jpg') }}" mid="{{ url('home/img/01_mid.jpg') }}" big="{{ url('home/img/01.jpg') }}">
+                                    <img src="/{{ $input['pic']}}" mid="/{{ $input['pic'] }}" big="/{{ $input['pic']  }}">
                                 </a>
                             </div>
                         </li>
@@ -92,7 +92,7 @@
                 <!--名称-->
                 <div class="tb-detail-hd">
                     <h1>
-                        良品铺子 手剥松子218g 坚果炒货 巴西松子
+                        {{$input['gname']}}
                     </h1>
                 </div>
                 <div class="tb-detail-list">
@@ -100,14 +100,14 @@
                     <div class="tb-detail-price">
                         <li class="price iteminfo_price">
                             <dt>
-                                促销价
+                                现价
                             </dt>
                             <dd>
                                 <em>
                                     ¥
                                 </em>
                                 <b class="sys_item_price">
-                                    56.90
+                                   {{$input['nprice']}}
                                 </b>
                             </dd>
                         </li>
@@ -120,7 +120,7 @@
                                     ¥
                                 </em>
                                 <b class="sys_item_mktprice">
-                                    98.00
+                                    {{$input['oprice']}}
                                 </b>
                             </dd>
                         </li>
@@ -129,7 +129,7 @@
                     <!--地址-->
                     <dl class="iteminfo_parameter freight">
                         <dt>
-                            配送至
+                            地址
                         </dt>
                         <div class="iteminfo_freprice">
                             <div class="am-form-content address">
@@ -143,48 +143,15 @@
                                 </select>
                             </div>
                             <div class="pay-logis">
-                                快递
+                                数量
                                 <b class="sys_item_freprice">
-                                    10
+                                    {{$input['goodsNum']}}
                                 </b>
-                                元
                             </div>
                         </div>
                     </dl>
                     <div class="clear"></div>
                     <!--销量-->
-                    <ul class="tm-ind-panel">
-                        <li class="tm-ind-item tm-ind-sellCount canClick">
-                            <div class="tm-indcon">
-								<span class="tm-label">
-									月销量
-								</span>
-                                <span class="tm-count">
-									1015
-								</span>
-                            </div>
-                        </li>
-                        <li class="tm-ind-item tm-ind-sumCount canClick">
-                            <div class="tm-indcon">
-								<span class="tm-label">
-									累计销量
-								</span>
-                                <span class="tm-count">
-									6015
-								</span>
-                            </div>
-                        </li>
-                        <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-                            <div class="tm-indcon">
-								<span class="tm-label">
-									累计评价
-								</span>
-                                <span class="tm-count">
-									640
-								</span>
-                            </div>
-                        </li>
-                    </ul>
                     <div class="clear"></div>
                     <!--各种规格-->
                     <dl class="iteminfo_parameter">
@@ -198,30 +165,6 @@
                                     <form class="theme-signin" name="loginform" action="" method="post">
                                         <div class="theme-signin-left">
                                             <div class="theme-options">
-                                                <div class="cart-title">
-                                                    口味
-                                                </div>
-                                                <ul>
-                                                    <li class="sku-line selected">
-                                                        原味
-                                                        <i>
-                                                        </i>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="theme-options">
-                                                <div class="cart-title">
-                                                    包装
-                                                </div>
-                                                <ul>
-                                                    <li class="sku-line selected">
-                                                        手袋单人份
-                                                        <i>
-                                                        </i>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="theme-options">
                                                 <div class="cart-title number">
                                                     数量
                                                 </div>
@@ -233,7 +176,7 @@
                             <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"
                             />
                             <span id="Stock" class="tb-hidden">库存
-														<span class="stock">1000</span>件
+														<span class="stock">{{$input['goodsNum']}}</span>件
 											        </span>
                         </dd>
                 </div>
@@ -256,7 +199,7 @@
         </li>
         <li>
             <div class="clearfix tb-btn tb-btn-basket theme-login">
-                <a id="LikBasket" title="加入购物车" href="{{ url('home/car') }}">
+                <a id="LikBasket" title="加入购物车" href="{{ url('home/car/'.$input['id']) }}">
                     <i>
                     </i>
                     加入购物车

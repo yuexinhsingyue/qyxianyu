@@ -6,8 +6,10 @@ use App\Http\Model\Fish;
 use App\Http\Model\Goods;
 use App\Http\Model\GoodsDetail;
 use App\Http\Model\Type;
+use App\Http\Model\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests;
@@ -22,11 +24,12 @@ class GoodsController extends Controller
      */
     public function index()
     {
-        //获取发布商品的用户id
-
+        //获取发布商品的用户的信息
+        //$uid = Goods::where('uid',$request->(User::where('id')->value()))->get();
         //根据uid获取此用户发布的所有商品
-
-     return view('home.goods.list');
+        $goods = Goods::get();
+       //dd($goods);
+     return view('home.goods.list',compact('goods'));
     }
 
     /**
@@ -75,7 +78,7 @@ class GoodsController extends Controller
         {
             return redirect()->back()->withInput()->withErrors('没有文件上传');
         }
-        //文件上传
+       //单文件上传
         $file = $request -> file('pic');
         //判断上传文件是否有效
         if($file -> isValid())
@@ -94,10 +97,17 @@ class GoodsController extends Controller
         } else {
             return redirect()->back()->withInput()->withErrors('文件上传失败');
         }
+
         //上传图片
         $input['pic'] = $res['pic'];
-
         $data = Goods::create($input);
+        $goods = Goods::get()->last();
+        $goodsDetail = new GoodsDetail();
+        //获取商品详情表的ID
+        $goodsDetail->gid =  $goods->id;
+        $goodsDetail->content = $goods->goodsDes;
+        $goodsDetail->save();
+
         if($data){
             return redirect('/home/goods');
         }else {

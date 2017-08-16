@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class IndexController extends Controller
 {
@@ -16,7 +17,7 @@ class IndexController extends Controller
     public function index()
     {
         //获取首页上所有电脑分类的信息
-        $com = Type::where('tid',38)->get();
+        $com = Goods::where('tid',30)->get();
         //获取商品分类里的所有父类
         $ptype = Type::where('pid',0)->get();
         foreach($ptype as $k => $v){
@@ -27,7 +28,7 @@ class IndexController extends Controller
 
         //  广告位
         $advert = Advert::where('status',1)->groupBy('adposition')->orderBy('adposition')-> get();
-        return view('home.index',compact('ptype','a','advert'));
+        return view('home.index',compact('ptype','a','advert','com'));
     }
     //前台大厅列表页
     public function list()
@@ -39,13 +40,18 @@ class IndexController extends Controller
             //遍历商品表父级下的二级分类
             $a[] = Type::where('pid',$v->tid)->get();
         }
-        $goods = Goods::get();
+        $goods = Goods::all();
+       // $goods = $goods -> where('gname','like','%'.Input::get('search').'%') -> paginate(2);
         return view('home.list',compact('ptype','a','goods'));
     }
     //详情页
-    public function detail()
+    public function detail($id)
     {
-        return view('home.detail');
+        //获取商品表的信息
+        $input = Goods::find($id);
+        //获取此商品的信息
+//        dd($input);
+        return view('home.detail',compact('input','id'));
     }
 
     //个人中心页
@@ -65,9 +71,13 @@ class IndexController extends Controller
 
     }
     //购物车
-    public function car()
+    public function car($id)
     {
-        return view('home.car');
+        //获取商品表的信息
+        $input = Goods::find($id);
+        //获取购买东西的总价格
+        $price = $input['nprice']*$input['goodsNum'];
+        return view('home.car',compact('input','id','price'));
     }
     //订单页
     public function pay()

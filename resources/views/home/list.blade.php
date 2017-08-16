@@ -124,7 +124,7 @@
 					<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
 						@foreach($goods as  $k=>$v)
 						<li>
-							<a href="{{ url('home/detail') }}"><div class="i-pic limit">
+							<a href="{{ url('home/detail/'.$v->id) }}"><div class="i-pic limit">
 								<img src="/{{ $v->pic  }}" />
 								<p class="title fl">
 									{{$v->gname}}
