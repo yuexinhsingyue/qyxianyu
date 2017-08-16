@@ -58,8 +58,9 @@ class IndexController extends Controller
     //个人中心页
     public function person()
     {
-        return view('home.persion.index');
+        return view('home.person.index');
     }
+
     //问题
     public function news()
     {

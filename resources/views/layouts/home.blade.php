@@ -32,7 +32,7 @@
         <ul class="message-r">
             <div class="topMessage my-shangcheng">
 
-                <div class="menu-hd MyShangcheng"><a href="{{url('home/person')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+                <div class="menu-hd MyShangcheng"><a href="{{url('home/personnal')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 
             </div>
             <div class="topMessage mini-cart">

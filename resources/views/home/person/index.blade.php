@@ -1,6 +1,5 @@
+@section('title','个人中心')
 @extends('layouts.person')
-@section('title','')
-
 @section('header')
     <link href="{{ url('home/css/personal.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ url('home/css/systyle.css') }}" rel="stylesheet" type="text/css">

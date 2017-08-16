@@ -34,11 +34,10 @@
                     <a href="#">个人中心</a>
                 </li>
                 <li class="person">
-                    <a href="#">个人资料</a>
+                    <a href="{{url('home/personnal')}}">个人资料</a>
                     <ul>
-                        <li> <a href="#">个人信息</a></li>
-                        <li> <a href="#">安全设置</a></li>
-                        <li> <a href="#">收货地址</a></li>
+                        <li> <a href="{{url('home/personinfo')}}">个人信息</a></li>
+                        <li> <a href="{{url('home/personaddr')}}">收货地址</a></li>
                     </ul>
                 </li>
                 <li class="person">
@@ -76,3 +75,4 @@
 
 
 @endsection
+
