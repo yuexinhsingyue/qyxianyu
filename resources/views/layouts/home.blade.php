@@ -37,7 +37,7 @@
 
             </div>
             <div class="topMessage mini-cart">
-                <div class="menu-hd"><a id="mc-menu-hd" href="{{ url('home/car') }}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+                <div class="menu-hd"><a id="mc-menu-hd" href="{{ url('home/car') }}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h"></strong></a></div>
             </div>
             {{--<div class="topMessage favorite">--}}
             {{--<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>--}}

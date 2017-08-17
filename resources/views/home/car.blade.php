@@ -7,9 +7,9 @@
 
     <script type="text/javascript" src="{{ url('home/js/jquery.js') }}"></script>
 @endsection
-
 @section('content')
 <div class="concent">
+
     <div id="cartTable">
         <div class="cart-table-th">
             <div class="wp">
@@ -127,7 +127,8 @@
             <span>全选</span>
         </div>
         <div class="operations">
-            <a href="#" hidefocus="true" class="deleteAll">删除</a>
+            <button> <a href="javascript:void(0)" onclick="delCate({{$input['id']}})">删除</a></button>
+            {{--<a href="" hidefocus="true" class="deleteAll">删除</a>--}}
             <a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a>
         </div>
         <div class="float-bar-right">
@@ -144,16 +145,48 @@
                 <strong class="price">¥<em id="J_Total">{{$price}}</em></strong>
             </div>
             <div class="btn-area">
-                <a href="{{ url('home/order') }}" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+                <a href="{{ url('home/order/'.$id) }}" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
                     <span>结&nbsp;算</span></a>
             </div>
         </div>
+        <script>
+
+            function delCate(id){
+//            参数1 要请求的服务器路由
+//            参数2 请求要携带的参数数据  _method：delete  _token
+//              参数3 回调函数,回调函数的参数data表示服务器返回的数据
+//            $.post(URL,data,callback);
+//询问框
+                layer.confirm('确认删除吗？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    $.post("{{url('admin/car/')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}'},function(data){
+                        if(data.status == 0){
+                            location.href = location.href;
+                            layer.msg(data.msg, {icon: 5});
+                        }else if(data.status == 2){
+                            layer.msg(data.msg, {icon: 6});
+                        }else{
+                            location.href = location.href;
+                            layer.msg(data.msg, {icon: 6});
+                        }
+
+                    });
+
+                }, function(){
+
+                });
+
+            }
+
+
+        </script>
 
     </div>
 
+
 </div>
 @endsection
-
 @section('js')
 
 @endsection

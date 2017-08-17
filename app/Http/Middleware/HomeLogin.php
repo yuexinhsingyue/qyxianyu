@@ -15,6 +15,11 @@ class HomeLogin
      */
     public function handle($request, Closure $next)
     {
+//        if(!session('homeuser'))
+//        {
+//            return redirect('admin/login');
+//
+//        }
         return $next($request);
     }
 }

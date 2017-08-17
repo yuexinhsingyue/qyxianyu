@@ -84,7 +84,15 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
 
 });
 
+
+
+/*
+ * 前台
+ * 路由前缀：home
+ * 命名空间：home
+ */
 Route::group(['middleware'=>'home'], function() {
+
 
     //前台用户登录
     Route::get('home/login','Home\LoginController@login');
@@ -92,6 +100,14 @@ Route::group(['middleware'=>'home'], function() {
     Route::get('home/register','Home\LoginController@register');
     //前台登录验证
     Route::post('home/dologin','Home\LoginController@dologin');
+    //前台注册验证
+    Route::post('home/dotelregister','Home\LoginController@dotelregister');
+    //手机号
+    Route::get('home/info','Home\LoginController@info');
+    //前台邮箱验证
+    Route::post('home/doregister','Home\LoginController@doregister');
+    //邮箱激活
+    Route::get('active','Home\LoginController@active');
     //前台主页
     Route::get('/','Home\IndexController@index');
     //商品列表页
@@ -106,18 +122,36 @@ Route::group(['middleware'=>'home'], function() {
     Route::get('home/fish','Home\IndexController@fish');
 
 
-    /*
-     * 前台
-     * 路由前缀：home
-     * 命名空间：home
-     */
-    Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
+    // 引导用户到qq的登录授权页面
+    Route::get('auth/qq', 'Home\AuthController@qq');
+    // 用户授权后qq回调的页面
+    Route::get('auth/callback', 'Home\AuthController@callback');
+
+
+    //鱼塘列表
+    Route::get('home/fishlist','Home\FishpondController@fishlist');
+    //鱼塘添加
+    Route::get('home/address','Home\FishpondController@create');
+    Route::post('home/store','Home\FishpondController@store');
+
+
+
+
+
+
+    Route::group(['prefix' => 'home','middleware'=>'home.login', 'namespace' => 'Home'], function () {
+
+
         //商品添加页
         Route::resource('goods','GoodsController');
         //商品购物车页
         Route::get('car/{id}','IndexController@car');
+
+        //删除商品购物车
+        Route::get('delCar/{id}','IndexController@delCar');
         //商品订单页
-        Route::get('order','IndexController@pay');
+        Route::get('order/{id}','IndexController@pay');
+
         //商品订单完成页
         Route::get('success','IndexController@success');
         //个人中心页
@@ -128,10 +162,9 @@ Route::group(['middleware'=>'home'], function() {
         //  修改个人信息
         Route::post('savepersoninfo','PersonController@savePersonInfo');
         //  地址管理
-        Route::post('personaddr','PersonController@personaddr');
+        //   Route::get('personaddr','PersonController@personaddr');
+        //  地址管理
+        Route::resource('personaddr', 'PersonAddrController');
 
-    });
-
-
-
+        });
 });

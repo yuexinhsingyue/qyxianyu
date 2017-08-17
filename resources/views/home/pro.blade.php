@@ -26,8 +26,17 @@
 
         <hr class="am-article-divider blog-hr">
         <ul class="am-pagination blog-pagination">
-            <li class="am-pagination-prev"><a href="">« 上一页</a></li>
-            <li class="am-pagination-next"><a href="">下一页 »</a></li>
+        @if($article['prev'])
+        <li class="am-pagination-prev"><a href="{{ url('home/pro').'/'.$article['prev']->pid}}484.html"><b>←←</b> {{$article['prev']->ptitle}}</a>
+          @else
+          <li class="am-pagination-prev">没有啦。。。。</li>
+          @endif
+
+        @if($article['next'])
+        <li class="am-pagination-next"><a href="{{ url('home/pro').'/'.$article['next']->pid}}484.html">{{$article['next']->ptitle}} <b>→→</b></a>
+          @else
+            <li class="am-pagination-next">没有啦。。。。</li>
+          @endif
         </ul>
     </div>
 
@@ -35,13 +44,11 @@
         <div class="am-panel-group">
 
             <section class="am-panel am-panel-default">
-                <div class="am-panel-hd">热门话题</div>
+                <div class="am-panel-hd">热门问题</div>
                 <ul class="am-list blog-list">
-                    <li><a href="#"><p>[特惠]闺蜜喊你来囤国货啦</p></a></li>
-                    <li><a href="#"><p>[公告]华北、华中部分地区配送延迟</p></a></li>
-                    <li><a href="#"><p>[特惠]家电狂欢千亿礼券 买1送1！</p></a></li>
-                    <li><a href="#"><p>[公告]商城与广州市签署战略合作协议</p></a></li>
-                    <li><a href="#"><p>[特惠]洋河年末大促，低至两件五折</p></a></li>
+                    @foreach($rel as $k=>$v)
+                    <li><a id="news" href="{{ url('home/pro').'/'.$v->pid}}484.html"><p>{{$v->ptitle}}</p></a></li>
+                    @endforeach
                 </ul>
             </section>
 

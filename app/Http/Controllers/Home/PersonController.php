@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Address;
 use App\Http\Model\User;
 use App\Http\Model\UserDetail;
+use App\Http\Model\Car;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,17 +15,30 @@ use Validator;
 
 class PersonController extends Controller
 {
-    //打开个人信息页
+    /**
+     * 打开个人中心模块中----个人信息页
+     * auth:hsingyue
+     * data:2017-08-16
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function personInfo()
     {
-        $uname = User::where('uid',15) -> value('uname');
-        $userdetail = UserDetail::where('uid',15)->get();
+        $uname = User::where('uid',session('homeuser')) -> value('uname');
+        $userdetail = UserDetail::where('uid',session('homeuser'))->get();
         $userdetail = $userdetail[0];
-//        dd($userdetail);
 
         return view('home.person.personInfo',compact('uname','userdetail'));
     }
-
+    /**
+     * 执行个人信息页内容保存到数据库
+     * auth:hsingyue
+     * data:2017-08-16
+     * @param  \Illuminate\Http\Request  $request
+     * @param
+     * @return \Illuminate\Http\Response
+     */
     public function savePersonInfo(Request $request)
     {
 //        dd($request);
@@ -75,12 +90,26 @@ class PersonController extends Controller
         }
 
 //        UserDetail::where('uid',session('user')['uid'])-> update($res);
-//        dd($res);
-        UserDetail::where('uid',15)-> update($res);
+        UserDetail::where('uid',session('homeuser'))-> update($res);
 
         return redirect('home/personinfo');
 
     }
+    /**
+     * 打开个人中心模块中----地址管理
+     * auth:hsingyue
+     * data:2017-08-16
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
+    public function personaddr ()
+    {
+        $addr = Address::where('uid',15)->get();
+//        dd($addr);
+        $count =  count(Car::get());
+        return view('home.person.personAddr',compact('addr','count'));
+    }
 
 }

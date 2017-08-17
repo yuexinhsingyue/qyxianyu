@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="PublishConfigData" autoUpload="On explicit save action" serverName="aliyun" createEmptyFolders="true" filePermissions="511" folderPermissions="493" autoUploadExternalChanges="true">
     <serverData>
       <paths name="aliyun">
@@ -10,6 +11,9 @@
         </serverdata>
       </paths>
     </serverData>
+=======
+  <component name="PublishConfigData" autoUpload="On explicit save action" createEmptyFolders="true" filePermissions="511" folderPermissions="493" autoUploadExternalChanges="true">
+>>>>>>> origin/qin
     <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
   </component>
 </project>
