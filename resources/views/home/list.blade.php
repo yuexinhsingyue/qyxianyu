@@ -129,6 +129,9 @@
 								<p class="title fl">
 									{{$v->gname}}
 								</p>
+									<p class="title fl">
+										{{$v->goodsDes}}
+									</p>
 								<p class="price fl">
 									<b>
 										¥

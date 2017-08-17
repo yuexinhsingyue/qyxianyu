@@ -230,7 +230,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -247,7 +247,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -263,7 +263,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -279,7 +279,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -295,7 +295,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -311,7 +311,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use App\Http\Model\Advert;
 use App\Http\Model\Car;
 use App\Http\Model\Goods;
+use App\Http\Model\Order;
+use App\Http\Model\OrderDetail;
 use App\Http\Model\Type;
 use Illuminate\Http\Request;
 
@@ -59,7 +61,7 @@ class IndexController extends Controller
             //遍历商品表父级下的二级分类
             $a[] = Type::where('pid',$v->tid)->get();
         }
-        $goods = Goods::all();
+       $goods = Goods::where('fid',0)->get();
         //购物车中里的信息
         $count =  count(Car::get());
        // $goods = $goods -> where('gname','like','%'.Input::get('search').'%') -> paginate(2);
@@ -169,12 +171,36 @@ class IndexController extends Controller
         $price = $input['nprice']*$input['goodsNum'];
         //购物车中里的信息
         $count =  count(Car::get());
-        return view('home.pay',compact('input','id','price','car','a','count'));
+        //获取订单的信息
+        $order = new Order();
+        //获取订单总价
+        $order->oprice = $price;
+        //获取下订单用户的ID
+        //$order->uid = session('homeuser')['uid'];
+        $order->uid = 11;
+         //获取地址表信息的ID
+        //存储订单信息
+        $order->save();
+        //获取订单详情信息
+        $orderdetail = new OrderDetail();
+        //获取订单详情表中商品的id
+        $orderdetail->gid = $id;
+        //订单id的获取
+        $orderdetail->id = $order->id;
+        //订单号
+        $orderdetail->oid =  date('ymdhis').rand(00000000,99999999);
+        $orderdetail->save();
+       // dd($order);
+        return view('home.pay',compact('input','id','price','car','a','count','order','orderdetail'));
     }
     //订单完成页
-    public function success()
+    public function success($id)
     {
-        return view('home.success');
+        $input = Goods::find($id);
+        //获取购买东西的总价格
+        $price = $input['nprice']*$input['goodsNum'];
+        //地址信息获取
+        return view('home.success',compact('price','id'));
     }
 
 

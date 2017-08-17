@@ -50,7 +50,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     //订单管理
     Route::resource('order','OrderController');
     //查看订单详情页
-    Route::get('detail','OrderController@detail');
+    Route::get('detail/{id}','OrderController@detail');
     //鱼塘管理
     Route::resource('fish','FishController');
     //广告管理
@@ -142,7 +142,7 @@ Route::group(['middleware'=>'home'], function() {
         Route::get('order/{id}','IndexController@pay');
 
         //商品订单完成页
-        Route::get('success','IndexController@success');
+        Route::get('success/{id}','IndexController@success');
         //个人中心页
         Route::get('personnal','IndexController@person');
 
