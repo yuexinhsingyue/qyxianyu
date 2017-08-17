@@ -90,6 +90,8 @@ Route::group(['middleware'=>'home'], function() {
 
     //前台用户登录
     Route::get('home/login','Home\LoginController@login');
+    //前台用户退出
+    Route::get('home/loginout','Home\LoginController@loginout');
     //前台用户注册
     Route::get('home/register','Home\LoginController@register');
     //前台登录验证

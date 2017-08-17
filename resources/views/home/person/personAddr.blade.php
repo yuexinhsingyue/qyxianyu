@@ -36,9 +36,14 @@
     <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
 
         @foreach( $addr as $res)
-        <li class="user-addresslist defaultAddr">
-            @if($res[''])
-            <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
+            @if($res['status'] == 1)
+            <li class="user-addresslist defaultAddr">
+                <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
+                @else
+                <li class="user-addresslist ">
+                <span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
+
+                @endif
             <p class="new-tit new-p-re">
                 <span class="new-txt">{{$res['name']}}</span>
                 <span class="new-txt-rd2">{{$res['phone']}}</span>
@@ -180,6 +185,13 @@
             $(".new-option-r").click(function() {
 
                 $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+                telephone = $('.defaultAddr p .new-txt-rd2').html();
+//                发送数据库更改状态
+                    $.post('{{}}',{tel:telephone},function(data){
+
+                        console.log(data);
+
+                    })
             });
 
             var $ww = $(window).width();
