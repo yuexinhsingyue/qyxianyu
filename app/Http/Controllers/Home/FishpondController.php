@@ -83,7 +83,7 @@ class FishpondController extends Controller
         // 如果没有图片上传就直接添加
         $res = Fish::create($data);
         if($res){
-            return redirect('home/person');
+            return redirect('home/personnal');
         }else{
             return back()->with('errors','鱼塘添加失败');
         }

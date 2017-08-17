@@ -34,7 +34,6 @@ class IndexController extends Controller
         $problem = Problem::where('status','=',1)->take(6)->get();
         $work = Works::where('status','=',1)->take(6)->get();
 
-
         //获取商品分类里的所有父类
         $ptype = Type::where('pid',0)->get();
         foreach($ptype as $k => $v){
