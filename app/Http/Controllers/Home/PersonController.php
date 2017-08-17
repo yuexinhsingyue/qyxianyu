@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Model\Address;
 use App\Http\Model\User;
 use App\Http\Model\UserDetail;
+use App\Http\Model\Car;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -103,11 +104,13 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function personaddr ()
     {
         $addr = Address::where('uid',15)->get();
-
-        return view('home.person.personAddr',$addr);
+//        dd($addr);
+        $count =  count(Car::get());
+        return view('home.person.personAddr',compact('addr','count'));
     }
 
 }
