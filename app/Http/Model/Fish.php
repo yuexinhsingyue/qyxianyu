@@ -30,7 +30,7 @@ class Fish extends Model implements AuthenticatableContract,
      *
      */
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'uid', 'fishpondname'];
+    protected $fillable = ['id', 'uid', 'fishpondname','synopsis','face','saatus'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -38,4 +38,6 @@ class Fish extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public $timestamps = false;
 }

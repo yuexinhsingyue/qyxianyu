@@ -100,6 +100,11 @@ Route::get('home/detail','Home\IndexController@detail');
 Route::get('home/news','Home\IndexController@news');
 //鱼塘页
 Route::get('home/fish','Home\IndexController@fish');
+//鱼塘列表
+Route::get('home/fishlist','Home\FishpondController@fishlist');
+//鱼塘添加
+Route::get('home/address','Home\FishpondController@create');
+Route::post('home/store','Home\FishpondController@store');
 
 
 /*

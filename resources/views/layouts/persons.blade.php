@@ -20,10 +20,7 @@
                     @section('content1')
                         @show
                 </div>
-                <div class="wrap-right">
-                    @section('content2')
-                    @show
-                </div>
+               
             </div>
 
         </div>
@@ -67,7 +64,7 @@
                     <a href="#">我的鱼塘</a>
                     <ul>
                         <li> <a href="#">鱼塘列表</a></li>
-                        <li> <a href="{{url('/home/address')}}">增加鱼塘</a></li>
+                         <li> <a href="{{url('/home/address')}}">增加鱼塘</a></li>
                     </ul>
                 </li>
             </ul>
