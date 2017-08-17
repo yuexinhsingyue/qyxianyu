@@ -152,6 +152,7 @@ class FigureController extends Controller
                unlink(public_path().$req->pic);      
             }
 
+        	$pic = $req -> file('simg');
             $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
             
             if(in_array($enev,['jpg','jpeg','png','gif']))
@@ -161,10 +162,10 @@ class FigureController extends Controller
                 $pic->move(public_path('uploads/'),$newName);     // 移动文件
 
                 // 生成缩略图
-                $sm = Image::make(public_path('uploads/').$newName)->resize(200,90)->save(public_path('uploads/').'sm_'.$newName);
+                $sm = Image::make(public_path('uploads/').$newName)->resize(1010,455)->save(public_path('uploads/').'sm_'.$newName);
 
                 $data['spic'] = '/uploads/'.$newName;
-                $data['simg'] = '<li class="banner2"><a href="'.$data['surl'].'"><img src=/uploads/"'.'sm_'.$newName.'" /></a></li>';
+                $data['simg'] = '<li class="banner2"><a href="'.$data['surl'].'"><img src=/uploads/'.'sm_'.$newName.' /></a></li>';
 
 
             }else{

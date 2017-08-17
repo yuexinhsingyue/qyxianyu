@@ -180,11 +180,11 @@ class AdvertController extends Controller
                     //生成缩略图
                     $img = Image::make(public_path('uploads/').$newName) -> resize(60,60);
                     $img -> save(public_path('uploads/').'sm_'.$newName);
-                  
+
                     // 删除旧图片
                     // echo public_path().$request->input('pic');
                     //  if($request->input('pic')) {
-                        
+
                     //     unlink(public_path().$request->input('pic'));
                     //  }
                 }

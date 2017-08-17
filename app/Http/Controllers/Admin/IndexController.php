@@ -128,6 +128,4 @@ class IndexController extends Controller
         return redirect('admin/index');
     }
 
-
-
 }

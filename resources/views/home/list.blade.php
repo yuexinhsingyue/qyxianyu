@@ -70,43 +70,26 @@
 								<dt class="am-badge am-round">
 									品牌
 								</dt>
+								@foreach($ptype as $k=>$v)
 								<div class="dd-conent">
 									<dd class="select-all selected">
 										<a href="#">
-											全部
+											{{$v->tname}}
 										</a>
 									</dd>
+									@foreach($a as $m=>$n)
+										@if($k == $m)
+											@foreach($n as $j=>$h)
 									<dd>
 										<a href="#">
-											百草味
+											{{$h->tname}}
 										</a>
 									</dd>
-									<dd>
-										<a href="#">
-											良品铺子
-										</a>
-									</dd>
-									<dd>
-										<a href="#">
-											新农哥
-										</a>
-									</dd>
-									<dd>
-										<a href="#">
-											楼兰蜜语
-										</a>
-									</dd>
-									<dd>
-										<a href="#">
-											口水娃
-										</a>
-									</dd>
-									<dd>
-										<a href="#">
-											考拉兄弟
-										</a>
-									</dd>
+											@endforeach
+										@endif
+									@endforeach
 								</div>
+								@endforeach
 							</dl>
 						</li>
 					</ul>
@@ -139,28 +122,30 @@
 					<div class="clear">
 					</div>
 					<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
+						@foreach($goods as  $k=>$v)
 						<li>
-							<a href="{{ url('home/detail') }}"><div class="i-pic limit">
-								<img src="{{ url('home/img/imgsearch1.jpg') }}" />
+							<a href="{{ url('home/detail/'.$v->id) }}"><div class="i-pic limit">
+								<img src="/{{ $v->pic  }}" />
 								<p class="title fl">
-									【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮
+									{{$v->gname}}
 								</p>
 								<p class="price fl">
 									<b>
 										¥
 									</b>
 									<strong>
-										56.90
+										{{$v->nprice}}
 									</strong>
 								</p>
 								<p class="number fl">
-									销量
+									数量
 									<span>
-									1110
+									{{$v->goodsNum}}
 								</span>
 								</p>
 								</div></a>
 						</li>
+							@endforeach
 					</ul>
 				</div>
 				<div class="search-side">

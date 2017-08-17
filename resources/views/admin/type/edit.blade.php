@@ -10,7 +10,7 @@
         <form  action="{{url('admin/type/'.$cate->tid)}}" method="post">
             {{csrf_field()}}
             <input name="_method" type="hidden" value="put" />
-            <div class="card card-block">
+                <div class="card card-block">
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label text-xs-right">
                         父级分类:

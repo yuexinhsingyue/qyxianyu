@@ -84,44 +84,54 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
 
 });
 
-//前台用户登录
-Route::get('home/login','Home\LoginController@login');
-//前台用户注册
-Route::get('home/register','Home\LoginController@register');
-//前台登录验证
-Route::post('home/dologin','Home\LoginController@dologin');
-//前台主页
-Route::get('/','Home\IndexController@index');
-//商品列表页
-Route::get('home/list','Home\IndexController@list');
-//商品详情页
-Route::get('home/detail','Home\IndexController@detail');
-//问题页
-Route::get('home/pro/{pid}484.html','Home\IndexController@problems');
-// 文章页
-Route::get('home/work/{wid}289.html','Home\IndexController@works');
-//鱼塘页
-Route::get('home/fish','Home\IndexController@fish');
+Route::group(['middleware'=>'home'], function() {
+
+    //前台用户登录
+    Route::get('home/login','Home\LoginController@login');
+    //前台用户注册
+    Route::get('home/register','Home\LoginController@register');
+    //前台登录验证
+    Route::post('home/dologin','Home\LoginController@dologin');
+    //前台主页
+    Route::get('/','Home\IndexController@index');
+    //商品列表页
+    Route::get('home/list','Home\IndexController@list');
+    //商品详情页
+    Route::get('home/detail/{id}','Home\IndexController@detail');
+    //问题页
+    Route::get('home/pro/{pid}484.html','Home\IndexController@problems');
+    // 文章页
+    Route::get('home/work/{wid}289.html','Home\IndexController@works');
+    //鱼塘页
+    Route::get('home/fish','Home\IndexController@fish');
 
 
-/*
- * 前台
- * 路由前缀：home
- * 命名空间：home
- */
-Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
-    //商品添加页
-    Route::resource('goods','GoodsController');
-    //商品购物车页
-    Route::get('car','IndexController@car');
-    //商品订单页
-    Route::get('order','IndexController@pay');
-    //商品订单完成页
-    Route::get('success','IndexController@success');
-    //个人中心页
-    Route::get('person','IndexController@person');
+    /*
+     * 前台
+     * 路由前缀：home
+     * 命名空间：home
+     */
+    Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
+        //商品添加页
+        Route::resource('goods','GoodsController');
+        //商品购物车页
+        Route::get('car/{id}','IndexController@car');
+        //商品订单页
+        Route::get('order','IndexController@pay');
+        //商品订单完成页
+        Route::get('success','IndexController@success');
+        //个人中心页
+        Route::get('personnal','IndexController@person');
+
+        // 个人信息
+        Route::get('personinfo','PersonController@personInfo');
+        //  修改个人信息
+        Route::post('savepersoninfo','PersonController@savePersonInfo');
+        //  地址管理
+        Route::post('personaddr','PersonController@personaddr');
+
+    });
+
+
+
 });
-
-
-
-

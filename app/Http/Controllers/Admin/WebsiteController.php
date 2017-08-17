@@ -220,6 +220,7 @@ class WebsiteController extends Controller
                unlink(public_path().$req->pic);      
             }
 
+            $pic = $req -> file('logo');
             $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
             
             if(in_array($enev,['jpg','jpeg','png','gif']))

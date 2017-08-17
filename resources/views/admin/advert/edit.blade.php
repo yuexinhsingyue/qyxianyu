@@ -118,7 +118,7 @@
 
 <script type="text/javascript">
     $("input:file").change( function() {
-        alert('dddddddddddd');
+//        alert('dddddddddddd');
         
     });
 

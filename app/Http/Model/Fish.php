@@ -27,7 +27,9 @@ class Fish extends Model implements AuthenticatableContract,
      * The attributes that are mass assignable.
      *
      * @var array
+     *
      */
+    protected $primaryKey = 'id';
     protected $fillable = ['id', 'uid', 'fishpondname'];
 
     /**
