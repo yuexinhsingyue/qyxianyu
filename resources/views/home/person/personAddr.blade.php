@@ -52,58 +52,16 @@
                 <p class="new-mu_l2cw">
                     <span class="title">地址：</span>
                     <span class="province">{{$res['address']}}</span>
-                    {{--<span class="city">武汉</span>市--}}
-                    {{--<span class="dist">洪山</span>区--}}
-                    {{--<span class="street">雄楚大道666号(中南财经政法大学)</span></p>--}}
+
             </div>
             <div class="new-addr-btn">
                 <a href="#"><i class="am-icon-edit"></i>编辑</a>
                 <span class="new-addr-bar">|</span>
-                <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
+                <a href="javascript:void(0);" id="<?=$res['id'] ?>"   onclick="delClick(this)"> <i class="am-icon-trash"></i>删除</a>
+
             </div>
         </li>
         @endforeach
-
-        {{--<li class="user-addresslist">--}}
-            {{--<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>--}}
-            {{--<p class="new-tit new-p-re">--}}
-                {{--<span class="new-txt">小叮当</span>--}}
-                {{--<span class="new-txt-rd2">159****1622</span>--}}
-            {{--</p>--}}
-            {{--<div class="new-mu_l2a new-p-re">--}}
-                {{--<p class="new-mu_l2cw">--}}
-                    {{--<span class="title">地址：</span>--}}
-                    {{--<span class="province">湖北</span>省--}}
-                    {{--<span class="city">武汉</span>市--}}
-                    {{--<span class="dist">洪山</span>区--}}
-                    {{--<span class="street">雄楚大道666号(中南财经政法大学)</span></p>--}}
-            {{--</div>--}}
-            {{--<div class="new-addr-btn">--}}
-                {{--<a href="#"><i class="am-icon-edit"></i>编辑</a>--}}
-                {{--<span class="new-addr-bar">|</span>--}}
-                {{--<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>--}}
-            {{--</div>--}}
-        {{--</li>--}}
-        {{--<li class="user-addresslist">--}}
-            {{--<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>--}}
-            {{--<p class="new-tit new-p-re">--}}
-                {{--<span class="new-txt">小叮当</span>--}}
-                {{--<span class="new-txt-rd2">159****1622</span>--}}
-            {{--</p>--}}
-            {{--<div class="new-mu_l2a new-p-re">--}}
-                {{--<p class="new-mu_l2cw">--}}
-                    {{--<span class="title">地址：</span>--}}
-                    {{--<span class="province">湖北</span>省--}}
-                    {{--<span class="city">武汉</span>市--}}
-                    {{--<span class="dist">洪山</span>区--}}
-                    {{--<span class="street">雄楚大道666号(中南财经政法大学)</span></p>--}}
-            {{--</div>--}}
-            {{--<div class="new-addr-btn">--}}
-                {{--<a href="#"><i class="am-icon-edit"></i>编辑</a>--}}
-                {{--<span class="new-addr-bar">|</span>--}}
-                {{--<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>--}}
-            {{--</div>--}}
-        {{--</li>--}}
 
     </ul>
     <div class="clear"></div>
@@ -181,24 +139,47 @@
 @endsection
 @section('js')
     <script type="text/javascript">
+        {{--处理修改默认地址时候使用--}}
         $(document).ready(function() {
             $(".new-option-r").click(function() {
 
                 $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
                 telephone = $('.defaultAddr p .new-txt-rd2').html();
 //                发送数据库更改状态
-                    $.post('{{}}',{tel:telephone},function(data){
-
-                        console.log(data);
-
+                    $.get('{{url("home/personaddr/create")}}',{tel:telephone},function(data){
+                       if(data) {
+//                           成功返回1
+                       }  else {
+//                           失败返回0
+                       }
                     })
             });
-
             var $ww = $(window).width();
             if($ww>640) {
                 $("#doc-modal-1").removeClass("am-modal am-modal-no-btn");
             }
-            })
+            });
+
+//        删除地址
+        function delClick( date )
+        {
+//          console.log(date.id);
+//            移除页面要删除的地址
+//            date.parentNode.parentNode.remove();
+//            发送数据库更改状态
+            $.get('{{url("home/delpersonaddr")}}', {aid:date.id}, function(data) {
+                if(data) {
+                    console.log(data);
+//                    删除成功后移除本地地址列表
+                    var ids = '#' + date.id;
+                    aa = $(ids).parent().parent().remove();
+                } else {
+//                    删除失败
+                }
+            });
+        }
+
+
     </script>
 
     @endsection

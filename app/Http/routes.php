@@ -152,6 +152,9 @@ Route::group(['middleware'=>'home'], function() {
         Route::get('personinfo','PersonController@personInfo');
         //  修改个人信息
         Route::post('savepersoninfo','PersonController@savePersonInfo');
+        //  删除地址
+        Route::get('delpersonaddr','PersonController@delPersonAddr');
+
         //  地址管理
         //   Route::get('personaddr','PersonController@personaddr');
         //  地址管理
