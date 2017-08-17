@@ -23,6 +23,12 @@ class LoginController extends Controller
     {
         return view('home.login');
     }
+    //退出
+    public function loginout()
+    {
+        session()->flush();
+        return redirect('/');
+    }
     //登录成功
     public function dologin()
     {
@@ -58,13 +64,14 @@ class LoginController extends Controller
     {
         $res = Input::except('_token');
         $rule = [
-            'email' => 'required|email',
+            'email' => 'required|email|unique:user_details,emill',
             'password' => 'required|between:6,12',
             'repwd' => 'same:password',
         ];
         $msg = [
             'email.required' => '用户名必填',
             'email.email' => '用户名格式不正确',
+            'email.unique' => '该用户已注册',
             'password.required' => '密码必须输入',
             'password.between' => '密码格式不正确',
             'repwd.same' => '密码不一致',
