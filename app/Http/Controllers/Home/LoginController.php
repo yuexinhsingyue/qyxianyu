@@ -23,6 +23,12 @@ class LoginController extends Controller
     {
         return view('home.login');
     }
+    //退出
+    public function loginout()
+    {
+        session()->flush();
+        return redirect('/');
+    }
     //登录成功
     public function dologin()
     {
