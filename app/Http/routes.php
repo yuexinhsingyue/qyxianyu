@@ -60,7 +60,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     //鱼塘管理
     Route::resource('fish','FishController');
     //广告管理
-    Route::resource('advert','advertController');
+    Route::resource('advert','AdvertController');
     //数据统计
     // Route::resource('dataSta','DataStaController');
     Route::get('dataSta','DataStaController@dataSta');
