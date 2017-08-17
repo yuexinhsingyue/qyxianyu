@@ -124,6 +124,8 @@ Route::group(['middleware'=>'home'], function() {
 
     //鱼塘列表
     Route::get('home/fishlist','Home\FishpondController@fishlist');
+    //鱼塘列表
+    Route::get('home/fishgoods/{id}','Home\FishpondController@fishgoods');
     //鱼塘添加
     Route::get('home/address','Home\FishpondController@create');
     Route::post('home/store','Home\FishpondController@store');
