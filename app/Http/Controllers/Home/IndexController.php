@@ -22,6 +22,7 @@ class IndexController extends Controller
     public function index()
     {
 
+
         //获取首页上所有电脑分类的信息
         $com = Goods::where('tid',30)->get();
 
@@ -30,13 +31,6 @@ class IndexController extends Controller
         // 相关文章、相关问题标题
         $problem = Problem::where('status','=',1)->take(6)->get();
         $work = Works::where('status','=',1)->take(6)->get();
-
-
-        //获取首页上所有电脑分类的信息
-
-//        $com = Type::where('tid',38)->get();
-
-        $com = Goods::where('tid',30)->get();
 
 
         //获取商品分类里的所有父类
@@ -52,6 +46,7 @@ class IndexController extends Controller
         $advert = Advert::where('status',1)->groupBy('adposition')->orderBy('adposition')-> get();
 
         return view('home.index',compact('ptype','a','advert','figure','com','count','problem','work'));
+
     }
 
     

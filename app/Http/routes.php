@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,9 +12,10 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
+
+
+
 
 //后台用户登录
 Route::get('admin/login','Admin\LoginController@login');
@@ -23,9 +25,9 @@ Route::post('admin/dologin','Admin\LoginController@dologin');
 Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
 // 百度地图
 Route::get('admin/baiduapi', function(){
-    // echo 'dddddddd';
     return view('admin.baiduapi.baiduapi');
 });
+
 
 /*
  * 后台
@@ -33,6 +35,7 @@ Route::get('admin/baiduapi', function(){
  * 命名空间: admin
  */
 Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'], function() {
+
 
     //显示首页
     Route::get('index','IndexController@index');
@@ -82,8 +85,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     // 轮播图
     Route::resource('figure', 'FigureController');
 
-});
 
+});
 
 
 /*
@@ -130,12 +133,13 @@ Route::group(['middleware'=>'home'], function() {
 
     //鱼塘列表
     Route::get('home/fishlist','Home\FishpondController@fishlist');
+    // 用户鱼塘列表
+    Route::get('home/fishuser','Home\FishpondController@index');
+    // 我的鱼塘下的商品
+    Route::get('home/fishgoods/{id}','Home\FishpondController@usergoods');
     //鱼塘添加
     Route::get('home/address','Home\FishpondController@create');
     Route::post('home/store','Home\FishpondController@store');
-
-
-
 
 
 
@@ -147,15 +151,20 @@ Route::group(['middleware'=>'home'], function() {
         //商品购物车页
         Route::get('car/{id}','IndexController@car');
 
+
+
+
         //删除商品购物车
         Route::get('delCar/{id}','IndexController@delCar');
         //商品订单页
         Route::get('order/{id}','IndexController@pay');
 
+
         //商品订单完成页
         Route::get('success','IndexController@success');
         //个人中心页
         Route::get('personnal','IndexController@person');
+
 
         // 个人信息
         Route::get('personinfo','PersonController@personInfo');
@@ -166,5 +175,12 @@ Route::group(['middleware'=>'home'], function() {
         //  地址管理
         Route::resource('personaddr', 'PersonAddrController');
 
+
+
+
         });
+
+
+
+
 });

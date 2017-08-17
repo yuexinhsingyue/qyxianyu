@@ -20,10 +20,7 @@
                     @section('content1')
                         @show
                 </div>
-                <div class="wrap-right">
-                    @section('content2')
-                    @show
-                </div>
+               
             </div>
 
         </div>
@@ -34,10 +31,11 @@
                     <a href="#">个人中心</a>
                 </li>
                 <li class="person">
-                    <a href="{{url('home/personnal')}}">个人资料</a>
+                    <a href="#">个人资料</a>
                     <ul>
-                        <li> <a href="{{url('home/personinfo')}}">个人信息</a></li>
-                        <li> <a href="{{url('home/personaddr')}}">收货地址</a></li>
+                        <li> <a href="#">个人信息</a></li>
+                        <li> <a href="#">安全设置</a></li>
+                        <li> <a href="#">收货地址</a></li>
                     </ul>
                 </li>
                 <li class="person">
@@ -65,8 +63,8 @@
                 <li class="person">
                     <a href="#">我的鱼塘</a>
                     <ul>
-                        <li> <a href="{{url('/home/fishuser')}}">鱼塘列表</a></li>
-                        <li> <a href="{{url('/home/address')}}">增加鱼塘</a></li>
+                        <li> <a href="{{url('home/fishuser')}}">鱼塘列表</a></li>
+                         <li> <a href="{{url('/home/address')}}">增加鱼塘</a></li>
                     </ul>
                 </li>
             </ul>
@@ -76,7 +74,3 @@
 
 
 @endsection
-@section('js')
-        @section('js')
-        @show
-    @endsection

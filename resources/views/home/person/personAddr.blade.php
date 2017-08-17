@@ -36,8 +36,14 @@
     <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
 
         @foreach( $addr as $res)
-        <li class="user-addresslist defaultAddr">
-            <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
+            @if($res['status'] == 1)
+            <li class="user-addresslist defaultAddr">
+                <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
+                @else
+                <li class="user-addresslist ">
+                <span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
+
+                @endif
             <p class="new-tit new-p-re">
                 <span class="new-txt">{{$res['name']}}</span>
                 <span class="new-txt-rd2">{{$res['phone']}}</span>
@@ -45,10 +51,10 @@
             <div class="new-mu_l2a new-p-re">
                 <p class="new-mu_l2cw">
                     <span class="title">地址：</span>
-                    <span class="province">湖北</span>省
-                    <span class="city">武汉</span>市
-                    <span class="dist">洪山</span>区
-                    <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
+                    <span class="province">{{$res['address']}}</span>
+                    {{--<span class="city">武汉</span>市--}}
+                    {{--<span class="dist">洪山</span>区--}}
+                    {{--<span class="street">雄楚大道666号(中南财经政法大学)</span></p>--}}
             </div>
             <div class="new-addr-btn">
                 <a href="#"><i class="am-icon-edit"></i>编辑</a>
@@ -179,6 +185,7 @@
             $(".new-option-r").click(function() {
 
                 $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+
             });
 
             var $ww = $(window).width();

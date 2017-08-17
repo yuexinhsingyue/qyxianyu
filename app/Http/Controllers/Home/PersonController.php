@@ -25,8 +25,11 @@ class PersonController extends Controller
      */
     public function personInfo()
     {
-        $uname = User::where('uid',session('homeuser')) -> value('uname');
-        $userdetail = UserDetail::where('uid',session('homeuser'))->get();
+//        dd(session('homeuser')["uid"]);
+
+        $uname = User::where('uid',session('homeuser')["uid"]) ->value('uname');
+
+        $userdetail = UserDetail::where('uid',session('homeuser')["uid"])->get();
         $userdetail = $userdetail[0];
 
         return view('home.person.personInfo',compact('uname','userdetail'));
@@ -67,7 +70,6 @@ class PersonController extends Controller
         //是否有上传文件
         if($request -> hasFile('face'))
         {
-
             //文件上传
             $file = $request -> file('face');
             //判断上传文件是否有效
@@ -83,14 +85,12 @@ class PersonController extends Controller
                 $img = Image::make(public_path('/uploads/').$newname) -> resize(60,60);
                 $img -> save(public_path('uploads/').'sml'.$newname);
                 $res['face'] = 'uploads/sml'.$newname;
-
             } else {
                 return redirect()->back()->withInput()->withErrors('文件上传失败');
             }
         }
-
 //        UserDetail::where('uid',session('user')['uid'])-> update($res);
-        UserDetail::where('uid',session('homeuser'))-> update($res);
+        UserDetail::where('uid',session('homeuser')['uid'])-> update($res);
 
         return redirect('home/personinfo');
 
@@ -104,12 +104,12 @@ class PersonController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function personaddr ()
-    {
-        $addr = Address::where('uid',15)->get();
-//        dd($addr);
-        $count =  count(Car::get());
-        return view('home.person.personAddr',compact('addr','count'));
-    }
+//    public function personaddr ()
+//    {
+//        $addr = Address::where('uid',session('homeuser')['uid'])->get();
+////        dd($addr);
+//        $count =  count(Car::get());
+//        return view('home.person.personAddr',compact('addr','count'));
+//    }
 
 }
