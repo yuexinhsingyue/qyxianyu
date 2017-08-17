@@ -122,6 +122,7 @@ Route::group(['middleware'=>'home'], function() {
 
     //鱼塘列表
     Route::get('home/fishlist','Home\FishpondController@fishlist');
+    Route::get('home/fishgoods','Home\FishpondController@fishlist');
     //鱼塘添加
     Route::get('home/address','Home\FishpondController@create');
     Route::post('home/store','Home\FishpondController@store');
