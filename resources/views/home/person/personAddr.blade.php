@@ -185,7 +185,13 @@
             $(".new-option-r").click(function() {
 
                 $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+                telephone = $('.defaultAddr p .new-txt-rd2').html();
+//                发送数据库更改状态
+                    $.post('{{}}',{tel:telephone},function(data){
 
+                        console.log(data);
+
+                    })
             });
 
             var $ww = $(window).width();
