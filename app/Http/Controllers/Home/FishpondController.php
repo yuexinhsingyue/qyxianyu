@@ -22,6 +22,11 @@ class FishpondController extends Controller
     public function index()
     {
        
+        $uid = session('homeuser')['uid'];
+        $fish = Fish::where('uid',$uid)->get();
+
+        return view('home.fish.index',compact('fish'));
+
     }
     public function fishlist(Request $request)
     {
@@ -91,7 +96,59 @@ class FishpondController extends Controller
         }
     }   
 
-    public function fishgoods($id)
+
+    // 用户鱼塘的指定商品
+    public function usergoods($id)
+    {
+        $res = Goods::where('fid',$id)->get();
+        
+        return view('home.fish.fish_index',compact('res'));
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+
     {
          $goods = Goods::where('fid',$id)->get();
         return view('home.fish.fishgoods',compact('goods'));

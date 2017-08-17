@@ -65,7 +65,7 @@
                 <li class="person">
                     <a href="#">我的鱼塘</a>
                     <ul>
-                        <li> <a href="#">鱼塘列表</a></li>
+                        <li> <a href="{{url('/home/fishuser')}}">鱼塘列表</a></li>
                         <li> <a href="{{url('/home/address')}}">增加鱼塘</a></li>
                     </ul>
                 </li>

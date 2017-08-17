@@ -24,15 +24,14 @@ class IndexController extends Controller
 
 
         //获取首页上所有电脑分类的信息
-
         $com = Goods::where('tid',30)->get();
 
         // 轮播图
         $figure = Slid::where('status','=',1)->get();
-
         // 相关文章、相关问题标题
         $problem = Problem::where('status','=',1)->take(6)->get();
         $work = Works::where('status','=',1)->take(6)->get();
+
 
         //获取商品分类里的所有父类
         $ptype = Type::where('pid',0)->get();
@@ -49,6 +48,8 @@ class IndexController extends Controller
         return view('home.index',compact('ptype','a','advert','figure','com','count','problem','work'));
 
     }
+
+    
     //前台大厅列表页
     public function list()
     {
@@ -89,9 +90,17 @@ class IndexController extends Controller
     //问题
     public function problems($pid)
     {
+
+        // 上一篇文章  下一篇文章
+        $article['prev'] =  Problem::orderBy('pid','desc')->where('pid','<',$pid)->where('status','=','1')->first();
+        $article['next'] =  Problem::orderBy('pid','asc')->where('pid','>',$pid)->where('status','=','1')->first();
+
         $pro = Problem::find($pid);
 
-        return view('home.pro',compact('pro'));
+        // 热门文章 
+        $rel = Problem::where('status','=','1')->orderBy('pid','desc')->take(5)->get();
+
+        return view('home.pro',compact('pro','article','rel'));
     }
     // 文章
     public function works($wid)
@@ -103,7 +112,7 @@ class IndexController extends Controller
 
         // 当前文章信息
         $work = Works::find($wid);
-    
+
         // 热门文章 
         $rel = Works::where('status','=','1')->orderBy('wid','desc')->take(5)->get();
 

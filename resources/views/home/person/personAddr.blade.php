@@ -55,8 +55,9 @@
 
             </div>
             <div class="new-addr-btn">
-                <a href="#"><i class="am-icon-edit"></i>编辑</a>
+                <a href="javascript:void(0);"><i class="am-icon-edit"></i>编辑</a>
                 <span class="new-addr-bar">|</span>
+
                 <a href="javascript:void(0);" id="<?=$res['id'] ?>"   onclick="delClick(this)"> <i class="am-icon-trash"></i>删除</a>
 
             </div>

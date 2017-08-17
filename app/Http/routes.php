@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,6 +11,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+
+
 
 
 
@@ -24,12 +28,14 @@ Route::get('admin/baiduapi', function(){
     return view('admin.baiduapi.baiduapi');
 });
 
+
 /*
  * 后台
  * 路由前缀：admin
  * 命名空间: admin
  */
 Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'], function() {
+
 
     //显示首页
     Route::get('index','IndexController@index');
@@ -79,7 +85,9 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     // 轮播图
     Route::resource('figure', 'FigureController');
 
+
 });
+
 
 /*
  * 前台
@@ -87,6 +95,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
  * 命名空间：home
  */
 Route::group(['middleware'=>'home'], function() {
+
 
     //前台用户登录
     Route::get('home/login','Home\LoginController@login');
@@ -117,15 +126,24 @@ Route::group(['middleware'=>'home'], function() {
     //鱼塘页
     Route::get('home/fish','Home\IndexController@fish');
 
+
     // 引导用户到qq的登录授权页面
     Route::get('auth/qq', 'Home\AuthController@qq');
     // 用户授权后qq回调的页面
     Route::get('auth/callback', 'Home\AuthController@callback');
 
+
     //鱼塘列表
     Route::get('home/fishlist','Home\FishpondController@fishlist');
+
     //鱼塘列表
     Route::get('home/fishgoods/{id}','Home\FishpondController@fishgoods');
+
+    // 用户鱼塘列表
+    Route::get('home/fishuser','Home\FishpondController@index');
+    // 我的鱼塘下的商品
+    Route::get('home/fishgoods/{id}','Home\FishpondController@usergoods');
+
     //鱼塘添加
     Route::get('home/address','Home\FishpondController@create');
     Route::post('home/store','Home\FishpondController@store');
@@ -134,10 +152,13 @@ Route::group(['middleware'=>'home'], function() {
 
     Route::group(['prefix' => 'home','middleware'=>'home.login', 'namespace' => 'Home'], function () {
 
+
         //商品添加页
         Route::resource('goods','GoodsController');
         //商品购物车页
         Route::get('car/{id}','IndexController@car');
+
+
 
 
         //删除商品购物车
@@ -145,10 +166,12 @@ Route::group(['middleware'=>'home'], function() {
         //商品订单页
         Route::get('order/{id}','IndexController@pay');
 
+
         //商品订单完成页
         Route::get('success','IndexController@success');
         //个人中心页
         Route::get('personnal','IndexController@person');
+
 
         // 个人信息
         Route::get('personinfo','PersonController@personInfo');
@@ -163,7 +186,11 @@ Route::group(['middleware'=>'home'], function() {
         Route::resource('personaddr', 'PersonAddrController');
 
 
+
+
         });
+
+
 
 
 });

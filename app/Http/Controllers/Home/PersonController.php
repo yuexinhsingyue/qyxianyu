@@ -108,7 +108,7 @@ class PersonController extends Controller
         //    获取要删除的地址ID
         $aid = $request->input('aid');
         if ($aid) {
-            $res = $addr = Address::where('id', $aid)->delete;
+            $res = $addr = Address::where('id', $aid)->delete();
         } else {
             $res = 0;
         }

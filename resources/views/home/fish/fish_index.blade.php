@@ -1,5 +1,5 @@
 @extends('layouts.person')
-@section('title','个人商品列表页')
+@section('title','鱼塘下商品')
 
 @section('header')
    <link href="{{url("home/css/personal.css")}}" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
             <a class="am-badge am-badge-danger am-round">在售</a>
          </div>
          <div class="s-content">
-            @foreach($goods as $k=>$v)
+            @foreach($res as $k=>$v)
             <div class="s-item-wrap">
 
                <div class="s-item">
