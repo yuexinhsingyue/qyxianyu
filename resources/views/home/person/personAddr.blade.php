@@ -37,6 +37,7 @@
 
         @foreach( $addr as $res)
         <li class="user-addresslist defaultAddr">
+            @if($res[''])
             <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
             <p class="new-tit new-p-re">
                 <span class="new-txt">{{$res['name']}}</span>
@@ -45,10 +46,10 @@
             <div class="new-mu_l2a new-p-re">
                 <p class="new-mu_l2cw">
                     <span class="title">地址：</span>
-                    <span class="province">湖北</span>省
-                    <span class="city">武汉</span>市
-                    <span class="dist">洪山</span>区
-                    <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
+                    <span class="province">{{$res['address']}}</span>
+                    {{--<span class="city">武汉</span>市--}}
+                    {{--<span class="dist">洪山</span>区--}}
+                    {{--<span class="street">雄楚大道666号(中南财经政法大学)</span></p>--}}
             </div>
             <div class="new-addr-btn">
                 <a href="#"><i class="am-icon-edit"></i>编辑</a>

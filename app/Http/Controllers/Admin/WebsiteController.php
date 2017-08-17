@@ -64,8 +64,8 @@ class WebsiteController extends Controller
         ];
         $validator = Validator::make($data,$rule,$mess);
 
-        if($validator->fails()){       //如果验证失败：
-            return back()->withErrors($validator)->withInput();
+       if($validator->fails()){
+            return back() -> withErrors($validator) -> withInput();
         }
 
         // 文件上传

@@ -110,10 +110,17 @@ Route::get('home/pro/{pid}484.html','Home\IndexController@problems');
 Route::get('home/work/{wid}289.html','Home\IndexController@works');
 //鱼塘页
 Route::get('home/fish','Home\IndexController@fish');
+
 // 引导用户到qq的登录授权页面
 Route::get('auth/qq', 'Home\AuthController@qq');
 // 用户授权后qq回调的页面
 Route::get('auth/callback', 'Home\AuthController@callback');
+
+//鱼塘列表
+Route::get('home/fishlist','Home\FishpondController@fishlist');
+//鱼塘添加
+Route::get('home/address','Home\FishpondController@create');
+Route::post('home/store','Home\FishpondController@store');
 
 /*
  * 前台

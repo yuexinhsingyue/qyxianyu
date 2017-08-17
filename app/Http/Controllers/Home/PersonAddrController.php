@@ -21,7 +21,7 @@ class PersonAddrController extends Controller
      */
     public function index ()
     {
-        $addr = Address::where('uid',15)->get();
+        $addr = Address::where('uid',session('homeuser')["uid"])->get();
 //        dd($addr);
         $count =  count(Car::get());
         return view('home.person.personAddr',compact('addr','count'));
@@ -47,7 +47,7 @@ class PersonAddrController extends Controller
         $newAddr = $request -> except('_token');
         $addr = $request -> input('address1').$request->input('address2');
 
-        $newAddr['uid'] = session('homeuser');
+        $newAddr['uid'] = session('homeuser')["uid"];
         $newAddr['address'] = $addr;
 
         unset($newAddr['address1']);
