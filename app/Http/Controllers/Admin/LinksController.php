@@ -99,7 +99,7 @@ class LinksController extends Controller
      */
     public function update(Request $req, $id)
     {
-
+        
         $data = $req->except(['_token','_method','pic']);       // 过滤一下子数据 
 
         if($req->hasFile('limg')){     // 文件上传

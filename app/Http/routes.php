@@ -105,7 +105,9 @@ Route::get('home/list','Home\IndexController@list');
 //商品详情页
 Route::get('home/detail/{id}','Home\IndexController@detail');
 //问题页
-Route::get('home/news','Home\IndexController@news');
+Route::get('home/pro/{pid}484.html','Home\IndexController@problems');
+// 文章页
+Route::get('home/work/{wid}289.html','Home\IndexController@works');
 //鱼塘页
 Route::get('home/fish','Home\IndexController@fish');
 // 引导用户到qq的登录授权页面

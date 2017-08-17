@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
 use App\Http\Model\Slid;
+use App\Http\Model\Problem;
+use App\Http\Model\Works;
 
 class IndexController extends Controller
 {
@@ -20,9 +22,19 @@ class IndexController extends Controller
     public function index()
     {
 
+
         //获取首页上所有电脑分类的信息
 
         $com = Goods::where('tid',30)->get();
+
+        // 轮播图
+        $figure = Slid::where('status','=',1)->get();
+
+        // 相关文章、相关问题标题
+        $problem = Problem::where('status','=',1)->take(6)->get();
+        $work = Works::where('status','=',1)->take(6)->get();
+
+
         //获取商品分类里的所有父类
         $ptype = Type::where('pid',0)->get();
         foreach($ptype as $k => $v){
@@ -35,9 +47,7 @@ class IndexController extends Controller
         //  广告位
         $advert = Advert::where('status',1)->groupBy('adposition')->orderBy('adposition')-> get();
 
-        // 轮播图
-        $figure = Slid::where('status','=',1)->get();
-        return view('home.index',compact('ptype','a','advert','figure','com','count'));
+        return view('home.index',compact('ptype','a','advert','figure','com','count','problem','work'));
 
     }
     //前台大厅列表页
@@ -78,9 +88,28 @@ class IndexController extends Controller
     }
 
     //问题
-    public function news()
+    public function problems($pid)
     {
-        return view('home.news');
+        $pro = Problem::find($pid);
+
+        return view('home.pro',compact('pro'));
+    }
+    // 文章
+    public function works($wid)
+    {   
+
+        // 上一篇文章  下一篇文章
+        $article['prev'] =  Works::orderBy('wid','desc')->where('wid','<',$wid)->where('status','=','1')->first();
+        $article['next'] =  Works::orderBy('wid','asc')->where('wid','>',$wid)->where('status','=','1')->first();
+
+        // 当前文章信息
+        $work = Works::find($wid);
+    
+        // 热门文章 
+        $rel = Works::where('status','=','1')->orderBy('wid','desc')->take(5)->get();
+
+        return view('home.work',compact('work','article','rel'));
+
     }
     //鱼塘
     public function fish()

@@ -25,10 +25,9 @@ class PersonController extends Controller
      */
     public function personInfo()
     {
-        $uname = User::where('uid',15) -> value('uname');
-        $userdetail = UserDetail::where('uid',15)->get();
+        $uname = User::where('uid',session('homeuser')) -> value('uname');
+        $userdetail = UserDetail::where('uid',session('homeuser'))->get();
         $userdetail = $userdetail[0];
-//        dd($userdetail);
 
         return view('home.person.personInfo',compact('uname','userdetail'));
     }
@@ -91,7 +90,7 @@ class PersonController extends Controller
         }
 
 //        UserDetail::where('uid',session('user')['uid'])-> update($res);
-        UserDetail::where('uid',15)-> update($res);
+        UserDetail::where('uid',session('homeuser'))-> update($res);
 
         return redirect('home/personinfo');
 

@@ -54,7 +54,7 @@ class ArticleConteoller extends Controller
         $msg = [
             'wtitle.required' => '标题必须输入',
             'wtitle.between' => '文章标题太长！',
-            'wdescript.required' => '描述必须输入',
+            'wdesc.required' => '描述必须输入',
             'wdesc.between' => '文章描述太长！',
             'wcontent.required' => '内容必须输入',
         ];

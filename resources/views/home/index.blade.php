@@ -1,5 +1,5 @@
 @extends('layouts.home')
-@section('title','首页')
+@section('title',$web->name)
 
 @section('header')
 	<link href="{{ url('home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
@@ -316,9 +316,82 @@
 				@endforeach
 			</div>
 		</div>
+
+
+		<div class="guide clearfix" style="margin-left:290px;margin-top:20px">
+
+			  <div class="recycle col">
+			    <h4>数码回收 — 5分钟全部变现，全程免邮！</h4>
+			    <div class="recycel-type mobile">
+			      <a href="//2.taobao.com/recycle/index.htm" class="img">手机回收</a>
+			      <a href="//2.taobao.com/recycle/index.htm" class="btn">手机回收<b></b></a>
+			    </div>
+			    <div class="recycel-type table">
+			      <a href="//2.taobao.com/recycle/index.htm?categoryId=50019780" class="img">平板回收</a>
+			      <a href="//2.taobao.com/recycle/index.htm?categoryId=50019780" class="btn">平板回收<b></b></a>
+			    </div>
+			    <div class="recycel-type notebook">
+			      <a href="//2.taobao.com/recycle/index.htm?categoryId=1101" class="img">笔记本回收</a>
+			      <a href="//2.taobao.com/recycle/index.htm?categoryId=1101" class="btn">笔记本回收<b></b></a>
+			    </div>
+			  </div>
+
+			  <div class="module">
+			  <div class="tutorial col J_TMSArea" data-tms-id="690942">
+			    <div class="mod col">
+			      <h4>
+			        相关文章
+			      </h4>
+			      <div>
+			        <ul class="list" style="background-color:#FCFCFC;border-radius:10px">
+			        @foreach($work as $k=>$v)
+			          <li>
+			            <b>
+			            </b>
+			            <a href="{{ url('home/work').'/'.$v->wid}}289.html">
+			              {{ $v->wtitle }}
+			            </a>
+			          </li>
+					@endforeach		
+			        </ul>
+			      </div>
+			    </div>
+			    <div class="mod col">
+			      <h4>
+			        相关问题<!-- 6条 -->
+			      </h4>
+			      <div>
+			        <ul class="list" style="background-color:#FCFCFC;border-radius:10px">
+			       		@foreach($problem as $k=>$v)
+				          <li>
+				            <b>
+				            </b>
+				            <a href="{{ url('home/pro').'/'.$v->pid}}484.html">
+			             		{{ $v->ptitle }}
+				            </a>
+				          </li>
+				        @endforeach
+
+			        </ul>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+</div>
+<style type="text/css">
+	
+	.guide {
+	    border: 1px solid #e6e6e6;
+	    height: 260px;
+	    width:1000px;
+	}
+
+</style>
 		<div class="clear "></div>
+
 	</div>
 </div>
+
 @endsection
 
 @section('js')
@@ -326,7 +399,7 @@
 		$('.category-list li').eq(0).addClass("first");
         $('.category-list li').eq(9).addClass("last");
 	</script>
-	@endsection
+@endsection
 
 
 @section('js')

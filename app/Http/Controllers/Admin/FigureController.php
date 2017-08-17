@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Model\Slid;
 
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
+
 
 
 
@@ -69,19 +71,29 @@ class FigureController extends Controller
         }
 
         // 文件上传
-        $file = Input::file('simg');
+        $pic = $req -> file('simg');
 
-        $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
-    
-        $newName = 'lb_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
-     
-        $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
+        if($pic->isValid()){  //  检车是否为有效文件
 
-        $filepath = '/uploads/'.$newName;             //拼接文件路径
+            $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
+            
+            if(in_array($enev,['jpg','jpeg','png','gif']))
+            {
+                $newName = 'lb_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
 
-        $data['simg'] = '<li class="banner2"><a href="'.$data['surl'].'"><img src="'.$filepath.'" /></a></li>';
-        $data['spic'] = $filepath;
+                $pic->move(public_path('uploads/'),$newName);     // 移动文件
+         
+                // 生成缩略图
+                $sm = Image::make(public_path('uploads/').$newName)->resize(1010,455)->save(public_path('uploads/').'sm_'.$newName);
 
+                $data['spic'] = '/uploads/'.$newName;
+                $data['simg'] = '<li class="banner2"><a href="'.$data['surl'].'"><img src=/uploads/"'.'sm_'.$newName.'" /></a></li>';
+
+            }else{
+                return redirect()->back()->withInput()->withErrors('文件上传失败');
+            }
+             
+        }
         // 执行添加
         $res = Slid::create($data);     
 
@@ -133,24 +145,32 @@ class FigureController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        // 判断是否有图片有的话就修改
-        if($req->hasFile('simg')){     // 文件上传
+        // 文件上传
+        if(Input::hasFile('simg')){  //  检车是否为有效文件
 
-            unlink(public_path().$req->pic);      // 如果有文件上传的话就删除上次的图片
+            if($req->pic){
+               unlink(public_path().$req->pic);      
+            }
 
-            $file = Input::file('simg');
+            $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
+            
+            if(in_array($enev,['jpg','jpeg','png','gif']))
+            {
+                $newName = 'lb_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
 
-            $enev = $file->getClientOriginalExtension();   //上传文件的后缀名
-        
-            $newName = 'lb_'.date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
-         
-            $path = $file->move(public_path().'/uploads/',$newName);     // 移动文件
+                $pic->move(public_path('uploads/'),$newName);     // 移动文件
 
-            $filepath = '/uploads/'.$newName;             //拼接文件路径
+                // 生成缩略图
+                $sm = Image::make(public_path('uploads/').$newName)->resize(200,90)->save(public_path('uploads/').'sm_'.$newName);
 
-            $data['spic'] = $filepath;     
-            $data['simg'] = '<li class="banner2"><a href="'.$req->surl.'"><img src="'.$filepath.'" /></a></li>';
+                $data['spic'] = '/uploads/'.$newName;
+                $data['simg'] = '<li class="banner2"><a href="'.$data['surl'].'"><img src=/uploads/"'.'sm_'.$newName.'" /></a></li>';
 
+
+            }else{
+                return redirect()->back()->withInput()->withErrors('文件上传失败');
+            }
+             
         }
 
         // 执行修改并判断是否修改成功

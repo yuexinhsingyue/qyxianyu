@@ -44,17 +44,16 @@ class PersonAddrController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
         $newAddr = $request -> except('_token');
         $addr = $request -> input('address1').$request->input('address2');
 
-
-        $newAddr['uid'] = 15;
+        $newAddr['uid'] = session('homeuser');
         $newAddr['address'] = $addr;
-//        dd($newAddr);
-        $newAddr = $request -> except('address1','address2');
+
+        unset($newAddr['address1']);
+        unset($newAddr['address2']);
+
         Address::create($newAddr);
-        $newAddr = $request -> except('_token');
         return back();
     }
 

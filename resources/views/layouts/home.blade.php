@@ -4,14 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta name="description" content="{{$web->describe}}"/>
     <title>@yield('title')</title>
 
     <link href="{{ url('home/css/amazeui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/admin.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/demo.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('home/css/work.css') }}" rel="stylesheet" type="text/css" />
 
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{url('/home/favicon.ico')}}" />
 
     @section('header')
     @show
@@ -47,7 +48,7 @@
     <div class="nav white">
         {{--logo--}}
         <div class="logoBig">
-            <li><a href="{{ url('/') }}"><img src="{{ url('home/img/logobig.png') }}" /></a></li>
+            <li><a href="{{ url('/') }}"><img src="{{$web->logo}}" /></a></li>
         </div>
         {{--搜索--}}
         <div class="search-bar pr">
@@ -63,20 +64,39 @@
 
 @show
 <div class="footer">
-        <div class="footer-hd ">
-            <p>
-                <a href="# ">群英闲鱼</a>
-                <b>|</b>
-                <a href="# ">商城首页</a>
-            </p>
-        </div>
-        <div class="footer-bd ">
-            <p>
-                <a href="# ">关于群英</a>
-                <em>© 2015-2025 QunYing.com 版权所有. 更多模板 <a href="" target="_blank">友情链接</a> - Collect from <a href="" target="_blank">友情链接</a></em>
-            </p>
-        </div>
+    
+    <div class="footer-bd" >
     </div>
+
+
+    {{--友情链接--}}
+    <div class="footer-hd ">
+        <p>
+        @foreach($links as $k=>$v)
+            @if($v->limg)
+                    <span>
+                      <a target="_blank" href="http://{{$v->lurl}}" class="mod"><img src="{{$v->limg}}" style="width:70px;height:30px;border-radius:4px" /></a>
+                    </span>
+                    <b>|</b>
+            @else
+            <span><a href="http://{{$v->lurl}}" target="_blank">{{$v->lname}}</a></span>
+                <b>|</b>
+            @endif
+        @endforeach
+        </p>
+    </div>
+
+    {{--备案号--}}
+    <div class="footer-bd">
+    <p>
+      <span>
+        {{$web->cright}}
+      </span>
+    </p>
+    举报联系电话：{{$web->telephone}}
+  </div>
+
+</div>
 
 @section('js')
 

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Http\Model\User;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Model\Links;
+use App\Http\Model\Webs;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // 友情链接
+        $links = Links::get();
+        // 网站配置
+        $web = Webs::find(63);
 
+        view()->share('links', $links);
+        view()->share('web', $web);
     }
 
     /**
