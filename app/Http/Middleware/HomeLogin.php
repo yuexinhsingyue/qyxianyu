@@ -17,7 +17,7 @@ class HomeLogin
     {
        if(!session('homeuser'))
        {
-           return redirect('/');
+           return redirect('home/login');
 
        }
         return $next($request);

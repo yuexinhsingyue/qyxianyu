@@ -24,16 +24,14 @@ class OrderController extends Controller
     public function index()
     {
         //查询订单表信息
-        $res = Order::leftjoin('order_detail','order.id','=','order_detail.id')-> paginate(5);
-        //订单号(下单时间年月日时分秒 8位随机数)
-        $num = $res[1]['oid'] = date('ymdhis').rand(00000000,99999999);
-        //订单号存入数据库中
-      /*  DB::table('order_detail')->insert(
-            ['oid' => $num]
-        );*/
+//        $res = Order::leftjoin('order_detail','order.id','=','order_detail.id');
+        $res = Order::leftjoin('order_detail','order.id','=','order_detail.id');
+        //订单页的分页和搜索
+        $res = $res->where('oid','like','%'.Input::get('search').'%')->paginate(5);
+        $search = Input::get('search');
       //下单用户
-        $res[0]['uid'] = User::value('uname');
-        return view('admin.order.list',compact('res'));
+        //$id = $res['id'];
+        return view('admin.order.list',compact('res','search'));
     }
 
     /**
@@ -57,29 +55,35 @@ class OrderController extends Controller
         //
     }
 
+
+
+    public function show($id)
+    {
+
+    }
     /**
      * 孙小楠
      *订单查看详情
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function show($id)
+    public function detail($id)
     {
-
-    }
-    public function detail()
-    {
-        //查询地址表的信息
-        $ad= Address::get();
-        //查询商品表信息
-        $good = OrderDetail::leftjoin('goods','goods.id','=','order_detail.gid')->get();
-        //dd($good);
+        $input = Order::find($id);
+        //查询出订单表里商品ID
+        $gid = OrderDetail::where('id',$id)->value('gid');
+        //根据此iD查询出所购买商品的具体信息
+        $goods = Goods::where('id',$gid)->get();
+        //先获取下单用户的ID
+        //获取下订单用户的ID  $uid
+        //根据uid获取到地址表的地址信息
+       /* //查询地址表的信息
+        $ad= Address::get();*/
         //订单号
-        $num = $good[0]['oid'];
+        $num = OrderDetail::where('id',$id)->value('oid');
         //购买商品的总价
-        $price = $good[0]['num'] * $good[0]['price'];
-        return view('admin.order.detail',compact('ad','good','num','price'));
+       // $price = $good[0]['num'] * $good[0]['price'];
+        return view('admin.order.detail',compact('ad','goods','num','price','id'));
     }
 
     /**
