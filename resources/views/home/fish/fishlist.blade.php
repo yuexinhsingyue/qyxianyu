@@ -143,7 +143,6 @@
 					    <div class="m-logistics">
 
         <div class="s-bar">
-            <i class="s-icon"></i>我的物流
         </div>
         <div class="s-content">
             <ul class="lg-list">
