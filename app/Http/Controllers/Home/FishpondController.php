@@ -31,7 +31,7 @@ class FishpondController extends Controller
     public function fishlist(Request $request)
     {
 
-        $data = Fish::where('fishpondname','like','%'.$request['keywords'].'%')->paginate(8);
+        $data = Fish::where('fishpondname','like','%'.$request['keywords'].'%')->paginate(4);
         $keyword = $request->input('keywords');
          return view('home.fish.fishlist',compact('data','keyword'));
     }
@@ -54,8 +54,8 @@ class FishpondController extends Controller
      */
     public function store(Request $request)
     {
-    $uid='21';
-     session(['uid'=>$uid]);
+   
+
       $data = $request->except(['_token']);
          $rule = [
             'fishpondname'  =>'required',
@@ -85,7 +85,8 @@ class FishpondController extends Controller
         $data['face'] = $filepath;
  
   
-        $data['uid'] = session('uid');
+        $data['uid'] =session('homeuser')['uid'];
+        //dd($data);
         // 如果没有图片上传就直接添加
         $res = Fish::create($data);
         if($res){
@@ -94,6 +95,7 @@ class FishpondController extends Controller
             return back()->with('errors','鱼塘添加失败');
         }
     }   
+
 
     // 用户鱼塘的指定商品
     public function usergoods($id)
@@ -146,7 +148,9 @@ class FishpondController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+
     {
-        //
+         $goods = Goods::where('fid',$id)->get();
+        return view('home.fish.fishgoods',compact('goods'));
     }
 }

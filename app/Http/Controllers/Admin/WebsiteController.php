@@ -71,7 +71,7 @@ class WebsiteController extends Controller
         // 文件上传
         $pic = $req -> file('logo');
 
-        if($pic->isValid()){  //  检车是否为有效文件
+        if($pic->isValid()){  //  检查是否为有效文件
 
             $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
             

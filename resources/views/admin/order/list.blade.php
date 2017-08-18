@@ -28,6 +28,7 @@
         </div>
     </div>
     <div class="card items">
+        @foreach($res as $k=>$v)
         <ul class="item-list striped">
             {{--表头--}}
             <li class="item item-list-header hidden-sm-down">
@@ -44,15 +45,15 @@
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>订单总价</span> </div>
                     </div>
-                    <div class="item-col item-col-header item-col-stats">
+                   {{-- <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>商品数量</span> </div>
-                    </div>
+                    </div>--}}
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>下单用户</span> </div>
                     </div>
-                    <div class="item-col item-col-header item-col-stats">
+                   {{-- <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>状态</span> </div>
-                    </div>
+                    </div>--}}
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>操作</span> </div>
                     </div>
@@ -62,24 +63,24 @@
             <li class="item">
                 <div class="item-row">
                     <div class="item-col fixed item-col-check">
-                            <span>{{$res[0]['id']}}</span>
+                            <span>{{$v->id}}</span>
                     </div>
                     <div class="item-col item-col-header item-col-title" style="text-align:center">
-                        <div> <span>{{$res[1]['oid']}}</span> </div>
+                        <div> <span>{{$v->oid}}</span> </div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">2017 08 01</div>
+                        <div class="no-overflow">{{$v->created_at}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$res[0]['oprice']}}</div>
+                        <div class="no-overflow">{{$v->oprice}}</div>
                     </div>
-                    <div class="item-col item-col-stats no-overflow">
+                   {{-- <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">{{$res[0]['onum']}}</div>
-                    </div>
+                    </div>--}}
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$res[0]['uid']}}</div>
+                        <div class="no-overflow">{{$v->uid}}</div>
                     </div>
-                    <div class="item-col item-col-stats no-overflow">
+                    {{--<div class="item-col item-col-stats no-overflow">
                         @if($res[0]['status'] == 0)
                         <div class="no-overflow">未发货</div>
                            @endif
@@ -93,18 +94,19 @@
                         <div class="no-overflow">取消订单</div>
                             @endif
 
-                    </div>
+                    </div>--}}
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow"><a href="{{url('admin/detail')}}">
+                        <div class="no-overflow"><a href="{{url('admin/detail/'.$v->id)}}">
                                 <button type="button" class="btn btn-info btn-success">查看详情</button></a>
                         </div>
                     </div>
                 </div>
             </li>
         </ul>
+            @endforeach
     </div>
     <nav class="text-xs-right">
-        {!! $res->render() !!}
+        {!! $res ->appends(['search'=> $search])->render() !!}
     </nav>
 </article>
 

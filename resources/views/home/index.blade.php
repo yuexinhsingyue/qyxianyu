@@ -30,7 +30,7 @@
 			<ul>
 				<li class="index"><a href="{{ url('/') }}">首页</a></li>
 				<li class="qc"><a href="#wkpro">文章与问题</a></li>
-				<li class="qc last"><a href="{{ url('home/fish') }}">鱼塘</a></li>
+				<li class="qc last"><a href="{{ url('home/fishlist') }}">鱼塘</a></li>
 			</ul>
 		</div>
 		<!--侧边导航 -->
@@ -230,7 +230,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -247,7 +247,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -263,7 +263,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -279,7 +279,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -295,7 +295,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>
@@ -311,7 +311,7 @@
 					</div>
 					<i class="am-icon-shopping-basket am-icon-md  seprate"></i>
 				</div>
-				<a href="# "><img src="/{{ $v->pic  }}" /></a>
+				<a href="{{ url('home/detail/'.$v->id) }}"><img src="/{{ $v->pic  }}" /></a>
 					@endif
 				@endforeach
 			</div>

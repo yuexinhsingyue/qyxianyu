@@ -56,11 +56,11 @@ Route::group(['prefix'=>'admin','middleware'=>'admin.login','namespace'=>'Admin'
     //订单管理
     Route::resource('order','OrderController');
     //查看订单详情页
-    Route::get('detail','OrderController@detail');
+    Route::get('detail/{id}','OrderController@detail');
     //鱼塘管理
     Route::resource('fish','FishController');
     //广告管理
-    Route::resource('advert','advertController');
+    Route::resource('advert','AdvertController');
     //数据统计
     // Route::resource('dataSta','DataStaController');
     Route::get('dataSta','DataStaController@dataSta');
@@ -99,6 +99,8 @@ Route::group(['middleware'=>'home'], function() {
 
     //前台用户登录
     Route::get('home/login','Home\LoginController@login');
+    //前台用户退出
+    Route::get('home/loginout','Home\LoginController@loginout');
     //前台用户注册
     Route::get('home/register','Home\LoginController@register');
     //前台登录验证
@@ -135,10 +137,15 @@ Route::group(['middleware'=>'home'], function() {
 
     //鱼塘列表
     Route::get('home/fishlist','Home\FishpondController@fishlist');
+
+    //鱼塘列表
+    Route::get('home/fishgoods/{id}','Home\FishpondController@fishgoods');
+
     // 用户鱼塘列表
     Route::get('home/fishuser','Home\FishpondController@index');
     // 我的鱼塘下的商品
     Route::get('home/fishgoods/{id}','Home\FishpondController@usergoods');
+
     //鱼塘添加
     Route::get('home/address','Home\FishpondController@create');
     Route::post('home/store','Home\FishpondController@store');
@@ -163,7 +170,7 @@ Route::group(['middleware'=>'home'], function() {
 
 
         //商品订单完成页
-        Route::get('success','IndexController@success');
+        Route::get('success/{id}','IndexController@success');
         //个人中心页
         Route::get('personnal','IndexController@person');
 
@@ -172,6 +179,9 @@ Route::group(['middleware'=>'home'], function() {
         Route::get('personinfo','PersonController@personInfo');
         //  修改个人信息
         Route::post('savepersoninfo','PersonController@savePersonInfo');
+        //  删除地址
+        Route::get('delpersonaddr','PersonController@delPersonAddr');
+
         //  地址管理
         //   Route::get('personaddr','PersonController@personaddr');
         //  地址管理

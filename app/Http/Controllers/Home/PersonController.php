@@ -19,26 +19,27 @@ class PersonController extends Controller
      * 打开个人中心模块中----个人信息页
      * auth:hsingyue
      * data:2017-08-16
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function personInfo()
     {
 //        dd(session('homeuser')["uid"]);
 
-        $uname = User::where('uid',session('homeuser')["uid"]) ->value('uname');
+        $uname = User::where('uid', session('homeuser')["uid"])->value('uname');
 
-        $userdetail = UserDetail::where('uid',session('homeuser')["uid"])->get();
+        $userdetail = UserDetail::where('uid', session('homeuser')["uid"])->get();
         $userdetail = $userdetail[0];
 
-        return view('home.person.personInfo',compact('uname','userdetail'));
+        return view('home.person.personInfo', compact('uname', 'userdetail'));
     }
+
     /**
      * 执行个人信息页内容保存到数据库
      * auth:hsingyue
      * data:2017-08-16
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param
      * @return \Illuminate\Http\Response
      */
@@ -47,7 +48,7 @@ class PersonController extends Controller
 //        dd($request);
         //判断用户输入
 
-        $res = $request -> except('_token','face');
+        $res = $request->except('_token', 'face');
         $rule = [
             'tel' => 'required|regex:/^1[34578][0-9]{9}$/',
             'emill' => 'required|email',
@@ -61,55 +62,57 @@ class PersonController extends Controller
             'emill.email' => '邮箱格式不正确',
             'addr.required' => '地址必填',
         ];
-        $validator = Validator::make($res,$rule,$msg);
+        $validator = Validator::make($res, $rule, $msg);
         //如果验证失败
-        if($validator->fails()){
+        if ($validator->fails()) {
 //            dd('验证失败');
-            return back() -> withErrors($validator) -> withInput();
+            return back()->withErrors($validator)->withInput();
         }
         //是否有上传文件
-        if($request -> hasFile('face'))
-        {
+        if ($request->hasFile('face')) {
             //文件上传
-            $file = $request -> file('face');
+            $file = $request->file('face');
             //判断上传文件是否有效
-            if($file -> isValid())
-            {
+            if ($file->isValid()) {
                 //获取文件后缀名
-                $ext = $file -> getClientOriginalExtension();
+                $ext = $file->getClientOriginalExtension();
                 //新的名字
-                $newname = date('YmdHis').mt_rand(1111,9999).'.'.$ext;
+                $newname = date('YmdHis') . mt_rand(1111, 9999) . '.' . $ext;
 
-                $path = $file -> move(public_path('uploads'),$newname);
+                $path = $file->move(public_path('uploads'), $newname);
                 //生成缩略图
-                $img = Image::make(public_path('/uploads/').$newname) -> resize(60,60);
-                $img -> save(public_path('uploads/').'sml'.$newname);
-                $res['face'] = 'uploads/sml'.$newname;
+                $img = Image::make(public_path('/uploads/') . $newname)->resize(60, 60);
+                $img->save(public_path('uploads/') . 'sml' . $newname);
+                $res['face'] = 'uploads/sml' . $newname;
             } else {
                 return redirect()->back()->withInput()->withErrors('文件上传失败');
             }
         }
 //        UserDetail::where('uid',session('user')['uid'])-> update($res);
-        UserDetail::where('uid',session('homeuser')['uid'])-> update($res);
+        UserDetail::where('uid', session('homeuser')['uid'])->update($res);
 
         return redirect('home/personinfo');
 
     }
+
     /**
-     * 打开个人中心模块中----地址管理
+     * 删除地址管理模块
      * auth:hsingyue
-     * data:2017-08-16
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * data:2017-08-17
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-
-//    public function personaddr ()
-//    {
-//        $addr = Address::where('uid',session('homeuser')['uid'])->get();
-////        dd($addr);
-//        $count =  count(Car::get());
-//        return view('home.person.personAddr',compact('addr','count'));
-//    }
-
+    public function delPersonAddr(Request $request)
+    {
+        //    获取要删除的地址ID
+        $aid = $request->input('aid');
+        if ($aid) {
+            $res = $addr = Address::where('id', $aid)->delete();
+        } else {
+            $res = 0;
+        }
+//        返回删除结果
+        return $res;
+    }
 }

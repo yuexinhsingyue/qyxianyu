@@ -28,12 +28,29 @@ class PersonAddrController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * 借助create方法，修改前台触发的默认地址
+     * auth:hsingyue
+     * data:2017-08-17
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
+        //    获取默认地址的电话
+        $tel =  $request->input('tel');
+        if($tel) {
+            $addr = Address::where('uid',session('homeuser')['uid'] );
+            //    移除用户的默认地址
+            $addr -> update(['status' => 0]);
+            //    重新给用户赋值默认地址
+            $addr -> where('phone',$tel)
+                  ->update(['status' => 1]);
+            return 1;
+        } else {
+            return 0;
+        }
+
     }
 
     /**

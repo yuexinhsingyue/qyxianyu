@@ -30,8 +30,13 @@
         <ul class="message-l">
             <div class="topMessage">
                 <div class="menu-hd">
-                    <a href="{{ url('home/login') }}" target="_top" class="h">亲，请登录</a>
-                    <a href="{{ url('home/register') }}" target="_top">免费注册</a>
+                    @if(empty(session('homeuser')))
+                        <a href="{{ url('home/login') }}" target="_top" class="h">亲，请登录</a>
+                        <a href="{{ url('home/register') }}" target="_top">免费注册</a>
+                    @else
+                        <span class="h">你好：{{ session('homeuser')['uname'] }}</span>
+                        <a href="{{ url('home/loginout') }}">退出</a>
+                    @endif
                 </div>
             </div>
         </ul>

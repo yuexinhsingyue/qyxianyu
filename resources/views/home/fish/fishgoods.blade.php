@@ -1,16 +1,15 @@
 @extends('layouts.home')
-@section('title','商品列表页')
+@section('title','首页')
 
 @section('header')
 	<link href="{{ url('home/css/seastyle.css') }}" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="{{ url('home/js/jquery-1.7.min.js') }}"></script>
-	<script type="text/javascript" src="{{ url('home/js/script.js') }}"></script>
-
+	<script type="text/javascript" src="./style/js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="./style/js/script.js"></script>
 @endsection
 
 @section('content')
 <b class="line"></b>
-<div class="search" style="margin-right: 0px;">
+<div class="search">
 	<div class="search-list">
 		<div class="nav-table">
 			<div class="long-title">
@@ -20,15 +19,15 @@
 			</div>
 			<div class="nav-cont">
 				<ul>
-					<li class="index"><a href="{{ url('/') }}">首页</a></li>
-					<li class="qc"><a href="{{ url('home/news') }}">文章与问题</a></li>
-					<li class="qc last"><a href="{{ url('home/fish') }}">鱼塘</a></li>
+					<li class="index"><a href="#">首页</a></li>
+					<li class="qc"><a href="#">文章与问题</a></li>
+					<li class="qc last"><a href="#">鱼塘</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="am-g am-g-fixed">
 			<div class="am-u-sm-12 am-u-md-12">
-				<div class="theme-popover">
+<!-- 				<div class="theme-popover">
 					<div class="searchAbout">
 					<span class="font-pale">
 						相关搜索：
@@ -71,32 +70,49 @@
 								<dt class="am-badge am-round">
 									品牌
 								</dt>
-								@foreach($ptype as $k=>$v)
 								<div class="dd-conent">
 									<dd class="select-all selected">
 										<a href="#">
-											{{$v->tname}}
+											全部
 										</a>
 									</dd>
-									@foreach($a as $m=>$n)
-										@if($k == $m)
-											@foreach($n as $j=>$h)
 									<dd>
 										<a href="#">
-											{{$h->tname}}
+											百草味
 										</a>
 									</dd>
-											@endforeach
-										@endif
-									@endforeach
+									<dd>
+										<a href="#">
+											良品铺子
+										</a>
+									</dd>
+									<dd>
+										<a href="#">
+											新农哥
+										</a>
+									</dd>
+									<dd>
+										<a href="#">
+											楼兰蜜语
+										</a>
+									</dd>
+									<dd>
+										<a href="#">
+											口水娃
+										</a>
+									</dd>
+									<dd>
+										<a href="#">
+											考拉兄弟
+										</a>
+									</dd>
 								</div>
-								@endforeach
 							</dl>
 						</li>
 					</ul>
 					<div class="clear">
 					</div>
-				</div>
+				</div> -->
 				<div class="search-content">
 					<div class="sort">
 						<li class="first">
@@ -122,22 +138,15 @@
 					</div>
 					<div class="clear">
 					</div>
+					
 					<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
 						@foreach($goods as  $k=>$v)
 						<li>
 							<a href="{{ url('home/detail/'.$v->id) }}"><div class="i-pic limit">
 								<img src="/{{ $v->pic  }}" />
-
 								<p class="title fl">
 									{{$v->gname}}
 								</p>
-<<<<<<< HEAD
-
-=======
-									<p class="title fl">
-										{{$v->goodsDes}}
-									</p>
->>>>>>> 73e2a6ce95a791668a1ab3759223dd09a17a601d
 								<p class="price fl">
 									<b>
 										¥
@@ -152,71 +161,16 @@
 									{{$v->goodsNum}}
 								</span>
 								</p>
-								</div>
-								</a>
-								<a href="javascript:void(0)" onclick="coll({{$v->id}})" style="position:relative;border-radius:2px;background:#8389E0;float:left">点击收藏</a>
-								<!-- <span>已收藏</span> -->
+								</div></a>
 						</li>
 							@endforeach
 					</ul>
 				</div>
-				<div class="search-side">
-					<div class="side-title">
-						经典搭配
-					</div>
-					<li>
-						<div class="i-pic check">
-							<img src="{{ url('home/img/cp.jpg') }}" />
-							<p class="check-title">
-								萨拉米 1+1小鸡腿
-							</p>
-							<p class="price fl">
-								<b>
-									¥
-								</b>
-								<strong>
-									29.90
-								</strong>
-							</p>
-							<p class="number fl">
-								销量
-								<span>
-								1110
-							</span>
-							</p>
-						</div>
-					</li>
-				</div>
+
 				<div class="clear">
 				</div>
 				<!--分页 -->
-				<ul class="am-pagination am-pagination-right">
-					<li class="am-disabled">
-						<a href="#">
-							&laquo;
-						</a>
-					</li>
-					<li class="am-active">
-						<a href="#">
-							1
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							2
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							3
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							&raquo;
-						</a>
-					</li>
-				</ul>
+
 			</div>
 		</div>
 	</div>
@@ -224,27 +178,5 @@
 @endsection
 
 @section('js')
-	<script>
-			
-		// 商品收藏！
-	function coll(gid)
-	{
 
-		$.post("/home/collect", {'_token':'{{csrf_token()}}','gid':gid}, function(data){
-
-			if(data){
-				layer.msg('收藏成功！', {icon: 6});
-			}else{
-				layer.msg(' 请 前 去 登 录 ！');
-			}
-		});
-	}
-
-
-        window.jQuery || document.write('<script src="{{ url('home/js/jquery-1.9.min.js') }}"><\/script>');
-	</script>
-	<script type="text/javascript" src="{{ url('home/js/quick_links.js') }}"></script>
-	<script>
-		$('.footer').attr('style','margin-right: 112px;margin-left: 112px;');
-	</script>
 @endsection
