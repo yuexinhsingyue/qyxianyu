@@ -28,22 +28,22 @@
 
             var echart1X = [];   //X轴数据
             var echart1Y = [];   //Y轴数据
-            for(var tmp in readpoint1){
+            for(var tmp in readpoint2){
 
                 echart1X.push(tmp);  //将键名压入X轴  日期
-                echart1Y.push(readpoint1[tmp]);   //将值压入Y轴 访问量
+                echart1Y.push(readpoint2[tmp]);   //将值压入Y轴 访问量
 
             }
             var echart2X = [];   //X轴数据
             var echart2Y = [];   //Y轴数据
-            for(var tmp in readpoint2){
+            for(var tmp in readpoint1){
 
                 echart2X.push(tmp);  //将键名压入X轴  日期
-                echart2Y.push(readpoint2[tmp]);   //将值压入Y轴 访问量
+                echart2Y.push(readpoint1[tmp]);   //将值压入Y轴 访问量
             }
             console.log(echart2X);
 
-          app.title = '多 X 轴';
+          app.title = '网站访问量';
 
         var colors = ['#5793f3', '#d14a61', '#675bba'];
         option = {
@@ -114,19 +114,19 @@
             ],
             series: [
                 {
-                    name:'上期 访问量',
+                    name:'本期 访问量',
                     type:'line',
                     xAxisIndex: 1,
                     smooth: true,
 //                    data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-                    data: echart1Y
+                    data: echart2Y
                 },
                 {
-                    name:'本期 访问量',
+                    name:'上期 访问量',
                     type:'line',
                     smooth: true,
 //                    data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 0.7]
-                    data: echart2Y
+                    data: echart1Y
                 }
             ]
         };

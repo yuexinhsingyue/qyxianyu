@@ -24,7 +24,7 @@
         <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong> / <small>Address&nbsp;list</small></div>
     </div>
     <hr>
-    <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
+    <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails" style = "margin-bottom: 15px;">
 
         @foreach( $addr as $res)
             @if($res['status'] == 1)
@@ -46,10 +46,10 @@
 
             </div>
             <div class="new-addr-btn">
-                <a href="javascript:void(0);"><i class="am-icon-edit"></i>编辑</a>
+                <a href="javascript:void(0);" name="{!! $res['id'] !!} "   onclick ="editClick(this)"><i class="am-icon-edit"></i>编辑</a>
                 <span class="new-addr-bar">|</span>
 
-                <a href="javascript:void(0);" id="<?=$res['id'] ?>"   onclick="delClick(this)"> <i class="am-icon-trash"></i>删除</a>
+                <a href="javascript:void(0);" id="{!! $res['id'] !!}"   onclick="delClick(this)"> <i class="am-icon-trash"></i>删除</a>
 
             </div>
         </li>
@@ -151,6 +151,34 @@
                 $("#doc-modal-1").removeClass("am-modal am-modal-no-btn");
             }
             });
+//        编辑地址
+         function editClick ( data )
+        {
+ //            获取要编辑的地址ID号
+            var did = data.name;
+//            获取地址列表
+            var addr = {!! $addr !!};
+//            查询点击的列表，将值赋给input输入框
+             for ( i in addr )
+            {
+                if (addr[i]['id'] == did) {
+                    $('input[name=name]').val(addr[i]['name']);
+                    $('input[name=phone]').val(addr[i]['phone']);
+//                  获取用户地址拆分成数组根据区域
+                    var addrArr = addr[i]['address'].split('/');
+
+                    $('#user-intro').val(addrArr[3]);
+                    console.log($('.placeholder .title').parent());
+                    console.log($('.city-picker-span'));
+
+//                    console.log(addrArr);
+                }
+            }
+
+
+
+//             console.log(did);
+        }
 
 //        删除地址
         function delClick( date )
@@ -170,6 +198,7 @@
                 }
             });
         }
+
 
 
     </script>

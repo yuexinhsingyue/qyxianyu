@@ -64,7 +64,7 @@
                         <div class="stat-icon"> <i class="fa fa-shopping-cart"></i> </div>
                         <div class="stat">
                             <div class="value"> {{$orderMonth}} </div>
-                            <div class="name"> 当月订单数 </div>
+                            <div class="name"> 近30天订单数 </div>
                         </div> <progress class="progress stat-progress" value="49" max="100">
                             <div class="progress">
                                 <span class="progress-bar" style="width: 49%;"></span>

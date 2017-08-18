@@ -62,7 +62,7 @@ class PersonAddrController extends Controller
     public function store(Request $request)
     {
         $newAddr = $request -> except('_token');
-        $addr = $request -> input('address1').$request->input('address2');
+        $addr = $request -> input('address1').'/'.$request->input('address2');
 
         $newAddr['uid'] = session('homeuser')["uid"];
         $newAddr['address'] = $addr;
