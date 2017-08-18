@@ -130,37 +130,47 @@ class IndexController extends Controller
     //购物车
     public function car($id)
     {
-        $input = Goods::find($id);
         //获取gid加入到购物车中
         $car = new Car();
         $car->gid = $id;
+        //获取session中的uid
+        $uid = $car->uid = session('homeuser')['uid'];
+        //将数据存入到数据库中
         $car->save();
+        //将购物车中的gid，id号放进lists数组中
+        $cars = Car::where('uid',$uid)->lists('gid','id');
+        $sum = 0;
+        foreach($cars as $k=>$v){
+            //遍历出所有的商品价格
+            $price = Goods::where('id',$v)->lists('nprice')[0];
+            $sum = $sum+$price;
+        }
         //获取商品表的信息
         $goods = Goods::get();
-        foreach($goods as $k=>$v){
-            if($v['id']== $car['gid']){
-                $a = [];
-            }
-            $a = $goods;
-        }
-        //购物车中里的信息
-        $count =  count(Car::get());
-        //获取购买东西的总价格
-        $price = $input['nprice']*$input['goodsNum'];
-
-        return view('home.car',compact('input','id','price','car','a','count'));
+        return view('home.car',compact('input','id','car','goods','uid','cars','sum'));
     }
     //删除购物车的商品
     public function delCar($id)
     {
-        //删除商品
-        $input = Goods::find($id);
-        $car = Car::where('gid',$id)->delete();
-        return view('home.car',compact('id','car'));
+        echo Car::where('id',$id)->delete();
+
     }
     //订单页
     public function pay($id)
     {
+
+
+        //获取session中的uid
+        $uid =  session('homeuser')['uid'];
+        //将购物车中的gid，id号放进lists数组中
+        $cars = Car::where('uid',$uid)->lists('gid','id');
+        $sum = 0;
+        foreach($cars as $k=>$v){
+            //遍历出所有的商品价格
+            $price1 = Goods::where('id',$v)->lists('nprice')[0];
+            $sum = $sum+$price1;
+        }
+
         $input = Goods::find($id);
         //获取gid加入到购物车中
         $car = new Car();
@@ -185,8 +195,8 @@ class IndexController extends Controller
         //获取订单总价
         $order->oprice = $price;
         //获取下订单用户的ID
-        //$order->uid = session('homeuser')['uid'];
-        $order->uid = 11;
+        $order->uid = session('homeuser')['uid'];
+        //$order->uid = 11;
          //获取地址表信息的ID
         //存储订单信息
         $order->save();
@@ -200,7 +210,7 @@ class IndexController extends Controller
         $orderdetail->oid =  date('ymdhis').rand(00000000,99999999);
         $orderdetail->save();
        // dd($order);
-        return view('home.pay',compact('input','id','price','car','a','count','order','orderdetail'));
+        return view('home.pay',compact('input','id','price','car','a','count','order','orderdetail','sum'));
     }
     //订单完成页
     public function success($id)

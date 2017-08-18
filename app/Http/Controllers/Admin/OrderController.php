@@ -28,10 +28,12 @@ class OrderController extends Controller
         $res = Order::leftjoin('order_detail','order.id','=','order_detail.id');
         //订单页的分页和搜索
         $res = $res->where('oid','like','%'.Input::get('search').'%')->paginate(5);
+        $user = User::get();
         $search = Input::get('search');
       //下单用户
-        //$id = $res['id'];
-        return view('admin.order.list',compact('res','search'));
+       //$uname = User::where('uid',)->value('uname');
+      // dd($res);
+        return view('admin.order.list',compact('res','search','user'));
     }
 
     /**

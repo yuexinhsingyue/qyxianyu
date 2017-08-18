@@ -68,7 +68,7 @@
                                 <div class="no-overflow">{{$v->num}}</div>
                             </div>--}}
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">￥99</div>
+                                <div class="no-overflow">￥{{$v->nprice}}</div>
                             </div>
                                 @endforeach
                         </div>
