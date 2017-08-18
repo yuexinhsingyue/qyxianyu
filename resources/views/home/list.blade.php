@@ -131,13 +131,10 @@
 								<p class="title fl">
 									{{$v->gname}}
 								</p>
-<<<<<<< HEAD
-
-=======
 									<p class="title fl">
 										{{$v->goodsDes}}
 									</p>
->>>>>>> 73e2a6ce95a791668a1ab3759223dd09a17a601d
+
 								<p class="price fl">
 									<b>
 										¥
