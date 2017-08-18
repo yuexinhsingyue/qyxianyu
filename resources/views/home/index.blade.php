@@ -29,7 +29,7 @@
 		<div class="nav-cont">
 			<ul>
 				<li class="index"><a href="{{ url('/') }}">首页</a></li>
-				<li class="qc"><a href="{{ url('home/news') }}">文章与问题</a></li>
+				<li class="qc"><a href="#wkpro">文章与问题</a></li>
 				<li class="qc last"><a href="{{ url('home/fishlist') }}">鱼塘</a></li>
 			</ul>
 		</div>
@@ -339,8 +339,8 @@
 			  <div class="module">
 			  <div class="tutorial col J_TMSArea" data-tms-id="690942">
 			    <div class="mod col">
-			      <h4>
-			        相关文章
+			      <h4 id="wkpro">
+			      	相关文章
 			      </h4>
 			      <div>
 			        <ul class="list" style="background-color:#FCFCFC;border-radius:10px">

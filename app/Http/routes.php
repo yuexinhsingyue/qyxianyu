@@ -117,6 +117,8 @@ Route::group(['middleware'=>'home'], function() {
     Route::get('/','Home\IndexController@index');
     //商品列表页
     Route::get('home/list','Home\IndexController@list');
+    // 商品收藏
+    Route::post('home/collect','Home\IndexController@coll');
     //商品详情页
     Route::get('home/detail/{id}','Home\IndexController@detail');
     //问题页

@@ -8,6 +8,7 @@ use App\Http\Model\Goods;
 use App\Http\Model\Order;
 use App\Http\Model\OrderDetail;
 use App\Http\Model\Type;
+use App\Http\Model\Collect;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -23,8 +24,6 @@ class IndexController extends Controller
     //前台主页
     public function index()
     {
-
-
         //获取首页上所有电脑分类的信息
         $com = Goods::where('tid',30)->get();
 
@@ -50,7 +49,6 @@ class IndexController extends Controller
         return view('home.index',compact('ptype','a','advert','figure','com','count','problem','work'));
 
     }
-
     
     //前台大厅列表页
     public function list()
@@ -119,6 +117,30 @@ class IndexController extends Controller
         $rel = Works::where('status','=','1')->orderBy('wid','desc')->take(5)->get();
 
         return view('home.work',compact('work','article','rel'));
+
+    }
+
+    // 商品收藏
+    public function coll()
+    {
+        // 获取用户ID
+        $uid = session('homeuser')['uid'];
+
+        $data['uid'] = $uid;             // 用户ID
+        $data['gid'] = $_POST['gid'];    // 商品ID
+        $data['collectTime'] = date('Y-m-d H:i',time());   // 收藏时间
+
+        $res = Collect::create($data);
+
+        if($uid){
+            if($res){
+                return '收藏成功！';
+            }else{
+                return '收藏失败！';
+            }
+        }else{
+            return false;
+        }
 
     }
     //鱼塘
