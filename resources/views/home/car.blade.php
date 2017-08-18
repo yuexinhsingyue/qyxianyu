@@ -2,10 +2,12 @@
 @section('title','购物车页面')
 
 @section('header')
+
     <link href="{{ url('home/css/cartstyle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/optstyle.css') }}" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="{{ url('home/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="/layer/layer.js"></script>
 @endsection
 @section('content')
 <div class="concent">
@@ -52,6 +54,9 @@
             </div>
             <div class="clear"></div>
             <div class="bundle-main">
+                @foreach($cars as $m=>$n)
+                @foreach($goods as $k=>$v)
+                    @if($n == $v->id)
                 <ul class="item-content clearfix">
                     <li class="td td-chk">
                         <div class="cart-checkbox ">
@@ -61,18 +66,18 @@
                     </li>
                     <li class="td td-item">
                         <div class="item-pic">
-                            <a href="#" target="_blank" data-title="{{$input['gname']}}" class="J_MakePoint" data-point="tbcart.8.12">
-                                <img src="/{{ $input['pic'] }}" class="itempic J_ItemImg"></a>
+                            <a href="#" target="_blank" data-title="{{$v->gname}}" class="J_MakePoint" data-point="tbcart.8.12">
+                                <img src="/{{$v->pic}}" class="itempic J_ItemImg"></a>
                         </div>
                         <div class="item-info">
                             <div class="item-basic-info">
-                                <a href="#" target="_blank" title="{{$input['gname']}}" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$input['gname']}}</a>
+                                <a href="#" target="_blank" title="{{$v->gname}}" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v->gname}}</a>
                             </div>
                         </div>
                     </li>
                     <li class="td td-info">
                         <div class="item-props item-props-can">
-                            <span class="sku-line">{{$input['goodsDes']}}</span>
+                            <span class="sku-line">{{$v->goodsDes}}</span>
                             <span tabindex="0" class="btn-edit-sku theme-login">修改</span>
                             <i class="theme-login am-icon-sort-desc"></i>
                         </div>
@@ -81,10 +86,10 @@
                         <div class="item-price price-promo-promo">
                             <div class="price-content">
                                 <div class="price-line">
-                                    <em class="price-original">{{$input['oprice']}}</em>
+                                    <em class="price-original">{{$v->oprice}}</em>
                                 </div>
                                 <div class="price-line">
-                                    <em class="J_Price price-now" tabindex="0">{{$input['nprice']}}</em>
+                                    <em class="J_Price price-now" tabindex="0">{{$v->nprice}}</em>
                                 </div>
                             </div>
                         </div>
@@ -93,25 +98,29 @@
                         <div class="amount-wrapper ">
                             <div class="item-amount ">
                                 <div class="sl">
-                                    {{$input['goodsNum']}}
+                                    {{$v->goodsNum}}
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li class="td td-sum">
                         <div class="td-inner">
-                            <em tabindex="0" class="J_ItemSum number">{{$price}}</em>
+                            <em tabindex="0" class="J_ItemSum number">{{$v->nprice}}</em>
                         </div>
                     </li>
                     <li class="td td-op">
                         <div class="td-inner">
                             <a title="移入收藏夹" class="btn-fav" href="#">
                                 移入收藏夹</a>
-                            <a href="javascript:;" data-point-url="#" class="delete">
-                                删除</a>
+                          {{-- <button> <a href="javascript:void(0)" onclick="delCate({{}})">删除</a></button>--}}
+                         <a href="javascript:void(0)" id="{!! $m !!}" class="delete" onclick="delCate(this)">删除</a>
                         </div>
                     </li>
                 </ul>
+                        @endif
+                    @endforeach
+
+                @endforeach
             </div>
         </div>
 
@@ -127,60 +136,20 @@
             <span>全选</span>
         </div>
         <div class="operations">
-            <button> <a href="javascript:void(0)" onclick="delCate({{$input['id']}})">删除</a></button>
+            {{--<button> <a href="javascript:void(0)" onclick="delCate({{$input['id']}})">删除</a></button>--}}
             {{--<a href="" hidefocus="true" class="deleteAll">删除</a>--}}
             <a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a>
         </div>
         <div class="float-bar-right">
-            <div class="amount-sum">
-                <span class="txt">已选商品</span>
-                <em id="J_SelectedItemsCount">0</em><span class="txt">件</span>
-                <div class="arrow-box">
-                    <span class="selected-items-arrow"></span>
-                    <span class="arrow"></span>
-                </div>
-            </div>
             <div class="price-sum">
                 <span class="txt">合计:</span>
-                <strong class="price">¥<em id="J_Total">{{$price}}</em></strong>
+                <strong class="price">¥<em id="J_Total">{{$sum}}</em></strong>
             </div>
             <div class="btn-area">
                 <a href="{{ url('home/order/'.$id) }}" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
                     <span>结&nbsp;算</span></a>
             </div>
         </div>
-        <script>
-
-            function delCate(id){
-//            参数1 要请求的服务器路由
-//            参数2 请求要携带的参数数据  _method：delete  _token
-//              参数3 回调函数,回调函数的参数data表示服务器返回的数据
-//            $.post(URL,data,callback);
-//询问框
-                layer.confirm('确认删除吗？', {
-                    btn: ['确定','取消'] //按钮
-                }, function(){
-                    $.post("{{url('admin/car/')}}/"+id,{'_method':'delete','_token':'{{csrf_token()}}'},function(data){
-                        if(data.status == 0){
-                            location.href = location.href;
-                            layer.msg(data.msg, {icon: 5});
-                        }else if(data.status == 2){
-                            layer.msg(data.msg, {icon: 6});
-                        }else{
-                            location.href = location.href;
-                            layer.msg(data.msg, {icon: 6});
-                        }
-
-                    });
-
-                }, function(){
-
-                });
-
-            }
-
-
-        </script>
 
     </div>
 
@@ -188,5 +157,17 @@
 </div>
 @endsection
 @section('js')
+    <script>
 
+      function delCate(var1){
+            $.get("/home/delCar/"+var1.id,function(data){
+               if(data==1){
+                 $('#'+var1.id).parent().parent().parent().hide();
+                   layer.msg('删除成功！！');
+               } else {
+                   layer.msg('删除失败！！');
+               }
+            });
+        }
+    </script>
 @endsection

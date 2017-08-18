@@ -144,7 +144,7 @@
                 <!--含运费小计 -->
                 <div class="buy-point-discharge ">
                     <p class="price g_price ">
-                        合计（含运费） <span>¥</span><em class="pay-sum">{{$price}}</em>
+                        合计（含运费） <span>¥</span><em class="pay-sum">{{$sum}}</em>
                     </p>
                 </div>
                 <!--信息 -->
@@ -153,7 +153,7 @@
                         <div class="box">
                             <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
                                 <span class="price g_price ">
-                                <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">{{$price}}</em>
+                                <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">{{$sum}}</em>
                                         </span>
                             </div>
                             <div id="holyshit268" class="pay-address">
@@ -177,7 +177,7 @@
                         </div>
                         <div id="holyshit269" class="submitOrder">
                             <div class="go-btn-wrap">
-                                <a id="J_Go" href="{{ url('home/success/'.$id) }}" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+                                <a id="J_Go" href="{{ url('home/success/') }}" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
                             </div>
                         </div>
                         <div class="clear"></div>

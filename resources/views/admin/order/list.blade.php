@@ -29,6 +29,7 @@
     </div>
     <div class="card items">
         @foreach($res as $k=>$v)
+
         <ul class="item-list striped">
             {{--表头--}}
             <li class="item item-list-header hidden-sm-down">
@@ -77,9 +78,13 @@
                    {{-- <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">{{$res[0]['onum']}}</div>
                     </div>--}}
+                    @foreach($user as $m=>$n)
+                    @if($v->uid == $n->uid)
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$v->uid}}</div>
+                        <div class="no-overflow">{{$n->uname}}</div>
                     </div>
+                    @endif
+                    @endforeach
                     {{--<div class="item-col item-col-stats no-overflow">
                         @if($res[0]['status'] == 0)
                         <div class="no-overflow">未发货</div>
@@ -103,7 +108,8 @@
                 </div>
             </li>
         </ul>
-            @endforeach
+
+        @endforeach
     </div>
     <nav class="text-xs-right">
         {!! $res ->appends(['search'=> $search])->render() !!}

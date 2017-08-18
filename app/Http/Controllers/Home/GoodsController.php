@@ -26,8 +26,10 @@ class GoodsController extends Controller
     {
         //获取发布商品的用户的信息
         //$uid = Goods::where('uid',$request->(User::where('id')->value()))->get();
+        $user = session('homeuser')['uid'];
         //根据uid获取此用户发布的所有商品
-        $goods = Goods::get();
+        $goods = Goods::where('uid',$user)->get();
+       //$goods = Goods::get();
        //dd($goods);
      return view('home.goods.list',compact('goods'));
     }
@@ -100,6 +102,8 @@ class GoodsController extends Controller
 
         //上传图片
         $input['pic'] = $res['pic'];
+        $user = session('homeuser')['uid'];
+        $input['uid'] = $user;
         $data = Goods::create($input);
         $goods = Goods::get()->last();
         $goodsDetail = new GoodsDetail();
