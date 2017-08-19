@@ -18,7 +18,7 @@
             <div class="main-wrap">
                 <div class="wrap-left">
                     @section('content1')
-                        @show
+                    @show
                 </div>
                 <div class="wrap-right">
                     @section('content2')
@@ -74,9 +74,8 @@
         </aside>
     </div>
 
+@endsection
+
+@section('js')
 
 @endsection
-@section('js')
-        @section('js')
-        @show
-    @endsection

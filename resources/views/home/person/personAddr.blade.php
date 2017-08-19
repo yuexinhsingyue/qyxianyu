@@ -1,10 +1,6 @@
 @extends('layouts.person')
 @section('title','收货地址')
 @section('header')
-    <link href="{{url("home/css/personal.css")}}" rel="stylesheet" type="text/css">
-    <link href="{{url("home/css/addstyle.css") }}" rel="stylesheet" type="text/css">
-    <script src="{{url("home/js/jquery.min.js") }}" type="text/javascript"></script>
-    <script src="{{url("home/js/amazeui.js") }}"></script>
     <link href="http://hovertree.com/ziyuan/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="http://hovertree.com/texiao/bootstrap/4/css/city-picker.css" rel="stylesheet" type="text/css" />
     <script src="http://hovertree.com/ziyuan/jquery/jquery-1.12.1.min.js"></script>
@@ -12,19 +8,12 @@
     <script src="http://hovertree.com/texiao/bootstrap/4/js/city-picker.data.js"></script>
     <script src="http://hovertree.com/texiao/bootstrap/4/js/city-picker.js"></script>
     <script src="http://hovertree.com/texiao/bootstrap/4/js/main.js"></script>
-    <style>
-        #face{background: #f9f9f9 none repeat scroll 0 0;border: 1px solid #ccc;color: #666;height: 104px; line-height: 20px;margin-bottom: 10px;verflow: hidden;padding: 10px;width: 320px;float:left}
-        .mask {
-            background: rgba(0, 0, 0, 0)  no-repeat scroll 0 0;
-            height: 104px;left: 0; position: relative;top: 0;width: 104px;  z-index: 2;float:left
-        }
-        .info-m {
-            float: left;width: 177px;
-        }
-        .line{
-            margin-top: 23px;
-        }
-    </style>
+
+    <link href="{{url("home/css/personal.css")}}" rel="stylesheet" type="text/css">
+    <link href="{{url("home/css/addstyle.css") }}" rel="stylesheet" type="text/css">
+
+    <script src="{{url("home/js/jquery.min.js") }}" type="text/javascript"></script>
+    <script src="{{url("home/js/amazeui.js") }}"></script>
 @endsection
 @section('content1')
     <div class="user-address">

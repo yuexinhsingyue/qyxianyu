@@ -7,6 +7,7 @@
 
 	<script src="{{ url('home/js/jquery.min.js') }}"></script>
 	<script src="{{ url('home/js/amazeui.min.js') }}"></script>
+	<link href="{{ url('home/css/work.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')

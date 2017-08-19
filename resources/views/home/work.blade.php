@@ -3,6 +3,7 @@
 
 @section('header')
     <link href="{{ url('home/css/personal.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('home/css/work.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
