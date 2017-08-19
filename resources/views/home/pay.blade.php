@@ -37,6 +37,7 @@
         <!--订单 -->
         <div class="concent">
             <div id="payTable">
+
                 <h3>确认订单信息</h3>
                 <div class="cart-table-th">
                     <div class="wp">
@@ -58,29 +59,32 @@
                 <div class="clear"></div>
                 <div class="bundle  bundle-last">
                     <div class="bundle-main">
+                        @foreach($cars as $m=>$n)
+                            @foreach($goods as $k=>$v)
+                                @if($n == $v->id)
                         <ul class="item-content clearfix">
                             <div class="pay-phone">
                                 <li class="td td-item">
                                     <div class="item-pic">
                                         <a href="#" class="J_MakePoint">
-                                            <img src="/{{ $input['pic'] }}" class="itempic J_ItemImg">
+                                            <img src="/{{$v->pic}}" class="itempic J_ItemImg">
                                         </a>
                                     </div>
                                     <div class="item-info">
                                         <div class="item-basic-info">
-                                            <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$input['gname']}}</a>
+                                            <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v->gname}}</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="td td-info">
                                     <div class="item-props">
-                                        <span class="sku-line">{{$input['goodsDes']}}</span>
+                                        <span class="sku-line">{{$v->goodsDes}}</span>
                                     </div>
                                 </li>
                                 <li class="td td-price">
                                     <div class="item-price price-promo-promo">
                                         <div class="price-content">
-                                            <em class="J_Price price-now">{{$input['nprice']}}</em>
+                                            <em class="J_Price price-now">{{$v->nprice}}</em>
                                         </div>
                                     </div>
                                 </li>
@@ -90,7 +94,7 @@
                                     <div class="item-amount ">
                                         <span class="phone-title">购买数量</span>
                                         <div class="sl">
-                                            {{$input['goodsNum']}}
+                                            {{$v->goodsNum}}
                                             {{--<input class="min am-btn" name="" type="button" value="-">
                                             <input class="text_box" name="" type="text" value="3" style="width:30px;">
                                             <input class="add am-btn" name="" type="button" value="+">--}}
@@ -100,11 +104,15 @@
                             </li>
                             <li class="td td-sum">
                                 <div class="td-inner">
-                                    <em tabindex="0" class="J_ItemSum number">{{$price}}</em>
+                                    <em tabindex="0" class="J_ItemSum number">{{$sum}}</em>
                                 </div>
                             </li>
                         </ul>
                         <div class="clear"></div>
+                                @endif
+                            @endforeach
+
+                        @endforeach
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -183,6 +191,7 @@
                         <div class="clear"></div>
                     </div>
                 </div>
+
             </div>
             <div class="clear"></div>
         </div>

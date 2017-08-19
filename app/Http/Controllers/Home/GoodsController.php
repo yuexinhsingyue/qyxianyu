@@ -92,7 +92,7 @@ class GoodsController extends Controller
             //上传图片到文件夹
             $path = $file -> move(public_path('uploads'),$newname);
             //生成缩略图
-            $img = Image::make(public_path('/uploads/').$newname) -> resize(60,60);
+            $img = Image::make(public_path('/uploads/').$newname) -> resize(350,350);
             //保存图片上传的缩略图名字
             $img -> save(public_path('uploads/').'sml'.$newname);
             $res['pic'] = 'uploads/sml'.$newname;
@@ -201,7 +201,7 @@ class GoodsController extends Controller
                 $pic->move(public_path('uploads/'),$newName);     // 移动文件
 
                 // 生成缩略图
-                $sm = Image::make(public_path('uploads/').$newName)->resize(60,60)->save(public_path('uploads/').'up_sml'.$newName);
+                $sm = Image::make(public_path('uploads/').$newName)->resize(350,350)->save(public_path('uploads/').'up_sml'.$newName);
 
                 $data['pic'] = 'uploads/'.'up_sml'.$newName;    // 压入数组
 

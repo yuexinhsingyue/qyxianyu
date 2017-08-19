@@ -186,53 +186,64 @@ class IndexController extends Controller
         $uid =  session('homeuser')['uid'];
         //将购物车中的gid，id号放进lists数组中
         $cars = Car::where('uid',$uid)->lists('gid','id');
+        //dd($cars);
         $sum = 0;
         foreach($cars as $k=>$v){
-            //遍历出所有的商品价格
+            //遍历出购物车所有的商品价格
             $price1 = Goods::where('id',$v)->lists('nprice')[0];
             $sum = $sum+$price1;
+            $a[] = $k;
         }
-
-        $input = Goods::find($id);
+       /* $input = Goods::find($id);
         //获取gid加入到购物车中
         $car = new Car();
         $car->gid = $id;
-        $car->save();
-        //获取商品表的信息
+        $car->save();*/
+       /* //获取商品表的信息
         $goods = Goods::get();
         foreach($goods as $k=>$v){
             if($v['id']== $car['gid']){
                 $a = [];
             }
             $a = $goods;
-        }
-        //购物车中里的信息
-        $count =  count(Car::get());
+        }*/
+       /* //购物车中里的信息
+        $count =  count(Car::get());*/
         //获取购买东西的总价格
-        $price = $input['nprice']*$input['goodsNum'];
-        //购物车中里的信息
-        $count =  count(Car::get());
+        //$price = $input['nprice']*$input['goodsNum'];
         //获取订单的信息
         $order = new Order();
-        //获取订单总价
-        $order->oprice = $price;
         //获取下订单用户的ID
         $order->uid = session('homeuser')['uid'];
-        //$order->uid = 11;
+        //订单表的总价
+        $order->oprice = $sum;
+        //获取订单数量
+        $count = count($cars);
+        $order->onum = $count;
          //获取地址表信息的ID
         //存储订单信息
         $order->save();
         //获取订单详情信息
         $orderdetail = new OrderDetail();
+        $gid =Goods::where('uid',$uid)->lists('id');
         //获取订单详情表中商品的id
-        $orderdetail->gid = $id;
+        $orderdetail->gid = $gid;
         //订单id的获取
         $orderdetail->id = $order->id;
         //订单号
         $orderdetail->oid =  date('ymdhis').rand(00000000,99999999);
         $orderdetail->save();
-       // dd($order);
-        return view('home.pay',compact('input','id','price','car','a','count','order','orderdetail','sum'));
+      /*  $cars = Car::where('uid',$uid)->lists('gid','id');
+        $sum = 0;
+        foreach($cars as $k=>$v){
+            //遍历出所有的商品价格
+            $price = Goods::where('id',$v)->lists('nprice')[0];
+            $sum = $sum+$price;
+        }*/
+        //获取商品表的信息
+        $goods = Goods::get();
+//        return view('home.pay',compact('input','id','price','car','a','count','order','orderdetail','sum'));
+        return view('home.pay',compact('order','orderdetail','goods','cars','sum'));
     }
     //订单完成页
     public function success($id)
