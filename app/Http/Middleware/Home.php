@@ -18,7 +18,7 @@ class Home
     public function handle($request, Closure $next)
     {
 
-        $web = Webs::find(63);
+        $web = Webs::find(65);
         if($web->status == '1'){
             return $next($request);
         }else{

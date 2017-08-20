@@ -123,26 +123,92 @@ class IndexController extends Controller
     // 商品收藏
     public function coll()
     {
-        // 获取用户ID
         $uid = session('homeuser')['uid'];
 
-        $data['uid'] = $uid;             // 用户ID
-        $data['gid'] = $_POST['gid'];    // 商品ID
-        $data['collectTime'] = date('Y-m-d H:i',time());   // 收藏时间
+        $coll = Collect::where('uid',$uid)->get();
+        foreach($coll as $k=>$v){
+            $gid[] = $v->gid;
+        }
 
-        $res = Collect::create($data);
+        if(empty($gid)){
 
-        if($uid){
-            if($res){
-                return '收藏成功！';
+            // 获取用户ID
+            $uid = session('homeuser')['uid'];
+
+            $data['uid'] = $uid;             // 用户ID
+            $data['gid'] = $_POST['gid'];    // 商品ID
+            $data['collectTime'] = date('Y-m-d H:i',time());   // 收藏时间
+
+            $res = Collect::create($data);
+
+            if($uid){
+                if($res){
+                    return '收藏成功！';
+                }else{
+                    return '收藏失败！';
+                }
             }else{
-                return '收藏失败！';
+                return false;
             }
         }else{
-            return false;
+
+            if(in_array($_POST['gid'],$gid)){
+                return '不可重复收藏！';
+            }else{
+               // 获取用户ID
+                $uid = session('homeuser')['uid'];
+
+                $data['uid'] = $uid;             // 用户ID
+                $data['gid'] = $_POST['gid'];    // 商品ID
+                $data['collectTime'] = date('Y-m-d H:i',time());   // 收藏时间
+
+                $res = Collect::create($data);
+
+                if($uid){
+                    if($res){
+                        return '收藏成功！';
+                    }else{
+                        return '收藏失败！';
+                    }
+                }else{
+                    return false;
+                }                 
+            }
         }
 
     }
+
+    // 收藏列表
+    public function colllist()
+    {
+
+        $uid = session('homeuser')['uid'];
+
+        $coll = Collect::where('uid',$uid)->get();
+
+        foreach($coll as $k => $v){
+
+            $gid[] = $v->gid;
+        }
+        if(empty($gid)){
+            return back();
+        }
+        $goods = Goods::whereIn('id',$gid)->get();
+        return view('home.coll_list',compact('goods'));
+    }
+    // 删除收藏
+    public function colldel(Request $req)
+    {
+        
+        $res = Collect::where('gid',$req->input('cid'))->delete();
+        if($res){
+            return '删除成功！';
+        }else{
+            return '';
+        }
+
+    }
+
     //鱼塘
     public function fish()
     {

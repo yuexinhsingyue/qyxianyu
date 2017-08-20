@@ -183,10 +183,6 @@ class GoodsController extends Controller
         // 文件上传
         if(Input::hasFile('pic')){  //  检车是否为有效文件
 
-            if($request->pic){
-               unlink(public_path().'/'.$request->ppic);      
-            }
-
             $pic = $request -> file('pic');
             $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
             
