@@ -57,7 +57,7 @@
                 <li class="person">
                     <a href="#">我的小窝</a>
                     <ul>
-                        <li> <a href="#">收藏</a></li>
+                        <li> <a href="{{ url('home/collectlist') }}">收藏</a></li>
                         <li> <a href="#">评价</a></li>
                     </ul>
                 </li>

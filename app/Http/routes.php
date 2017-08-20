@@ -123,6 +123,10 @@ Route::group(['middleware'=>'home'], function() {
     Route::get('home/list','Home\IndexController@list');
     // 商品收藏
     Route::post('home/collect','Home\IndexController@coll');
+    // 收藏列表
+    Route::get('home/collectlist','Home\IndexController@colllist');
+    // 收藏删除
+    Route::get('home/colldel','Home\IndexController@colldel');
     //商品详情页
     Route::get('home/detail/{id}','Home\IndexController@detail');
     //问题页

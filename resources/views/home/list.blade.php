@@ -131,9 +131,11 @@
 								<p class="title fl">
 									{{$v->gname}}
 								</p>
-									<p class="title fl">
-										{{$v->goodsDes}}
-									</p>
+
+
+								<p class="title fl">
+									{{$v->goodsDes}}
+								</p>
 
 								<p class="price fl">
 									<b>
@@ -224,18 +226,18 @@
 	<script>
 			
 		// 商品收藏！
-	function coll(gid)
-	{
+			function coll(gid)
+			{
 
-		$.post("/home/collect", {'_token':'{{csrf_token()}}','gid':gid}, function(data){
+				$.post("/home/collect", {'_token':'{{csrf_token()}}','gid':gid}, function(data){
 
-			if(data){
-				layer.msg('收藏成功！', {icon: 6});
-			}else{
-				layer.msg(' 请 前 去 登 录 ！');
+					if(data){
+						layer.msg(data);
+					}else{
+						layer.msg(' 请 前 去 登 录 ！');
+					}
+				});
 			}
-		});
-	}
 
 
         window.jQuery || document.write('<script src="{{ url('home/js/jquery-1.9.min.js') }}"><\/script>');
