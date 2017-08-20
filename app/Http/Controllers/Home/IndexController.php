@@ -75,7 +75,7 @@ class IndexController extends Controller
         $count =  count(Car::get());
         //$ii = Input::get();
         //获取此商品的信息
-       dd($input);
+       //dd($input);
         return view('home.detail',compact('input','id','count'));
     }
 
