@@ -7,7 +7,7 @@
         <div class="nav-cont">
             <ul>
                 <li class="index"><a href="{{ url('/') }}">首页</a></li>
-                <li class="qc"><a href="{{ url('home/news') }}">文章与问题</a></li>
+                <li class="qc"><a href="{{ url('home/work/17289.html') }}">文章与问题</a></li>
                 <li class="qc last"><a href="{{ url('home/fishlist') }}">鱼塘</a></li>
             </ul>
         </div>
