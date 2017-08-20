@@ -70,9 +70,9 @@
                         });
                     </script>
                     <div class="tb-booth tb-pic tb-s310">
-                        <a href="{{ url('home/img/01.jpg') }}">
-                            <img src="/{{ $input['pic']}}" alt="细节展示放大镜特效" rel="{{ url('home/img/01.jpg') }}"
-                                 class="jqzoom" />
+                        <a href="/{{ $input['pic']}}">
+                            <img src="/{{ $input['pic']}}" alt="细节展示放大镜特效" rel="/{{ $input['pic']}}"
+                                 class="jqzoom"  />
                         </a>
                     </div>
                     <ul class="tb-thumb">
@@ -171,7 +171,8 @@
                         <dd>
                             <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"
                             />
-                            <input id="text_box" name="" type="text" value="1" style="width:30px;"
+
+                            <input id="text_box" name="number" type="text" value="2" style="width:30px;"
                             />
                             <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"
                             />

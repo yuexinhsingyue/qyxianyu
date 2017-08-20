@@ -92,10 +92,15 @@ class GoodsController extends Controller
             //上传图片到文件夹
             $path = $file -> move(public_path('uploads'),$newname);
             //生成缩略图
-            $img = Image::make(public_path('/uploads/').$newname) -> resize(350,350);
+            $img = Image::make(public_path('/uploads/').$newname) -> resize(400,400);
+            //刚写的
+            //$img1 = Image::make(public_path('/uploads/').$newname) -> resize(60,60);
             //保存图片上传的缩略图名字
             $img -> save(public_path('uploads/').'sml'.$newname);
+            //刚修改
+            //$img1-> save(public_path('uploads/').'bml'.$newname);
             $res['pic'] = 'uploads/sml'.$newname;
+           // $res['pic'] = 'uploads/sml'.$newname;
         } else {
             return redirect()->back()->withInput()->withErrors('文件上传失败');
         }
