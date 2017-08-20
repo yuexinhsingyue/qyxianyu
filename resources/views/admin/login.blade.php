@@ -73,6 +73,9 @@
                                     登&nbsp;&nbsp;录
                                 </button>
                             </div>
+                            <div class="form-group">
+                                <p class="text-muted text-xs-center">申请账户入口? <a href="{{ url('admin/register') }}">注册用户</a></p>
+                            </div>
                         </form>
                     </div>
                 </div>

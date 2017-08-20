@@ -102,7 +102,7 @@
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">
-                         @if(session('user')['uid'] != $v['uid'])
+                            @if(session('user')['uid'] != $v['uid'])
                             <a href="{{ url('admin/user/'.$v->uid.'/edit') }}" class="btn btn-oval btn-danger">审核</a>
                             @endif
                         </div>

@@ -104,11 +104,6 @@
                                         用&nbsp;户&nbsp;列&nbsp;表&nbsp;
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{url('/admin/user/create')}}">
-                                        添&nbsp;加&nbsp;用&nbsp;户&nbsp;
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <li>

@@ -19,6 +19,10 @@
 
 //后台用户登录
 Route::get('admin/login','Admin\LoginController@login');
+//后台用户注册
+Route::get('admin/register','Admin\LoginController@register');
+//后台用户注册验证
+Route::post('admin/doregister','Admin\LoginController@doregister');
 //后台登录验证
 Route::post('admin/dologin','Admin\LoginController@dologin');
 //验证码

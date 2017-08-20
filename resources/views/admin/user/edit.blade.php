@@ -26,6 +26,19 @@
                     </label> </div>
                 </div>
             </div>
+            @if($user ==1 || $user ==2)
+            <div class="form-group row">
+                <label class="col-sm-2 form-control-label text-xs-right">
+                    身份:
+                </label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="indentity">
+                        <option @if($user == 1) selected @endif value="1">管理员</option>
+                        <option @if($user == 2) selected @endif value="2">普通用户</option>
+                    </select>
+                </div>
+            </div>
+            @endif
             @if($user == 3 || $user == 4)
             <div class="form-group row">
                 <label class="col-sm-2 form-control-label text-xs-right">
@@ -33,14 +46,11 @@
                 </label>
                 <div class="col-sm-10">
                         <div> <label>
-                                <input class="radio squared" name="identity" @if($user == 3) checked @endif type="radio" value="3">
+                                <input class="radio squared" name="indentity" @if($user == 3) checked @endif type="radio" value="3">
                                 <span>未审核</span>
                             </label> <label>
-                                <input class="radio squared" name="identity" @if($user == 4) checked @endif type="radio" value="4">
+                                <input class="radio squared" name="indentity" @if($user == 4) checked @endif type="radio" value="4">
                                 <span>审核通过</span>
-                            </label><label>
-                                <input class="radio squared" name="identity" type="radio" value="2">
-                                <span>普通用户</span>
                             </label>
                         </div>
                 </div>

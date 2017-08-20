@@ -54,23 +54,60 @@ class PersonAddrController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * 借助执行添加或者修改用户地址，根据ID号判断是修改还是添加  0添加 其余ID号为修改
+     * auth:hsingyue
+     * data:2017-08-17
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+//        dd($request -> all());
+//        获取地址表单
         $newAddr = $request -> except('_token');
-        $addr = $request -> input('address1').'/'.$request->input('address2');
 
-        $newAddr['uid'] = session('homeuser')["uid"];
+//        拼接用户区域地址+具体地址
+        $addr = $request -> input('address1').'/'.$request->input('address2');
         $newAddr['address'] = $addr;
 
-        unset($newAddr['address1']);
-        unset($newAddr['address2']);
+//      获取用户ID
+        $newAddr['uid'] = session('homeuser')["uid"];
+//        dd($newAddr);
 
-        Address::create($newAddr);
+        $eid = $newAddr['eid'];
+
+        //      判断是编辑用户还是添加用户  添加用户ID为 0
+        if ( $eid )
+        {
+//            dd($newAddr);
+//           dd($newAddr);
+//           如果未修改区域信息则取以前的
+            if ( empty($newAddr['address1'])  ) {
+                $arr = Address::where('id',$eid)
+                    ->get();
+                $arr = explode('/',$arr[0]['address']);
+                unset($arr[3]);
+                $str = implode ('/',$arr).'/'.$newAddr['address2'];
+//                dd($str);
+                $newAddr['address'] = $str;
+            }
+            unset($newAddr['address1']);
+            unset($newAddr['address2']);
+
+            unset($newAddr['eid']);
+            Address::where('id',$eid)
+                ->update($newAddr);
+        } else {
+//            添加
+            unset($newAddr['address1']);
+            unset($newAddr['address2']);
+
+            unset($newAddr['eid']);
+            Address::create($newAddr);
+
+        }
+
         return back();
     }
 

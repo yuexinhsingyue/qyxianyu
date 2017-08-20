@@ -67,7 +67,7 @@
                     <li class="td td-item">
                         <div class="item-pic">
                             <a href="#" target="_blank" data-title="{{$v->gname}}" class="J_MakePoint" data-point="tbcart.8.12">
-                                <img src="/{{$v->pic}}" class="itempic J_ItemImg"></a>
+                               <img src="/{{$v->pic}}" class="itempic J_ItemImg" width="60" height="60"></a>
                         </div>
                         <div class="item-info">
                             <div class="item-basic-info">
