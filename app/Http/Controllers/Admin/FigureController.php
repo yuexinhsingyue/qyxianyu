@@ -87,7 +87,7 @@ class FigureController extends Controller
                 $sm = Image::make(public_path('uploads/').$newName)->resize(1010,455)->save(public_path('uploads/').'sm_'.$newName);
 
                 $data['spic'] = '/uploads/'.$newName;
-                $data['simg'] = '<li class="banner2"><a href="'.$data['surl'].'"><img src=/uploads/"'.'sm_'.$newName.'" /></a></li>';
+                $data['simg'] = '<li class="banner2"><a href="'.$data['surl'].'"><img src=/uploads/'.'sm_'.$newName.' /></a></li>';
 
             }else{
                 return redirect()->back()->withInput()->withErrors('文件上传失败');
