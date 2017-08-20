@@ -7,8 +7,8 @@
         <div class="nav-cont">
             <ul>
                 <li class="index"><a href="{{ url('/') }}">首页</a></li>
-                <li class="qc"><a href="{{ url('home/news') }}">文章与问题</a></li>
-                <li class="qc last"><a href="{{ url('home/fish') }}">鱼塘</a></li>
+                <li class="qc"><a href="{{ url('home/work/17289.html') }}">文章与问题</a></li>
+                <li class="qc last"><a href="{{ url('home/fishlist') }}">鱼塘</a></li>
             </ul>
         </div>
     </div>
@@ -18,7 +18,7 @@
             <div class="main-wrap">
                 <div class="wrap-left">
                     @section('content1')
-                    @show
+                        @show
                 </div>
                 <div class="wrap-right">
                     @section('content2')
@@ -65,7 +65,7 @@
                 <li class="person">
                     <a href="#">我的鱼塘</a>
                     <ul>
-                        <li> <a href="#">鱼塘列表</a></li>
+                        <li> <a href="{{url('/home/fishuser')}}">鱼塘列表</a></li>
                         <li> <a href="{{url('/home/address')}}">增加鱼塘</a></li>
                     </ul>
                 </li>
@@ -74,8 +74,9 @@
         </aside>
     </div>
 
-@endsection
 
+@endsection
 @section('js')
-
-@endsection
+        @section('js')
+        @show
+    @endsection

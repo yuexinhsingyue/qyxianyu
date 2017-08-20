@@ -119,6 +119,7 @@ class LoginController extends Controller
         }
         return redirect('/home/login');
     }
+    
     //注册手机成功
     public function dotelregister()
     {

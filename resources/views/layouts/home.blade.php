@@ -10,7 +10,12 @@
     <link href="{{ url('home/css/amazeui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/admin.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('home/css/demo.css') }}" rel="stylesheet" type="text/css" />
-{{--    <link href="{{ url('home/css/work.css') }}" rel="stylesheet" type="text/css" />--}}
+    <link href="{{ url('home/css/work.css') }}" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="{{ URL::asset('admin/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="/layer/layer.js"></script>
+
+
 
     <link rel="shortcut icon" type="image/x-icon" href="{{url('/home/favicon.ico')}}" />
 
@@ -95,7 +100,7 @@
     <div class="footer-bd">
     <p>
       <span>
-        {{$web->cright}}
+        备案号：{{$web->filing}}&nbsp;&nbsp;|&nbsp;&nbsp;版权信息：{{$web->cright}}
       </span>
     </p>
     举报联系电话：{{$web->telephone}}

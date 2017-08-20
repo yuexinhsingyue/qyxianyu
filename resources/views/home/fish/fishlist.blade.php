@@ -5,6 +5,22 @@
 	<link href="{{ url('home/css/seastyle.css') }}" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="./style/js/jquery-1.7.min.js"></script>
 	<script type="text/javascript" src="./style/js/script.js"></script>
+	<style type="text/css">
+	/*物流*/
+.m-logistics{display:block;background:#fff ;}
+.lg-list{ margin-bottom:5px;}
+.s-content { position: relative; overflow: hidden;background: #fff;}
+.lg-item { border-top: 1px solid #E8EEF2;padding: 13px 10px 13px 15px; overflow:hidden;}
+.item-info, .m-logistics .lg-info { position: relative; float: left;}
+.item-info img {width: 70px;height: 70px; vertical-align: top;}
+.lg-info {padding-left: 30px; float:left;}
+.lg-confirm {float: right;}
+.lg-info p { height: 38px;line-height: 38px;}
+.m-logistics time { font-size: 12px;}
+.lg-detail-wrap {display: inline;position: relative;}
+.hide {display: none !important;}
+.i-btn-typical {display: inline-block;color: #575757;font-size: 12px; padding: 3px 6px; border: 1px solid #D1D1D1;}
+	</style>
 @endsection
 
 @section('content')
@@ -117,53 +133,48 @@
 					<div class="sort">
 						<li class="first">
 							<a title="综合">
-								综合排序
+								鱼塘列表
 							</a>
 						</li>
-						<li>
-							<a title="销量">
-								销量排序
-							</a>
-						</li>
-						<li>
-							<a title="价格">
-								价格优先
-							</a>
-						</li>
-						<li class="big">
-							<a title="评价" href="#">
-								评价为主
-							</a>
-						</li>
+						
 					</div>
 					<div class="clear">
 					</div>
-					<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
-					 @foreach($data as $k=>$v)
-						<li>
-							<a href="{{ url('home/detail') }}"><div class="i-pic limit">
-								<img src="{{ url($v['face']) }}" />
-								<p class="title fl">
-									{{$v->fishpondname}}
-								</p>
-								<p class="price fl">
-									<b>
-										¥
-									</b>
-									<strong>
-										56.90
-									</strong>
-								</p>
-								<p class="number fl">
-									{{$v->synopsis}}
-									<span>
-									1110
-								</span>
-								</p>
-								</div></a>
-						</li>
-					@endforeach
-					</ul>
+					    <div class="m-logistics">
+
+        <div class="s-bar">
+        </div>
+        <div class="s-content">
+            <ul class="lg-list">
+				 @foreach($data as $k=>$v)
+                <li class="lg-item">
+                    <div class="item-info">
+                        <a href="#">
+                            <img src="{{ url($v['face']) }}" alt="">
+                        </a>
+
+                    </div>
+                    <div class="lg-info">
+
+                        <p>鱼塘名:{{$v->fishpondname}}</p>
+                        <time>鱼塘简介:{{$v->synopsis}}</time>
+
+                        <div class="lg-detail-wrap">
+                            <a class="lg-detail i-tip-trigger" href="{{ url('home/fishgoods') }}/{{$v->id}}">查看鱼塘商品</a>
+                        </div>
+
+                    </div>
+
+                </li>
+                @endforeach
+                <div class="clear"></div>
+
+            </ul>
+
+        </div>
+
+    </div>
+
 				</div>
 
 				<div class="clear">

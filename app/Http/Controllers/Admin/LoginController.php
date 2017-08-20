@@ -12,6 +12,7 @@ use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -80,5 +81,53 @@ class LoginController extends Controller
         session(['user'=>$user]);
         return redirect('/admin/index');
 
+    }
+
+    //用户注册
+    public function register()
+    {
+        return view('admin.register');
+    }
+
+    //用户注册成功
+    public function doregister(Request $request)
+    {
+        //判断用户输入
+        $res = $request -> except('_token','face');
+        $rule = [
+            'uname' => 'required|between:5,10|alpha|unique:users,uname',
+            'password' => 'required|between:6,12',
+            'repwd' => 'same:password',
+        ];
+
+        $msg = [
+            'uname.required' => '用户名必须输入',
+            'uname.between' => '用户名格式不正确',
+            'uname.alpha' => '用户名只允许为字母',
+            'uname.unique' => '用户必须唯一',
+            'password.required' => '密码必须输入',
+            'password.between' => '密码格式不正确',
+            'repwd.same' => '密码不一致',
+        ];
+
+        $validator = Validator::make($res,$rule,$msg);
+        //如果验证失败
+        if($validator->fails()){
+            return back() -> withErrors($validator) -> withInput();
+        }
+        //存放数据
+        $user = new User();
+        $user -> uname = $res['uname'];
+        $user -> password = \Crypt::encrypt($res['password']);
+        $user -> identity = 2;
+        $user -> save();
+        $id = $user -> uid;
+
+        $userdetail = new UserDetail();
+        $userdetail -> uid = $id;
+        $userdetail -> status = 1;
+        $userdetail -> save();
+
+        return redirect('/admin/login');
     }
 }

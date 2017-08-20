@@ -27,7 +27,7 @@
                <div class="s-item">
 
                   <div class="s-pic">
-                     <a class="s-pic-link" href="#">
+                     <a class="s-pic-link" href="{{url('home/detail/'.$v->id)}}">
                         <img class="s-pic-img s-guess-item-img" title="{{$v->gname}}"  src="/{{ $v->pic  }}">
                      </a>
                   </div>
@@ -43,9 +43,18 @@
                      </div>
                   </div>
                   <div class="s-tp">
-                     <span class="ui-btn-loading-before">找相似</span>
-                     <i class="am-icon-shopping-cart"></i>
-                     <span class="ui-btn-loading-before buy">加入购物车</span>
+                     <!-- <span class="ui-btn-loading-before">找相似啊</span> -->
+                     <span class="ui-btn-loading-before buy" style='border-radius:20px'><a href="{{url('home/goods/'.$v->id.'/edit')}}" style="color:#FFFFFF">点我修改</a></span>
+                     @if($v->goodsNum)
+                  <!-- <a class="am-badge am-badge-info am-round">已卖出</a> -->
+                     <a class="am-badge am-badge-danger am-round">在售</a>
+
+                     @else
+
+                     <a class="am-badge am-badge-info am-round">已卖出</a>
+
+                     @endif
+
                      <p>
                         <a class="c-nodo J_delFav_btn" href="javascript:;">取消收藏</a>
                      </p>

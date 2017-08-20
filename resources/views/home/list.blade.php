@@ -5,6 +5,7 @@
 	<link href="{{ url('home/css/seastyle.css') }}" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="{{ url('home/js/jquery-1.7.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url('home/js/script.js') }}"></script>
+
 @endsection
 
 @section('content')
@@ -20,7 +21,7 @@
 			<div class="nav-cont">
 				<ul>
 					<li class="index"><a href="{{ url('/') }}">首页</a></li>
-					<li class="qc"><a href="{{ url('home/news') }}">文章与问题</a></li>
+					<li class="qc"><a href="{{ url('home/work/17289.html') }}">文章与问题</a></li>
 					<li class="qc last"><a href="{{ url('home/fish') }}">鱼塘</a></li>
 				</ul>
 			</div>
@@ -126,9 +127,14 @@
 						<li>
 							<a href="{{ url('home/detail/'.$v->id) }}"><div class="i-pic limit">
 								<img src="/{{ $v->pic  }}" />
+
 								<p class="title fl">
 									{{$v->gname}}
 								</p>
+									<p class="title fl">
+										{{$v->goodsDes}}
+									</p>
+
 								<p class="price fl">
 									<b>
 										¥
@@ -143,7 +149,10 @@
 									{{$v->goodsNum}}
 								</span>
 								</p>
-								</div></a>
+								</div>
+								</a>
+								<a href="javascript:void(0)" onclick="coll({{$v->id}})" style="position:relative;border-radius:2px;background:#8389E0;float:left">点击收藏</a>
+								<!-- <span>已收藏</span> -->
 						</li>
 							@endforeach
 					</ul>
@@ -213,6 +222,22 @@
 
 @section('js')
 	<script>
+			
+		// 商品收藏！
+	function coll(gid)
+	{
+
+		$.post("/home/collect", {'_token':'{{csrf_token()}}','gid':gid}, function(data){
+
+			if(data){
+				layer.msg('收藏成功！', {icon: 6});
+			}else{
+				layer.msg(' 请 前 去 登 录 ！');
+			}
+		});
+	}
+
+
         window.jQuery || document.write('<script src="{{ url('home/js/jquery-1.9.min.js') }}"><\/script>');
 	</script>
 	<script type="text/javascript" src="{{ url('home/js/quick_links.js') }}"></script>

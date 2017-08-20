@@ -13,13 +13,13 @@
             <div class="form-group">
 
                 <label class="control-label">收货地址</label>
-                @foreach($ad as $k => $v)
-                <input type="text" value="{{$v['name']}}   {{$v['address']}}     {{$v['phone']}} " class="form-control underlined" readonly="readonly">
-                    @endforeach
+                {{--@foreach($ad as $k => $v){{$v['name']}}   {{$v['address']}}     {{$v['phone']}}--}}
+                <input type="text" value="小飞侠" class="form-control underlined" readonly="readonly">
+                    {{--@endforeach--}}
             </div>
             <div class="form-group" readonly="readonly">
                 <label class="control-label">订单信息</label>
-                <input type="text" value="订单号：{{$num}}        创建时间：2017 08 09" class="form-control underlined" readonly="readonly">
+                <input type="text" value="订单号：{{$num}}" class="form-control underlined" readonly="readonly">
             </div>
             <div class="card items">
                 <ul class="item-list striped">
@@ -38,9 +38,9 @@
                             <div class="item-col item-col-header item-col-stats">
                                 <div class="no-overflow"> <span>单价</span> </div>
                             </div>
-                            <div class="item-col item-col-header item-col-stats">
+                          {{--  <div class="item-col item-col-header item-col-stats">
                                 <div class="no-overflow"> <span>数量</span> </div>
-                            </div>
+                            </div>--}}
                             <div class="item-col item-col-header item-col-stats">
                                 <div class="no-overflow"> <span>商品总价</span> </div>
                             </div>
@@ -49,26 +49,26 @@
                     {{--表内容--}}
                     <li class="item">
                         <div class="item-row">
-                            @foreach($good as $k=>$v)
+                            @foreach($goods as $k=>$v)
                             <div class="item-col item-col-stats no-overflow">
                                 <div class="no-overflow">{{$v->gname}}</div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
                                 <div class="col-sm-10">
-                                    <img src="" width="70px" height="70px">
+                                    <img src="{{ url($v->pic) }}" width="60px" height="60px">
                                 </div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">{{$v->goodstyle}}</div>
+                                <div class="no-overflow">{{$v->goodsDes}}</div>
                             </div>
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">￥{{$v->price}}</div>
+                                <div class="no-overflow">￥{{$v->nprice}}</div>
                             </div>
-                            <div class="item-col item-col-stats no-overflow">
+                           {{-- <div class="item-col item-col-stats no-overflow">
                                 <div class="no-overflow">{{$v->num}}</div>
-                            </div>
+                            </div>--}}
                             <div class="item-col item-col-stats no-overflow">
-                                <div class="no-overflow">￥{{$price}}</div>
+                                <div class="no-overflow">￥{{$v->nprice}}</div>
                             </div>
                                 @endforeach
                         </div>

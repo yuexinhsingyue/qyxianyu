@@ -23,19 +23,20 @@ class DataStaController extends Controller
     {
 
         // 获取近30天的数据
-        // $CountOrder = DB::select(" select  FROM_UNIXTIME( createTime,'%Y-%m-%d') as days,count(oprice) as count, SUM(oprice) AS amount from `order` where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= createTime group by days order by createTime");
+        // $CountOrder = DB::select("select FROM_UNIXTIME( unix_timestamp(created_at),'%m/%d') as days,count(id) as count, SUM(oprice) AS amount from `order` where  `created_at` >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) group by `days` order by `created_at` asc");
 
         //从数据库订单表中统计近30天的日订单金额。
-        $Order = Order::select(DB::raw("FROM_UNIXTIME( created_at,'%m/%d') as days,count(oprice) as count, SUM(oprice) AS amount"))
-            ->where('created_at','>=',' DATE_SUB(CURDATE(), INTERVAL 30 DAY)')
+        $Order = Order::select(DB::raw("FROM_UNIXTIME( unix_timestamp(created_at),'%m/%d') as days,count(id) as count, SUM(oprice) AS amount"))
+            ->whereRaw('unix_timestamp (created_at) >= unix_timestamp(DATE_SUB(CURDATE(), INTERVAL 30 DAY))')
             ->groupBy('days')
             ->orderBy('created_at')
             ->get();
+        // dd($Order);
 
         // 平台闲置商品数量
         $totelgoods = Goods::count('id');
         // 当月累计订单数
-        $orderMonth = $Order->count('count'); 
+        $orderMonth = $Order->sum('count');
         // 当月累计交易额
         $priceMonth = $Order->sum('amount'); 
         // 平台累计订单数
@@ -63,6 +64,7 @@ class DataStaController extends Controller
             } 
             // 每天的日期减一
             $countDay = date('m/d', strtotime($countDay) - (24*60*60));
+
         }
         // 按照键名（日期）对数据进行排序
         ksort($countOrder);

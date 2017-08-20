@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Model\Fish;
+use App\Http\Model\Goods;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,11 +22,16 @@ class FishpondController extends Controller
     public function index()
     {
        
+        $uid = session('homeuser')['uid'];
+        $fish = Fish::where('uid',$uid)->get();
+
+        return view('home.fish.index',compact('fish'));
+
     }
     public function fishlist(Request $request)
     {
 
-        $data = Fish::where('fishpondname','like','%'.$request['keywords'].'%')->paginate(8);
+        $data = Fish::where('fishpondname','like','%'.$request['keywords'].'%')->paginate(4);
         $keyword = $request->input('keywords');
          return view('home.fish.fishlist',compact('data','keyword'));
     }
@@ -48,8 +54,8 @@ class FishpondController extends Controller
      */
     public function store(Request $request)
     {
-    $uid='21';
-     session(['uid'=>$uid]);
+   
+
       $data = $request->except(['_token']);
          $rule = [
             'fishpondname'  =>'required',
@@ -79,7 +85,8 @@ class FishpondController extends Controller
         $data['face'] = $filepath;
  
   
-        $data['uid'] = session('uid');
+        $data['uid'] =session('homeuser')['uid'];
+        //dd($data);
         // 如果没有图片上传就直接添加
         $res = Fish::create($data);
         if($res){
@@ -89,6 +96,16 @@ class FishpondController extends Controller
         }
     }   
 
+
+    // 用户鱼塘的指定商品
+    public function usergoods($id)
+    {
+        $res = Goods::where('fid',$id)->get();
+        
+        return view('home.fish.fish_index',compact('res'));
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -97,7 +114,8 @@ class FishpondController extends Controller
      */
     public function show($id)
     {
-        //
+        
+
     }
 
     /**
@@ -130,7 +148,9 @@ class FishpondController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+
     {
-        //
+         $goods = Goods::where('fid',$id)->get();
+        return view('home.fish.fishgoods',compact('goods'));
     }
 }

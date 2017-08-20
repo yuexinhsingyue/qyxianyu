@@ -12,82 +12,6 @@
 <div class="concent">
     <!--地址 -->
     <div class="paycont">
-        <div class="address">
-            <h3>确认收货地址 </h3>
-            <div class="control">
-                <div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div>
-            </div>
-            <div class="clear"></div>
-            <ul>
-                <div class="per-border"></div>
-                <li class="user-addresslist defaultAddr">
-                    <div class="address-left">
-                        <div class="user DefaultAddr">
-                            <span class="buy-address-detail">
-                            <span class="buy-user">艾迪 </span>
-                            <span class="buy-phone">15871145629</span>
-                            </span>
-                        </div>
-                        <div class="default-address DefaultAddr">
-                            <span class="buy-line-title buy-line-title-type">收货地址：</span>
-                            <span class="buy--address-detail">
-                               <span class="province">湖北</span>省
-                                <span class="city">武汉</span>市
-                                <span class="dist">洪山</span>区
-                                <span class="street">雄楚大道666号(中南财经政法大学)</span>
-                            </span>
-                        </div>
-                        <ins class="deftip">默认地址</ins>
-                    </div>
-                    <div class="address-right">
-                        <a href="#">
-                            <span class="am-icon-angle-right am-icon-lg"></span>
-                        </a>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="new-addr-btn">
-                        <a href="#" class="hidden">设为默认</a>
-                        <span class="new-addr-bar hidden">|</span>
-                        <a href="#">编辑</a>
-                        <span class="new-addr-bar">|</span>
-                        <a href="javascript:void(0);" onclick="delClick(this);">删除</a>
-                    </div>
-                </li>
-                <div class="per-border"></div>
-                <li class="user-addresslist">
-                    <div class="address-left">
-                        <div class="user DefaultAddr">
-                            <span class="buy-address-detail">
-                             <span class="buy-user">艾迪 </span>
-                            <span class="buy-phone">15871145629</span>
-                            </span>
-                        </div>
-                        <div class="default-address DefaultAddr">
-                            <span class="buy-line-title buy-line-title-type">收货地址：</span>
-                            <span class="buy--address-detail">
-                               <span class="province">湖北</span>省
-                                <span class="city">武汉</span>市
-                                <span class="dist">武昌</span>区
-                                <span class="street">东湖路75号众环大厦2栋9层902</span>
-                            </span>
-                        </div>
-                        <ins class="deftip hidden">默认地址</ins>
-                    </div>
-                    <div class="address-right">
-                        <span class="am-icon-angle-right am-icon-lg"></span>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="new-addr-btn">
-                        <a href="#">设为默认</a>
-                        <span class="new-addr-bar">|</span>
-                        <a href="#">编辑</a>
-                        <span class="new-addr-bar">|</span>
-                        <a href="javascript:void(0);" onclick="delClick(this);">删除</a>
-                    </div>
-                </li>
-            </ul>
-            <div class="clear"></div>
-        </div>
         <!--物流 -->
         <div class="logistics">
             <h3>选择物流方式</h3>
@@ -113,6 +37,7 @@
         <!--订单 -->
         <div class="concent">
             <div id="payTable">
+
                 <h3>确认订单信息</h3>
                 <div class="cart-table-th">
                     <div class="wp">
@@ -134,29 +59,32 @@
                 <div class="clear"></div>
                 <div class="bundle  bundle-last">
                     <div class="bundle-main">
+                        @foreach($cars as $m=>$n)
+                            @foreach($goods as $k=>$v)
+                                @if($n == $v->id)
                         <ul class="item-content clearfix">
                             <div class="pay-phone">
                                 <li class="td td-item">
                                     <div class="item-pic">
                                         <a href="#" class="J_MakePoint">
-                                            <img src="/{{ $input['pic'] }}" class="itempic J_ItemImg">
+                                            <img src="/{{$v->pic}}" class="itempic J_ItemImg">
                                         </a>
                                     </div>
                                     <div class="item-info">
                                         <div class="item-basic-info">
-                                            <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$input['gname']}}</a>
+                                            <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v->gname}}</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="td td-info">
                                     <div class="item-props">
-                                        <span class="sku-line">{{$input['goodsDes']}}</span>
+                                        <span class="sku-line">{{$v->goodsDes}}</span>
                                     </div>
                                 </li>
                                 <li class="td td-price">
                                     <div class="item-price price-promo-promo">
                                         <div class="price-content">
-                                            <em class="J_Price price-now">{{$input['nprice']}}</em>
+                                            <em class="J_Price price-now">{{$v->nprice}}</em>
                                         </div>
                                     </div>
                                 </li>
@@ -166,7 +94,7 @@
                                     <div class="item-amount ">
                                         <span class="phone-title">购买数量</span>
                                         <div class="sl">
-                                            {{$input['goodsNum']}}
+                                            {{$v->goodsNum}}
                                             {{--<input class="min am-btn" name="" type="button" value="-">
                                             <input class="text_box" name="" type="text" value="3" style="width:30px;">
                                             <input class="add am-btn" name="" type="button" value="+">--}}
@@ -176,11 +104,15 @@
                             </li>
                             <li class="td td-sum">
                                 <div class="td-inner">
-                                    <em tabindex="0" class="J_ItemSum number">{{$price}}</em>
+                                    <em tabindex="0" class="J_ItemSum number">{{$sum}}</em>
                                 </div>
                             </li>
                         </ul>
                         <div class="clear"></div>
+                                @endif
+                            @endforeach
+
+                        @endforeach
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -220,7 +152,7 @@
                 <!--含运费小计 -->
                 <div class="buy-point-discharge ">
                     <p class="price g_price ">
-                        合计（含运费） <span>¥</span><em class="pay-sum">{{$price}}</em>
+                        合计（含运费） <span>¥</span><em class="pay-sum">{{$sum}}</em>
                     </p>
                 </div>
                 <!--信息 -->
@@ -229,7 +161,7 @@
                         <div class="box">
                             <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
                                 <span class="price g_price ">
-                                <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">{{$price}}</em>
+                                <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">{{$sum}}</em>
                                         </span>
                             </div>
                             <div id="holyshit268" class="pay-address">
@@ -253,12 +185,13 @@
                         </div>
                         <div id="holyshit269" class="submitOrder">
                             <div class="go-btn-wrap">
-                                <a id="J_Go" href="{{ url('home/success') }}" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+                                <a id="J_Go" href="{{ url('home/success/') }}" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
                             </div>
                         </div>
                         <div class="clear"></div>
                     </div>
                 </div>
+
             </div>
             <div class="clear"></div>
         </div>

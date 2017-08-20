@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         // 友情链接
         $links = Links::get();
         // 网站配置
-        $web = Webs::find(63);
+        $web = Webs::find(65);
 
         view()->share('links', $links);
         view()->share('web', $web);

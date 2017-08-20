@@ -26,8 +26,10 @@ class GoodsController extends Controller
     {
         //获取发布商品的用户的信息
         //$uid = Goods::where('uid',$request->(User::where('id')->value()))->get();
+        $user = session('homeuser')['uid'];
         //根据uid获取此用户发布的所有商品
-        $goods = Goods::get();
+        $goods = Goods::where('uid',$user)->get();
+       //$goods = Goods::get();
        //dd($goods);
      return view('home.goods.list',compact('goods'));
     }
@@ -90,7 +92,7 @@ class GoodsController extends Controller
             //上传图片到文件夹
             $path = $file -> move(public_path('uploads'),$newname);
             //生成缩略图
-            $img = Image::make(public_path('/uploads/').$newname) -> resize(60,60);
+            $img = Image::make(public_path('/uploads/').$newname) -> resize(350,350);
             //保存图片上传的缩略图名字
             $img -> save(public_path('uploads/').'sml'.$newname);
             $res['pic'] = 'uploads/sml'.$newname;
@@ -100,6 +102,8 @@ class GoodsController extends Controller
 
         //上传图片
         $input['pic'] = $res['pic'];
+        $user = session('homeuser')['uid'];
+        $input['uid'] = $user;
         $data = Goods::create($input);
         $goods = Goods::get()->last();
         $goodsDetail = new GoodsDetail();
@@ -134,7 +138,22 @@ class GoodsController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        // 商品类别 
+        $type = Type::get();
+        // 鱼塘
+        $fish = Fish::get();
+        // 商品
+        $goods = Goods::find($id);
+
+        $ttype = Type::where('tid',$goods->tid)->first();
+        $ffish = Fish::where('id',$goods->fid)->first();
+
+        return view('home.goods.edit',compact('type','fish','goods','ttype','ffish'));
+        echo '我是商品修改页面'.'===='.$id;
+
+
+
     }
 
     /**
@@ -146,7 +165,61 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except('_token','_method','pic','ppic');
+
+        // 表单验证
+        $rule = [
+            'gname' => 'required',
+            'nprice' => 'required',
+            'goodsNum' => 'required',
+        ];
+        $msg = [
+            'gname.required' => '宝贝名称必须输入',
+            'nprice.required' => '宝贝价格必须输入',
+            'goodsNum.required' => '宝贝数量必须输入',
+        ];
+        $validator = Validator::make($data,$rule,$msg);
+        //如果验证失败
+        if($validator->fails()){
+            return back() -> withErrors($validator) -> withInput();
+        }
+
+        // 文件上传
+        if(Input::hasFile('pic')){  //  检车是否为有效文件
+
+            if($request->pic){
+               unlink(public_path().'/'.$request->ppic);      
+            }
+
+            $pic = $request -> file('pic');
+            $enev = strtolower($pic->getClientOriginalExtension());   //上传文件的后缀名
+            
+            if(in_array($enev,['jpg','jpeg','png','gif']))
+            {
+                $newName = date('YmdHis').mt_rand(1000,9999).'.'.$enev;    //设置文件名称 
+
+                $pic->move(public_path('uploads/'),$newName);     // 移动文件
+
+                // 生成缩略图
+                $sm = Image::make(public_path('uploads/').$newName)->resize(350,350)->save(public_path('uploads/').'up_sml'.$newName);
+
+                $data['pic'] = 'uploads/'.'up_sml'.$newName;    // 压入数组
+
+
+            }else{
+                return redirect()->back()->withInput()->withErrors('文件上传失败');
+            }
+             
+        }
+        
+        $good = Goods::find($id);       // 执行修改
+        $res = $good->update($data);
+            
+        if($res){
+            return redirect('home/goods/'.$id.'/edit');
+        }else{
+            return back()->with('error','修改失败！');;
+        }
     }
 
     /**
