@@ -165,20 +165,20 @@
                                     <form class="theme-signin" name="loginform" action="" method="post">
                                         <div class="theme-signin-left">
                                             <div class="theme-options">
-                                                <div class="cart-title number">
+                                                {{--<div class="cart-title number">
                                                     数量
-                                                </div>
+                                                </div>--}}
                         <dd>
-                            <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"
+                            {{--<input id="min" class="am-btn am-btn-default" name="" type="button" value="-"
                             />
 
-                            <input id="text_box" name="number" type="text" value="2" style="width:30px;"
+                            <input id="text_box" name="number" type="text" value="1" style="width:30px;"
                             />
                             <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"
-                            />
+                            onclick="checknum(this)"/>--}}
                             <span id="Stock" class="tb-hidden">库存
-														<span class="stock">{{$input['goodsNum']}}</span>件
-											        </span>
+                                <span class="stock">{{$input['goodsNum']}}</span>件
+                            </span>
                         </dd>
                 </div>
                 <div class="clear"></div>
@@ -249,16 +249,16 @@
                 <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs">
                     <li class="am-active">
                         <a href="#">
-								<span class="index-needs-dt-txt">
-									宝贝详情
-								</span>
+                                <span class="index-needs-dt-txt">
+                                    宝贝详情
+                                </span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-								<span class="index-needs-dt-txt">
-									全部评价
-								</span>
+                                <span class="index-needs-dt-txt">
+                                    全部评价
+                                </span>
                         </a>
                     </li>
                 </ul>
@@ -299,13 +299,13 @@
                                 <strong>
                                     100
                                     <span>
-											%
-										</span>
+                                            %
+                                        </span>
                                 </strong>
                                 <br>
                                 <span>
-										好评度
-									</span>
+                                        好评度
+                                    </span>
                             </div>
                             <dl>
                                 <dt>
@@ -313,9 +313,9 @@
                                 </dt>
                                 <dd class="p-bfc">
                                     <q class="comm-tags">
-											<span>
-												味道不错
-											</span>
+                                            <span>
+                                                味道不错
+                                            </span>
                                         <em>
                                             (2177)
                                         </em>
@@ -329,42 +329,42 @@
                             <ul class=" tb-taglist am-avg-sm-4">
                                 <li class="tb-taglist-li tb-taglist-li-current">
                                     <div class="comment-info">
-											<span>
-												全部评价
-											</span>
+                                            <span>
+                                                全部评价
+                                            </span>
                                         <span class="tb-tbcr-num">
-												(32)
-											</span>
+                                                (32)
+                                            </span>
                                     </div>
                                 </li>
                                 <li class="tb-taglist-li tb-taglist-li-1">
                                     <div class="comment-info">
-											<span>
-												好评
-											</span>
+                                            <span>
+                                                好评
+                                            </span>
                                         <span class="tb-tbcr-num">
-												(32)
-											</span>
+                                                (32)
+                                            </span>
                                     </div>
                                 </li>
                                 <li class="tb-taglist-li tb-taglist-li-0">
                                     <div class="comment-info">
-											<span>
-												中评
-											</span>
+                                            <span>
+                                                中评
+                                            </span>
                                         <span class="tb-tbcr-num">
-												(32)
-											</span>
+                                                (32)
+                                            </span>
                                     </div>
                                 </li>
                                 <li class="tb-taglist-li tb-taglist-li--1">
                                     <div class="comment-info">
-											<span>
-												差评
-											</span>
+                                            <span>
+                                                差评
+                                            </span>
                                         <span class="tb-tbcr-num">
-												(32)
-											</span>
+                                                (32)
+                                            </span>
                                     </div>
                                 </li>
                             </ul>

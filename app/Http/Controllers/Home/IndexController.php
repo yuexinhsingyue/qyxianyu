@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Model\Slid;
 use App\Http\Model\Problem;
 use App\Http\Model\Works;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class IndexController extends Controller
 {
@@ -75,8 +77,27 @@ class IndexController extends Controller
         $count =  count(Car::get());
         //$ii = Input::get();
         //获取此商品的信息
-       //dd($input);
-        return view('home.detail',compact('input','id','count'));
+        // 获取商品图片
+        $pic = $input['pic'];
+         // 获取图片后缀
+        $ext = 'jpg'; 
+        // 组成缩略图路径
+        $midpath = $pic.'_mid.'.$ext;
+        $smlpath = $pic.'_sml.'.$ext;
+        // 判断是否存在中号缩略图
+        if ( !file_exists($midpath) ) {
+             //生成中号缩略图
+            $midimg = Image::make($pic) -> resize(350,350);
+            $midimg -> save($midpath);
+        }
+        // 判断是否存在小号缩略图
+        if ( !file_exists($smlpath) ) {
+            // 生成小号缩略图
+           $midimg = Image::make($pic) -> resize(60,60);
+           $midimg -> save($smlpath);
+        }
+
+        return view('home.detail',compact('input','id','count','midpath','smlpath'));
     }
 
 
