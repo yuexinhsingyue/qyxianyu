@@ -70,16 +70,16 @@
                         });
                     </script>
                     <div class="tb-booth tb-pic tb-s310">
-                        <a href="/{{ $input['pic']}}">
-                            <img src="/{{ $input['pic']}}" alt="细节展示放大镜特效" rel="/{{ $input['pic']}}"
+                        <a href="/{{ $bigpic}}">
+                            <img src="/{{ $midpath}}" alt="细节展示放大镜特效" rel="/{{ $bigpic}}"
                                  class="jqzoom"  />
                         </a>
                     </div>
-                    <ul class="tb-thumb">
+                    <ul class="tb-thumb" id="thumblist">
                         <li class="tb-selected">
                             <div class="tb-pic tb-s40">
                                 <a href="#">
-                                    <img src="/{{ $input['pic']}}" mid="/{{ $input['pic'] }}" big="/{{ $input['pic']  }}">
+                                    <img src="/{{ $smlpath}}" mid="/{{ $midpath }}" big="/{{ $bigpic  }}">
                                 </a>
                             </div>
                         </li>

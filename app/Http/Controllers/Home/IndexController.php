@@ -84,10 +84,14 @@ class IndexController extends Controller
         // 组成缩略图路径
         $midpath = $pic.'_mid.'.$ext;
         $smlpath = $pic.'_sml.'.$ext;
+        // 取出大图
+        $bigpic = str_replace('/sml','/',$pic);
+        // dd($pic);
+
         // 判断是否存在中号缩略图
         if ( !file_exists($midpath) ) {
              //生成中号缩略图
-            $midimg = Image::make($pic) -> resize(350,350);
+            $midimg = Image::make($pic) -> resize(400,400);
             $midimg -> save($midpath);
         }
         // 判断是否存在小号缩略图
@@ -97,7 +101,7 @@ class IndexController extends Controller
            $midimg -> save($smlpath);
         }
 
-        return view('home.detail',compact('input','id','count','midpath','smlpath'));
+        return view('home.detail',compact('input','id','count','bigpic','midpath','smlpath'));
     }
 
 
