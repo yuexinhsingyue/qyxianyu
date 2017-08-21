@@ -35,9 +35,9 @@
 			</div>
 			<div class="nav-cont">
 				<ul>
-					<li class="index"><a href="#">首页</a></li>
-					<li class="qc"><a href="#">文章与问题</a></li>
-					<li class="qc last"><a href="#">鱼塘</a></li>
+					<li class="index"><a href="{{url('/')}}">首页</a></li>
+					<li class="qc"><a href="{{url('home/work/17289.html')}}">文章与问题</a></li>
+					<li class="qc last"><a href="{{url('home/fishlist')}}">鱼塘</a></li>
 				</ul>
 			</div>
 		</div>
@@ -160,7 +160,7 @@
                         <time>鱼塘简介:{{$v->synopsis}}</time>
 
                         <div class="lg-detail-wrap">
-                            <a class="lg-detail i-tip-trigger" href="{{ url('home/fishgoods') }}/{{$v->id}}">查看鱼塘商品</a>
+                            <a class="lg-detail i-tip-trigger" href="{{ url('home/fishgood') }}/{{$v->id}}">查看鱼塘商品</a>
                         </div>
 
                     </div>

@@ -24,7 +24,6 @@
                             <div class="lg-info">
 
                                 <p>{{$v->synopsis}}</p>
-                                <time>{{$v->unum}}个</time>
                             </div>
                             <div class="lg-confirm">
                                 <a class="i-btn-typical" href="#">禁用</a>

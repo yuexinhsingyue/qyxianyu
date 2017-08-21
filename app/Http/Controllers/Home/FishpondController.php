@@ -153,4 +153,9 @@ class FishpondController extends Controller
          $goods = Goods::where('fid',$id)->get();
         return view('home.fish.fishgoods',compact('goods'));
     }
+    public function fishgood($id)
+    {
+         $goods = Goods::where('fid',$id)->get();
+        return view('home.fish.fishgoods',compact('goods'));
+    }
 }

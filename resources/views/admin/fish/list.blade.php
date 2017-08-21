@@ -44,13 +44,10 @@
                         <div class="no-overflow"> <span>鱼塘申请用户</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>鱼塘等级</span> </div>
+                        <div class="no-overflow"> <span>鱼塘头像</span> </div>
                     </div>
                     <div class="item-col item-col-header item-col-stats">
                         <div class="no-overflow"> <span>鱼塘状态</span> </div>
-                    </div>
-                    <div class="item-col item-col-header item-col-stats">
-                        <div class="no-overflow"> <span>操作</span> </div>
                     </div>
                 </div>
             </li>
@@ -69,18 +66,13 @@
                         <div class="no-overflow">{{$v->synopsis}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">{{$v->flevel}}</div>
+                  <img src="{{ url($v['face']) }}" alt=""> 
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">{{$v->uid}}</div>
                     </div>
                     <div class="item-col item-col-stats no-overflow">
                         <div class="no-overflow">{{$v->saatus}}</div>
-                    </div>
-                    <div class="item-col item-col-stats no-overflow">
-                        <div class="no-overflow">
-                            <button type="button" class="btn btn-oval btn-danger">修改</button>
-                        </div>
                     </div>
                 </div>
             </li>

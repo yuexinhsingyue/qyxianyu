@@ -147,7 +147,7 @@ Route::group(['middleware'=>'home'], function() {
     Route::get('home/fishlist','Home\FishpondController@fishlist');
 
     //鱼塘列表
-    Route::get('home/fishgoods/{id}','Home\FishpondController@fishgoods');
+    Route::get('home/fishgood/{id}','Home\FishpondController@fishgood');
 
     // 用户鱼塘列表
     Route::get('home/fishuser','Home\FishpondController@index');

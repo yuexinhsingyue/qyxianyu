@@ -26,7 +26,7 @@ class FishController extends Controller
         // var_dump($data);
         
         $data = Fish::where('fishpondname','like','%'.$request['keywords'].'%')
-        ->join('fishponddetail','fishpond.id','=','fishponddetail.fid' )
+       // ->join('fishponddetail','fishpond.id','=','fishponddetail.fid' )
         ->paginate(3);
         $keyword = $request->input('keywords');
         return view('admin.fish.list',compact('data','keyword'));

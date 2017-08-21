@@ -192,13 +192,6 @@
     </div>
     <div class="pay">
         <li>
-            <div class="clearfix tb-btn tb-btn-buy theme-login">
-                <a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">
-                    立即购买
-                </a>
-            </div>
-        </li>
-        <li>
             <div class="clearfix tb-btn tb-btn-basket theme-login">
                 <a id="LikBasket" title="加入购物车" href="{{ url('home/car/'.$input['id']) }}">
                     <i>
@@ -287,7 +280,7 @@
                                 </h4>
                             </div>
                             <div class="twlistNews">
-                                <img src="{{ url('home/img/tw1.jpg') }}" />
+                                <img src="/{{ $input['pic']}}" style="width:600px"/>
                             </div>
                         </div>
                         <div class="clear">
