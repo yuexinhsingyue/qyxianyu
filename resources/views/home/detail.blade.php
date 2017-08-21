@@ -165,20 +165,20 @@
                                     <form class="theme-signin" name="loginform" action="" method="post">
                                         <div class="theme-signin-left">
                                             <div class="theme-options">
-                                                <div class="cart-title number">
+                                                {{--<div class="cart-title number">
                                                     数量
-                                                </div>
+                                                </div>--}}
                         <dd>
-                            <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"
+                            {{--<input id="min" class="am-btn am-btn-default" name="" type="button" value="-"
                             />
 
-                            <input id="text_box" name="number" type="text" value="2" style="width:30px;"
+                            <input id="text_box" name="number" type="text" value="1" style="width:30px;"
                             />
                             <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"
-                            />
+                            onclick="checknum(this)"/>--}}
                             <span id="Stock" class="tb-hidden">库存
-														<span class="stock">{{$input['goodsNum']}}</span>件
-											        </span>
+                                <span class="stock">{{$input['goodsNum']}}</span>件
+                            </span>
                         </dd>
                 </div>
                 <div class="clear"></div>

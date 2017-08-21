@@ -75,7 +75,10 @@ class OrderController extends Controller
         //查询出订单表里商品ID
         $gid = OrderDetail::where('id',$id)->value('gid');
         //根据此iD查询出所购买商品的具体信息
-        $goods = Goods::where('id',$gid)->get();
+        $gid = \GuzzleHttp\json_decode($gid);
+        foreach($gid as $k=>$v){
+            $goods[] = Goods::where('id',$v)->get()[0];
+        }
         //先获取下单用户的ID
         //获取下订单用户的ID  $uid
         //根据uid获取到地址表的地址信息
