@@ -12,27 +12,6 @@
 <div class="concent">
     <!--地址 -->
     <div class="paycont">
-        <!--物流 -->
-        <div class="logistics">
-            <h3>选择物流方式</h3>
-            <ul class="op_express_delivery_hot">
-                <li data-value="yuantong" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -468px"></i>圆通<span></span></li>
-                <li data-value="shentong" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -1008px"></i>申通<span></span></li>
-                <li data-value="yunda" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -576px"></i>韵达<span></span></li>
-                <li data-value="zhongtong" class="OP_LOG_BTN op_express_delivery_hot_last "><i class="c-gap-right" style="background-position:0px -324px"></i>中通<span></span></li>
-                <li data-value="shunfeng" class="OP_LOG_BTN  op_express_delivery_hot_bottom"><i class="c-gap-right" style="background-position:0px -180px"></i>顺丰<span></span></li>
-            </ul>
-        </div>
-        <div class="clear"></div>
-        <!--支付方式-->
-        <div class="logistics">
-            <h3>选择支付方式</h3>
-            <ul class="pay-list">
-                <li class="pay card"><img src="{{ url('home/img/wangyin.jpg') }}">银联<span></span></li>
-                <li class="pay qq"><img src="{{ url('home/img/weizhifu.jpg') }}">微信<span></span></li>
-                <li class="pay taobao"><img src="{{ url('home/img/zhifubao.jpg') }}">支付宝<span></span></li>
-            </ul>
-        </div>
         <div class="clear"></div>
         <!--订单 -->
         <div class="concent">
@@ -67,7 +46,7 @@
                                 <li class="td td-item">
                                     <div class="item-pic">
                                         <a href="#" class="J_MakePoint">
-                                            <img src="/{{$v->pic}}" class="itempic J_ItemImg">
+                                            <img src="/{{$v->pic}}" class="itempic J_ItemImg" width="80" height="80">
                                         </a>
                                     </div>
                                     <div class="item-info">
@@ -104,7 +83,7 @@
                             </li>
                             <li class="td td-sum">
                                 <div class="td-inner">
-                                    <em tabindex="0" class="J_ItemSum number">{{$sum}}</em>
+                                    <em tabindex="0" class="J_ItemSum number">{{$v->nprice}}</em>
                                 </div>
                             </li>
                         </ul>
@@ -118,35 +97,6 @@
                 </div>
                 <div class="clear"></div>
                 <div class="pay-total">
-                    <!--留言-->
-                    <div class="order-extra">
-                        <div class="order-user-info">
-                            <div id="holyshit257" class="memo">
-                                <label>买家留言：</label>
-                                <input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明" class="memo-input J_MakePoint c2c-text-default memo-close">
-                                <div class="msg hidden J-msg">
-                                    <p class="error">最多输入500个字符</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--优惠券 -->
-                    <div class="buy-agio">
-                        <li class="td td-coupon">
-                            <span class="coupon-title">优惠券</span>
-                            <select data-am-selected="">
-                                <option value="a">￥8【消费满95元可用】</option>
-                                <option value="b" selected="">￥3【无使用门槛】</option>
-                            </select>
-                        </li>
-                        <li class="td td-bonus">
-                            <span class="bonus-title">红包</span>
-                            <select data-am-selected="">
-                                <option value="a">¥50.00元还剩10.40元</option>
-                                <option value="b" selected="">¥50.00元还剩50.00</option>
-                            </select>
-                        </li>
-                    </div>
                     <div class="clear"></div>
                 </div>
                 <!--含运费小计 -->
@@ -185,7 +135,7 @@
                         </div>
                         <div id="holyshit269" class="submitOrder">
                             <div class="go-btn-wrap">
-                                <a id="J_Go" href="{{ url('home/success/') }}" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+                                <a id="J_Go" href="{{ url('home/success/'.$did)}}?sum={{$sum}}" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
                             </div>
                         </div>
                         <div class="clear"></div>

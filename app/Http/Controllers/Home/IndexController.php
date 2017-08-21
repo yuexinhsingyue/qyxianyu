@@ -329,18 +329,20 @@ class IndexController extends Controller
             $sum = $sum+$price;
         }*/
         //获取商品表的信息
+        $did = $orderdetail->oid;
         $goods = Goods::get();
 //        return view('home.pay',compact('input','id','price','car','a','count','order','orderdetail','sum'));
-        return view('home.pay',compact('order','orderdetail','goods','cars','sum'));
+        return view('home.pay',compact('order','orderdetail','goods','cars','sum','did'));
     }
     //订单完成页
     public function success($id)
     {
-        $input = Goods::find($id);
+       // $input = Goods::find($id);
+        $sum = Input::get('sum');
         //获取购买东西的总价格
-        $price = $input['nprice']*$input['goodsNum'];
+       // $price = $input['nprice']*$input['goodsNum'];
         //地址信息获取
-        return view('home.success',compact('price','id'));
+        return view('home.success',compact('price','id','sum'));
     }
 
 

@@ -204,7 +204,7 @@ class GoodsController extends Controller
                 // 生成缩略图
                 $sm = Image::make(public_path('uploads/').$newName)->resize(350,350)->save(public_path('uploads/').'up_sml'.$newName);
 
-                $data['pic'] = 'uploads/'.'up_sml'.$newName;    // 压入数组
+                $data['pic'] = 'uploads/'.'sml'.$newName;    // 压入数组
 
 
             }else{

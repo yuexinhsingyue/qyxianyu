@@ -48,8 +48,9 @@
                     </li>
                     {{--表内容--}}
                     <li class="item">
+                        @foreach($goods as $k=>$v)
                         <div class="item-row">
-                            @foreach($goods as $k=>$v)
+
                             <div class="item-col item-col-stats no-overflow">
                                 <div class="no-overflow">{{$v->gname}}</div>
                             </div>
@@ -70,8 +71,9 @@
                             <div class="item-col item-col-stats no-overflow">
                                 <div class="no-overflow">￥{{$v->nprice}}</div>
                             </div>
-                                @endforeach
+
                         </div>
+                        @endforeach
                     </li>
                 </ul>
             </div>
